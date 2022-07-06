@@ -1909,7 +1909,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1930,7 +1930,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1938,6 +1938,27 @@ TextureImporter:
       bones: []
       spriteID: 4a6f981717d0aba4f89f8da67f36df41
       internalID: -1877583903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4584f6209ce8f2f46b2ff52a50de5473
+      internalID: -27479786
       vertices: []
       indices: 
       edges: []
@@ -1963,6 +1984,7 @@ TextureImporter:
       Torch6: 1457629993
       Floor6: -238429894
       Stairs0: -1131894726
+      Enemy2: -27479786
       HealingFountain1: 1693845849
       Wall11: 1655066131
       Wall8: -719324588
@@ -2004,8 +2026,8 @@ TextureImporter:
       Weapon1: 744634613
       Pillar4: -563723409
       Torch1: -1612854260
-      Weapon3: -756343718
       Enemy1: -1877583903
+      Weapon3: -756343718
       FloorDirt13: 1078087995
       Crate1: -1990533484
       Wall7: 1708523269
@@ -2024,11 +2046,11 @@ TextureImporter:
       Weapon0: 1896369323
       FloorDirt15: -642703150
       Stairs1: 1707556754
+      FloorDirt0: 1501085317
       Player0: -897414788
-      Crate3: -98374279
       Pillar3: 832235590
       Chest1: 1285000816
-      FloorDirt0: 1501085317
+      Crate3: -98374279
       FloorDirt7: -450665743
       Wall4: 2044591618
       Boss1: 860147719
