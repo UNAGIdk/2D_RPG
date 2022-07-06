@@ -1400,7 +1400,7 @@ TextureImporter:
       name: Enemy0
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 96
         width: 16
         height: 16
@@ -1922,7 +1922,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1
+      name: Projectile0
       rect:
         serializedVersion: 2
         x: 32
@@ -1943,6 +1943,27 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: Enemy1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4584f6209ce8f2f46b2ff52a50de5473
+      internalID: -27479786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: Enemy2
       rect:
         serializedVersion: 2
@@ -1951,14 +1972,98 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4584f6209ce8f2f46b2ff52a50de5473
-      internalID: -27479786
+      spriteID: 2c760656d9092a549885c2efb92c72ab
+      internalID: -421048847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09c31725b270f1b448285336474a6b36
+      internalID: -492857589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fafa0bdae6b2f4a44a3bc923f4b90e6c
+      internalID: 84273126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4f7a586a270f324d9187060503161bc
+      internalID: 798896504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baa8816674d5c8d4dbaf4ab6c1f50c74
+      internalID: 212952045
       vertices: []
       indices: 
       edges: []
@@ -1980,11 +2085,12 @@ TextureImporter:
       Torch2: -1914447546
       Torch8: -1176347722
       Torch5: -756154746
+      Projectile0: -1877583903
       Skull0: 1376218414
       Torch6: 1457629993
       Floor6: -238429894
       Stairs0: -1131894726
-      Enemy2: -27479786
+      Enemy2: -421048847
       HealingFountain1: 1693845849
       Wall11: 1655066131
       Wall8: -719324588
@@ -2000,6 +2106,7 @@ TextureImporter:
       Floor12: -1040402325
       Torch3: -1778778163
       Floor4: 907366134
+      Enemy5: 798896504
       Pillar5: -1339788648
       Enemy0: -1792941192
       FloorDirt9: -1632018127
@@ -2018,6 +2125,7 @@ TextureImporter:
       BannerBlue0: 433160374
       Weapon6: -2041890342
       Pillar2: 80123919
+      Enemy3: -492857589
       Floor8: 115971369
       BannerYellow0: -1623414850
       Floor9: -130477921
@@ -2026,10 +2134,11 @@ TextureImporter:
       Weapon1: 744634613
       Pillar4: -563723409
       Torch1: -1612854260
-      Enemy1: -1877583903
       Weapon3: -756343718
+      Enemy1: -27479786
       FloorDirt13: 1078087995
       Crate1: -1990533484
+      Enemy6: 212952045
       Wall7: 1708523269
       Floor10: 465991235
       Torch4: 2032510733
@@ -2040,6 +2149,7 @@ TextureImporter:
       Crate2: -617988605
       FloorDirt2: 1142331957
       Floor5: -389523184
+      Enemy4: 84273126
       BannerGreen0: -483628563
       Chest2: 1337913139
       Player1: -1401748077

@@ -96,6 +96,8 @@ public class CharacterMenu : MonoBehaviour
         GameManager.instance.experience = 0;
         GameManager.instance.player.SetLevel(0);
         GameManager.instance.weapon.SetWeaponLevel(0);
+        GameObject.Find("Player").GetComponent<Player>().hitpoint = 5;
+        GameObject.Find("Player").GetComponent<Player>().maxHitpoint = 5;
         UpdateMenu();
         Debug.Log("Cleared Player Prefs");
     }
