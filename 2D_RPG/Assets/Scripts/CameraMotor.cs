@@ -8,7 +8,7 @@ public class CameraMotor : MonoBehaviour
     public float boundX = 0.15f;
     public float boundY = 0.05f;
 
-    private void Start() //найти объект с именем player и приклеиться к нему
+    private void Start() //найти объект с именем player, взять с него параметр transform и присвоить этот параметр в поле lookAt
     {
         lookAt = GameObject.Find("Player").transform;
     }

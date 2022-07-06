@@ -208,7 +208,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6544238045108692720, guid: e4c0debd1fe7fd342a30fc9fe6f9d105, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6544238045108692720, guid: e4c0debd1fe7fd342a30fc9fe6f9d105, type: 3}
       propertyPath: m_LocalPosition.x
@@ -439,7 +439,7 @@ RectTransform:
   - {fileID: 1357669769}
   - {fileID: 1771271274}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1029,6 +1029,7 @@ GameObject:
   - component: {fileID: 494586515}
   - component: {fileID: 494586514}
   - component: {fileID: 494586517}
+  - component: {fileID: 494586518}
   m_Layer: 7
   m_Name: Player
   m_TagString: Fighter
@@ -1160,6 +1161,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d47ca93813b69d4e9a2bfae79dba6a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &494586518
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494586511}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 161910021fe09204f91489e1659f7d71, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &510701369
 GameObject:
   m_ObjectHideFlags: 0
@@ -3253,7 +3274,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &868863549
 GameObject:
@@ -19019,16 +19040,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 6, y: 1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 28
-      m_TileSpriteIndex: 21
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 7, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -19917,7 +19928,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 288e321a13b2ffa4b8c90c5441da61d0, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 9c5e4c6379fcf7541aa0fed9be4b6d40, type: 2}
   - m_RefCount: 28
     m_Data: {fileID: 11400000, guid: 0f98559aee2da09429e06a1d544f3a5d, type: 2}
@@ -19966,7 +19977,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 1376218414, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 1535715051, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
@@ -19987,7 +19998,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -365465823, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 216
+  - m_RefCount: 215
     m_Data:
       e00: 1
       e01: 0
@@ -20006,7 +20017,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 216
+  - m_RefCount: 215
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -21001,7 +21012,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -21043,7 +21054,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6544238045108692720, guid: e4c0debd1fe7fd342a30fc9fe6f9d105, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6544238045108692720, guid: e4c0debd1fe7fd342a30fc9fe6f9d105, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22589,7 +22600,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2027946343
 MonoBehaviour:
@@ -22612,7 +22623,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4805837654991242676, guid: 2b9e9dd9700df144baaa4fe84f253cc3, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4805837654991242676, guid: 2b9e9dd9700df144baaa4fe84f253cc3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22681,7 +22692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6468451003014983144, guid: dac46c43190a48e4ea8983b07d9a57f5, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6468451003014983144, guid: dac46c43190a48e4ea8983b07d9a57f5, type: 3}
       propertyPath: m_LocalPosition.x
