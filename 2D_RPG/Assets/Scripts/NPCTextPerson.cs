@@ -34,7 +34,7 @@ public class NPCTextPerson : Collidable
             if (Time.time - lastSpoken > cooldown)
             {
                 lastSpoken = Time.time;
-                GameManager.instance.ShowText(messages[Random.Range(1, 5)], 20, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, cooldown); //вектор добавлен для того чтобы сдвинуть текст выше
+                GameManager.instance.ShowText(messages[Random.Range(1, messages.Length)], 20, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, cooldown); //вектор добавлен для того чтобы сдвинуть текст выше
             }
         }
     }

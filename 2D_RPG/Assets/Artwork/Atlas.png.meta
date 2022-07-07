@@ -2320,6 +2320,153 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: BossChest0
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7beb20824b2b0dc428bc2c98b552ac26
+      internalID: 1789336166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossChest1
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46325513e59fccc4b9afe7cfad1cda89
+      internalID: 1036613855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BossChest2
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a014be034f67e5944aceb276b26e4f1d
+      internalID: -1357035079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC0
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 16
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80b2e81e58ea44b4d8ee015416315131
+      internalID: 2021789525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drape0
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7df70a637cc13f43899a6152ec503a2
+      internalID: -1411715279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drape1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ecdd723911223f429482aae7290d178
+      internalID: -1303280295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drape2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 890d28a7a8814314d950fa2b576acb6c
+      internalID: 279832286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2341,6 +2488,7 @@ TextureImporter:
       Skull0: 1376218414
       Torch6: 1457629993
       Enemy16: 287019221
+      Drape0: -1411715279
       Enemy9: -871647378
       Floor6: -238429894
       Stairs0: -1131894726
@@ -2354,6 +2502,7 @@ TextureImporter:
       Chest0: -31217866
       FloorDirt3: 1163784607
       Enemy17: -776925094
+      BossChest1: 1036613855
       Stairs2: -692439151
       Floor11: 1694690773
       Enemy13: -1314545450
@@ -2407,6 +2556,7 @@ TextureImporter:
       FloorDirt11: -802868653
       Weapon2: 1954315605
       Wall6: -472109003
+      NPC0: 2021789525
       HealingFountain2: 721692660
       Crate2: -617988605
       FloorDirt2: 1142331957
@@ -2417,11 +2567,13 @@ TextureImporter:
       Player1: -1401748077
       Weapon0: 1896369323
       FloorDirt15: -642703150
+      Drape1: -1303280295
       Stairs1: 1707556754
       FloorDirt0: 1501085317
       Player0: -897414788
       Pillar3: 832235590
       Chest1: 1285000816
+      BossChest0: 1789336166
       Crate3: -98374279
       FloorDirt7: -450665743
       Wall4: 2044591618
@@ -2432,6 +2584,8 @@ TextureImporter:
       Enemy12: -1670793106
       FloorDirt1: 1501085317
       Pillar0: -1550629041
+      Drape2: 279832286
+      BossChest2: -1357035079
       Wall10: -821399669
       Wall0: -415500557
       Wall3: 294605104
