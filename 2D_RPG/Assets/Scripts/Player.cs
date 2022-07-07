@@ -11,6 +11,9 @@ public class Player : Mover
     private SpriteRenderer spriteRenderer;
     public bool canMove = true;
 
+    public float x;
+    public float y;
+
     protected override void Start()
     {
         base.Start();
@@ -30,8 +33,8 @@ public class Player : Mover
     private void FixedUpdate()
     {
         //переменные для получения данных с клавиатуры
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        x = Input.GetAxisRaw("Horizontal");
+        y = Input.GetAxisRaw("Vertical");
 
         if(canMove == true)
             UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);

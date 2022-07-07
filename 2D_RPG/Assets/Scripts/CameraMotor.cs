@@ -13,8 +13,7 @@ public class CameraMotor : MonoBehaviour
     private void Start() //найти объект с именем player, взять с него параметр transform и присвоить этот параметр в поле lookAt
     {
         lookAt = GameObject.Find("Player").transform;
-        transform.position = lookAt.position;
-        transform.position += new Vector3(0, 0, -10);
+        transform.position = lookAt.position + new Vector3(0, 0, -10);
     }
 
     //LateUpdate потому что мы хотим вызывать этот метод уже после того как игрок переместился, чтобы не было необходимо ждать следующего кадра для перемещения камеры
@@ -34,13 +33,6 @@ public class CameraMotor : MonoBehaviour
             {
                 delta.x = deltaX + boundX;
             }
-            if (motorXMultiplier < 0.98)
-                motorXMultiplier += 0.001f;
-        }
-        else
-        {
-            if (motorXMultiplier > 0.02)
-                motorXMultiplier -= 0.001f;
         }
 
         //Проверка, находимся ли мы внутри границы по оси y
@@ -55,18 +47,23 @@ public class CameraMotor : MonoBehaviour
             {
                 delta.y = deltaY + boundY;
             }
-            if (motorYMultiplier < 0.98)
-                motorYMultiplier += 0.001f;
-        }
-        else
-        {
-            if (motorYMultiplier > 0.02)
-                motorYMultiplier -= 0.001f;
         }
 
+        //структура ниже позволяет изменять коэффициенты motorX и Y, которые делают движение камеры плавнее
+
+        if (lookAt.GetComponent<Player>().x != 0 && motorXMultiplier < 0.01f)
+            motorXMultiplier += 0.0001f;
+        else if (motorXMultiplier > 0.0002f)
+            motorXMultiplier -= 0.0001f;
+
+        if (lookAt.GetComponent<Player>().y != 0 && motorYMultiplier < 0.01f)
+            motorYMultiplier += 0.0001f;
+        else if(motorYMultiplier > 0.0002f)
+            motorYMultiplier -= 0.0001f;
+
         //строчку ниже можно раскомментить заставляет использовать коэффициенты motorX и motorY, которые пока что работают некорректно
-        //transform.position += new Vector3(delta.x * motorXMultiplier, delta.y * motorYMultiplier, 0);
-        transform.position += new Vector3(delta.x, delta.y, 0);
+        transform.position += new Vector3(delta.x * motorXMultiplier, delta.y * motorYMultiplier, 0);
+        //transform.position += new Vector3(delta.x, delta.y, 0);
     }
 }
 

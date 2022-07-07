@@ -1149,6 +1149,8 @@ MonoBehaviour:
   playerYSpeed: 0.75
   playerXSpeed: 1
   canMove: 1
+  x: 0
+  y: 0
 --- !u!114 &494586517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17326,8 +17328,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boundX: 0.15
   boundY: 0.05
-  motorXMultiplier: 0.5
-  motorYMultiplier: 0.5
+  motorXMultiplier: 0.003
+  motorYMultiplier: 0.003
 --- !u!1 &1357669768
 GameObject:
   m_ObjectHideFlags: 0
