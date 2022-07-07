@@ -11,9 +11,9 @@ public class Chest : Collectable
     protected override void OnCollect()
     {
 
-        if (!collected) //для маленьких сундуков, кол-во денег будет равно 5-10
+        if (!collected)
         {
-            if (moneyAmount == 0)
+            if (moneyAmount == 0) // если поставить 0, то кол-во денег будет равно 5-10
                 moneyAmount = Random.Range(5, 10);
             collected = true;
             GetComponent<SpriteRenderer>().sprite = emptyChest;

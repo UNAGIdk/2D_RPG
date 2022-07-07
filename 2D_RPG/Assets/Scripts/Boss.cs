@@ -7,6 +7,7 @@ public class Boss : Enemy
     public float[] fireballSpeed = { 2.5f, -2.5f };
     public Transform[] fireballs;
     public float distance = 0.25f;
+    public BossChest bossChest;
 
     protected override void FixedUpdate()
     {
@@ -18,5 +19,11 @@ public class Boss : Enemy
         {
             fireballs[i].position = transform.position + new Vector3(-Mathf.Cos(Time.time * fireballSpeed[i]) * distance, Mathf.Sin(Time.time * fireballSpeed[i]) * distance, 0);
         }
+    }
+
+    protected override void Death()
+    {
+        base.Death();
+        bossChest.bossDead = true;
     }
 }
