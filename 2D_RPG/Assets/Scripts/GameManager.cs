@@ -137,6 +137,8 @@ public class GameManager : MonoBehaviour
         instance.experience = 0;
         instance.player.SetLevel(0);
         instance.weapon.SetWeaponLevel(0);
+        player.hitpoint = 5;
+        player.maxHitpoint = 5;
         Debug.Log("Cleared Player Prefs");
     }
 
