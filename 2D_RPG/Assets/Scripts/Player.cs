@@ -10,6 +10,7 @@ public class Player : Mover
 
     private SpriteRenderer spriteRenderer;
     public bool canMove = true;
+    public Animator weaponAnimator;
 
     public float x;
     public float y;
@@ -39,11 +40,13 @@ public class Player : Mover
         if(canMove == true)
             UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);
 
-        //запустить анимацию если получили input по горизонтали или вертикали, застопился на вырезании спрайта для анимации
-        /*if (x > 0 || y > 0) 
+        if(x != 0 || y != 0)
         {
+            weaponAnimator.SetTrigger("Walk");
+        }
 
-        }*/
+        if (x == 0 && y == 0)
+            weaponAnimator.SetTrigger("Stay");
 
     }
 
