@@ -1149,6 +1149,7 @@ MonoBehaviour:
   playerYSpeed: 0.75
   playerXSpeed: 1
   canMove: 1
+  weaponAnimator: {fileID: 1366005463}
   x: 0
   y: 0
 --- !u!114 &494586517
