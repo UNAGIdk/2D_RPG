@@ -2413,7 +2413,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2434,7 +2434,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2455,7 +2455,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2463,6 +2463,69 @@ TextureImporter:
       bones: []
       spriteID: 890d28a7a8814314d950fa2b576acb6c
       internalID: 279832286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ItemBigRedPotion0
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 65
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90c7d146061666f4baa86ad1ac2b9152
+      internalID: 662102968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ItemSmallBluePotion0
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 33
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a212a0d3db72da742b827891da90a6e2
+      internalID: 1286067072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ItemBomb0
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 193
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8689dfc47e9fba4aab241e1a07cee55
+      internalID: -1178279824
       vertices: []
       indices: 
       edges: []
@@ -2546,8 +2609,10 @@ TextureImporter:
       Torch1: -1612854260
       Enemy1: -27479786
       Weapon3: -756343718
+      ItemSmallBluePotion0: 1286067072
       FloorDirt13: 1078087995
       Enemy7: 1613628135
+      ItemBigRedPotion0: 662102968
       Crate1: -1990533484
       Enemy6: 212952045
       Wall7: 1708523269
@@ -2578,6 +2643,7 @@ TextureImporter:
       FloorDirt7: -450665743
       Wall4: 2044591618
       Boss1: 860147719
+      ItemBomb0: -1178279824
       Weapon4: -727319741
       FloorDirt5: -1258727338
       FloorDirt4: 1326896604
