@@ -1485,12 +1485,12 @@ GameObject:
   - component: {fileID: 564707573}
   - component: {fileID: 564707572}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: InventoryCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &564707571
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17649,6 +17649,7 @@ MonoBehaviour:
     itemCount: 0
   movingObject: {fileID: 200639044}
   offset: {x: 1, y: -1, z: 0}
+  background: {fileID: 1906035487}
 --- !u!114 &1334293070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22790,7 +22791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1906035488
 RectTransform:
   m_ObjectHideFlags: 0
