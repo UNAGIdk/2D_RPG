@@ -24,6 +24,8 @@ public class Inventory : MonoBehaviour
     public RectTransform movingObject;
     public Vector3 offset; //смещение предмета относительно курсора
 
+    public GameObject background;
+
     public void Start()
     {
         if (items.Count == 0)
@@ -41,6 +43,52 @@ public class Inventory : MonoBehaviour
     {
         if (currentId != -1)
             MoveObject();
+
+        if(Input.GetKeyDown(KeyCode.Tab)) //если жмем tab тогда сделать инвентарь active
+        {
+            background.SetActive(!background.activeSelf);
+            if(background.activeSelf)//данный блок нужен дл€ того чтобы инвентарь мог обновл€тьс€ даже тогда когда он закрыт
+            {
+                UpdateInventory();
+            }
+        }
+    }
+
+    public void SearchForSameItem(Item item, int itemCount)
+    {
+        for (int i = 0; i < maxItemCount; i++) //пройтись по всем €чейкам инвентар€
+        {
+            if(items[i].id == item.id)
+            {
+                if(items[0].itemCount < 64)
+                {
+                    items[i].itemCount += itemCount;
+
+                    if(items[i].itemCount > 64)
+                    {
+                        itemCount = items[i].itemCount - 64;
+                        items[i].itemCount = 32;
+                    }
+                    else
+                    {
+                        itemCount = 0;
+                        i = maxItemCount;
+                    }
+                }
+            }
+        }
+
+        if(maxItemCount > 0)
+        {
+            for (int i = 0; i < maxItemCount; i++)
+            {
+                if (items[i].id == 0) //если €чейка пуста€ (в ней лежит объект с id 0) тогда в нее можно положить что-то
+                {
+                    AddItem(i, item, itemCount);
+                    i = maxItemCount;
+                }    
+            }
+        }
     }
 
     public void AddItem(int id, Item item, int itemCount)
@@ -120,9 +168,27 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            AddInventoryItem(currentId, items[int.Parse(eventSystem.currentSelectedGameObject.name)]);
+            ItemInventory ii = items[int.Parse(eventSystem.currentSelectedGameObject.name)];
 
-            AddInventoryItem(int.Parse(eventSystem.currentSelectedGameObject.name), currentItem);
+            if(currentItem.id != ii.id)
+            {
+                AddInventoryItem(currentId, ii);
+                AddInventoryItem(int.Parse(eventSystem.currentSelectedGameObject.name), currentItem);
+            }
+            else 
+            {
+                if (ii.itemCount + currentItem.itemCount <= 64)
+                    ii.itemCount += currentItem.itemCount;
+                else
+                {
+                    AddItem(currentId, data.items[ii.id], ii.itemCount + currentItem.itemCount - 64);
+                    ii.itemCount = 64;
+                }
+
+                ii.itemGameObject.GetComponentInChildren<Text>().text = ii.itemCount.ToString();
+
+            }
+
             currentId = -1;
 
             movingObject.gameObject.SetActive(false); //закончили перенос предмета
