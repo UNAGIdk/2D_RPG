@@ -17621,8 +17621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boundX: 0.15
   boundY: 0.05
-  motorXMultiplier: 0.003
-  motorYMultiplier: 0.003
+  motorXMultiplier: 0.005
+  motorYMultiplier: 0.005
 --- !u!114 &1334293069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17639,7 +17639,7 @@ MonoBehaviour:
   items: []
   gameObjectShow: {fileID: 3420828582147124844, guid: 50c1f26e745ba9749b76bdb52369b0cb, type: 3}
   InventoryMainObject: {fileID: 408956799}
-  maxItemCount: 36
+  maxItemCount: 15
   cam: {fileID: 1334293066}
   eventSystem: {fileID: 839838014}
   currentId: -1
@@ -22791,7 +22791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1906035488
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22810,8 +22810,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -39.549957, y: -24.199997}
-  m_SizeDelta: {x: 340.7, y: 419.4}
+  m_AnchoredPosition: {x: -39.549957, y: 86.1}
+  m_SizeDelta: {x: 294.8, y: 198.8}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1906035489
 MonoBehaviour:
