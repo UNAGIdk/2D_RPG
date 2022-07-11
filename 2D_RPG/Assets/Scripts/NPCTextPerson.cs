@@ -9,6 +9,7 @@ public class NPCTextPerson : Collidable
     public Color textColor;
     private float lastSpoken;
     private bool hasSpokenIntroMessage;
+    public Sprite dialogueSprite;
 
     protected override void Start()
     {
@@ -20,7 +21,7 @@ public class NPCTextPerson : Collidable
     protected override void OnCollide(Collider2D coll)
     {
         Debug.Log("Collided");
-        if(!hasSpokenIntroMessage) //сказал ли уже первое сообщение?
+        /*if(!hasSpokenIntroMessage) //сказал ли уже первое сообщение?
         {
             if (Time.time - lastSpoken > cooldown)
             {
@@ -36,7 +37,8 @@ public class NPCTextPerson : Collidable
                 lastSpoken = Time.time;
                 GameManager.instance.ShowText(messages[Random.Range(1, messages.Length)], 20, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, cooldown); //вектор добавлен для того чтобы сдвинуть текст выше
             }
-        }
+        }*/
+        GameManager.instance.ShowDialogue(messages, dialogueSprite);
     }
 }
 

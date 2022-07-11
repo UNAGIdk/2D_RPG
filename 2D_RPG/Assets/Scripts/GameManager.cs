@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public Weapon weapon;
     public FloatingTextManager floatingTextManager;
+    public DialogueManager dialogueManager;
     public RectTransform hitpointBar;
     public GameObject hud; //это и следующее поле нужно для того чтобы при переходе между сценами не создавалось новых меню и hud-a
     public GameObject menu;
@@ -49,6 +50,11 @@ public class GameManager : MonoBehaviour
     public void ShowText(string message, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) //пишем это тут для того чтоб можно было
     {                                                                                                                 //откуда угодно заставить появиться floatingText
         floatingTextManager.Show(message, fontSize, color, position, motion, duration);
+    }
+
+    public void ShowDialogue(string[] textPages, Sprite characterSprite)
+    {
+        dialogueManager.Show(textPages, characterSprite);
     }
 
     //UpgradeWeapon
