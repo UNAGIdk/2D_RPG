@@ -6,43 +6,57 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     public GameObject container; //dialogue manager
+    public Transform containerTransform; //dialogue manager
     public GameObject dialogueWindowPrefab;
-    public GameObject characterSpriteWindowPrefab;
+    public GameObject DialogueCharacterSpritePrefab;
+    
 
     private GameObject dialogue;
     private GameObject characterSpriteWindow;
 
 
-    private bool objectsCreated = false;
+    private bool dialogueRunning = false;
+    private int pagesCounter = 0;
 
-
-    public void Show(string[] textPages, Sprite characterSprite)
+    private void Update()
     {
-        if(objectsCreated == false)
+        if(dialogueRunning == true)
         {
-            dialogue = Instantiate(dialogueWindowPrefab);
-            characterSpriteWindow = Instantiate(characterSpriteWindowPrefab);
-            objectsCreated = true;
-        }
-
-        dialogue.transform.position = GameManager.instance.player.transform.position; //позиция где отрисовывается новый dialogue
-        characterSpriteWindow.transform.position = dialogue.transform.position -= new Vector3(0.3f, 0, 0); //позиция где отрисовывается новый characterSpriteWindow
-        characterSpriteWindow.GetComponentInChildren<Image>().sprite = characterSprite;
-
-
-
-        int pagesCounter = 0;
-        dialogue.GetComponentInChildren<Text>().text = textPages[pagesCounter];
-        /*while (pagesCounter <= textPages.Length)
-        {
-            dialogue.GetComponentInChildren<Text>().text = textPages[pagesCounter];
             if (Input.GetKeyDown(KeyCode.Mouse0) == true || Input.GetKeyDown(KeyCode.Space) == true)
             {
                 pagesCounter += 1;
             }
         }
+    }
+
+    public void Show(string[] textPages, Sprite characterSprite)
+    {
+        if(dialogueRunning == false)
+        {
+            dialogue = Instantiate(dialogueWindowPrefab, containerTransform);
+            characterSpriteWindow = Instantiate(DialogueCharacterSpritePrefab, containerTransform);
+            dialogueRunning = true;
+        }
+
+        characterSpriteWindow.GetComponentInChildren<Image>().sprite = characterSprite;
+
+        dialogue.GetComponentInChildren<Text>().text = textPages[pagesCounter];
+        
+        if(pagesCounter > textPages.Length)
+        {
+            ClearDialogue();
+        }
+    }
+
+    public void UpdateDialogue(string[] textPages)
+    {
+
+    }
+
+    public void ClearDialogue()
+    {
         Destroy(dialogue);
         Destroy(characterSpriteWindow);
-        objectsCreated = false;*/
+        dialogueRunning = false;
     }
 }
