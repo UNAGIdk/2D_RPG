@@ -8,14 +8,13 @@ public class NPCTextPerson : Collidable
     public float cooldown = 4.0f;
     public Color textColor;
     private float lastSpoken;
-    private bool hasSpokenIntroMessage;
     public Sprite dialogueSprite;
 
     protected override void Start()
     {
         base.Start();
         lastSpoken = -cooldown;
-        hasSpokenIntroMessage = false;
+        //hasSpokenIntroMessage = false;
     }
 
     protected override void OnCollide(Collider2D coll)
