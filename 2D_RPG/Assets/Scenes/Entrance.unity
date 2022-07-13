@@ -623,6 +623,7 @@ MonoBehaviour:
   containerTransform: {fileID: 331560956}
   dialogueWindowPrefab: {fileID: 1695464795696617615, guid: ee4e6a53d3f09bc4da3e1ef8be2761fb, type: 3}
   DialogueCharacterSpritePrefab: {fileID: 5425931157389032646, guid: 079f16c579418a94590dd392f4dd1fe1, type: 3}
+  dialogueRunning: 0
 --- !u!114 &331560952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23163,9 +23164,33 @@ PrefabInstance:
       value: IntroNPC
       objectReference: {fileID: 0}
     - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: finalMessage
+      value: Ya stariy pizdec...
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: dialogueSprite
       value: 
       objectReference: {fileID: 2021789525, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
+    - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: dialogueManager
+      value: 
+      objectReference: {fileID: 331560951}
+    - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: messages.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: finalMessages.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: finalMessages.Array.data[0]
+      value: Ya stariy pizdec...
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: finalMessages.Array.data[1]
+      value: Ya stariy pizdec daaaa...
+      objectReference: {fileID: 0}
     - target: {fileID: 3250933463688035069, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: m_RootOrder
       value: 3

@@ -52,9 +52,9 @@ public class GameManager : MonoBehaviour
         floatingTextManager.Show(message, fontSize, color, position, motion, duration);
     }
 
-    public void ShowDialogue(string[] textPages, Sprite characterSprite)
+    public void ShowDialoguePage(string textPage, Sprite characterSprite)
     {
-        dialogueManager.Show(textPages, characterSprite);
+        dialogueManager.ShowPage(textPage, characterSprite);
     }
 
     //UpgradeWeapon
