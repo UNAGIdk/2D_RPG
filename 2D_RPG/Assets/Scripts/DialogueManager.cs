@@ -17,7 +17,6 @@ public class DialogueManager : MonoBehaviour
 
     public bool dialogueRunning = false;
 
-    //(Input.GetKeyDown(KeyCode.Mouse0) == true || Input.GetKeyDown(KeyCode.Space) == true)
 
     public void ShowPage(string textPage, Sprite characterSprite)
     {
