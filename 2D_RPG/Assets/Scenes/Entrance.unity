@@ -621,8 +621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   container: {fileID: 331560950}
   containerTransform: {fileID: 331560956}
-  dialogueWindowPrefab: {fileID: 1695464795696617615, guid: ee4e6a53d3f09bc4da3e1ef8be2761fb, type: 3}
-  DialogueCharacterSpritePrefab: {fileID: 5425931157389032646, guid: 079f16c579418a94590dd392f4dd1fe1, type: 3}
+  dialogueWindowPrefab: {fileID: 7455717218849148958, guid: ee4e6a53d3f09bc4da3e1ef8be2761fb, type: 3}
+  DialogueCharacterSpritePrefab: {fileID: 2856310309561219692, guid: 079f16c579418a94590dd392f4dd1fe1, type: 3}
   dialogueRunning: 0
 --- !u!114 &331560952
 MonoBehaviour:
@@ -17603,8 +17603,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boundX: 0.15
   boundY: 0.05
-  motorXMultiplier: 0.01
-  motorYMultiplier: 0.01
+  motorXMultiplier: 0.012
+  motorYMultiplier: 0.012
 --- !u!114 &1334293069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23177,7 +23177,33 @@ PrefabInstance:
       objectReference: {fileID: 331560951}
     - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: messages.Array.size
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: messages.Array.data[0]
+      value: 'Welcome! The bridge is broken, so your only option is going into the
+        portal. I am going to give you some advices, so listen:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: messages.Array.data[1]
+      value: There is a menu button in the lower left corner of your screen.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: messages.Array.data[2]
+      value: Your sword can break boxes.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: messages.Array.data[3]
+      value: And those red fountains in walls are healing totems, which restore your
+        <color=green>HP</color>.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: messages.Array.data[4]
+      value: Bye, and always remember that Volodya is the best ghoul.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: messages.Array.data[5]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3250933463688035068, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: finalMessages.Array.size
@@ -23234,6 +23260,14 @@ PrefabInstance:
     - target: {fileID: 3250933463688035069, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250933463688035070, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250933463688035070, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1372273701
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
