@@ -47,7 +47,7 @@ public class NPCTextPerson : Collidable
     {
         Debug.Log("Collided");
         if(hasSpokenMessages == false)
-            GameManager.instance.ShowDialoguePage(messages[pagesCounter], dialogueSprite);
+            GameManager.instance.ShowDialoguePage(messages[pagesCounter], dialogueSprite); //показать первую страницу при касании
     }
 }
 

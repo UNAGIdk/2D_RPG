@@ -892,6 +892,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boundX: 0.15
   boundY: 0.05
+  motorXMultiplier: 0.012
+  motorYMultiplier: 0.012
 --- !u!4 &1001970479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6544238045108692720, guid: e4c0debd1fe7fd342a30fc9fe6f9d105, type: 3}
