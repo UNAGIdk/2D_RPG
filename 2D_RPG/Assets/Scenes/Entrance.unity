@@ -17484,7 +17484,6 @@ GameObject:
   - component: {fileID: 1334293068}
   - component: {fileID: 1334293070}
   - component: {fileID: 1334293069}
-  - component: {fileID: 1334293071}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -17624,18 +17623,6 @@ MonoBehaviour:
   - id: 2
     name: Bomb
     image: {fileID: -1178279824, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
---- !u!114 &1334293071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1334293064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d47ca93813b69d4e9a2bfae79dba6a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1357669768
 GameObject:
   m_ObjectHideFlags: 0
