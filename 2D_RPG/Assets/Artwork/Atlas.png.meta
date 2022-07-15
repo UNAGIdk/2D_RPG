@@ -1901,7 +1901,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss1
+      name: Boss0
       rect:
         serializedVersion: 2
         x: 160
@@ -2530,6 +2530,363 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: NPC1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 112
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01decd1922a06834e8023a83f68c08da
+      internalID: 191903131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss1
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 48
+        width: 20
+        height: 26
+      alignment: 9
+      pivot: {x: 1.5174041, y: 0.51453453}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 635c8bdea98ff924788996409ee28252
+      internalID: 139706718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 48
+        width: 22
+        height: 30
+      alignment: 9
+      pivot: {x: 1.5174041, y: 0.51453453}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcaeacf666c3c60448018e16677674ff
+      internalID: -2098693717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC2
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 16
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 104494f8f7fe27a499061daa6e2ff118
+      internalID: 1170616017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall12
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57aa36d6a2aae3048a68ddbd89525b1b
+      internalID: -1103569325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0b0edbaaf6d919409922f260ae41916
+      internalID: 1404637531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall14
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c565bf485d307c446acb98479da3a349
+      internalID: -2140191618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall15
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d660bad1b1278e941bb97e2152165dc3
+      internalID: -1664136902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dca4916412e9dcc4fa41a904f28b4324
+      internalID: 1211245684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall17
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bdb823717f5cce48b5e9e1a7cb77345
+      internalID: -529356360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall18
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a8dd7a2a35461340912e0d36d3d2ecc
+      internalID: 1447024739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenFountain0
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe65aca23d45d934da70e225dee8943a
+      internalID: -2067278828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenFountain1
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddbb357340dd5214590c433b839955df
+      internalID: 2092981028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenFountain2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e160c2560454ff40a6ddf4bb21c0559
+      internalID: 1736605876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenFountain3
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a336c6630d372094fafb62f1a4cbc5a7
+      internalID: 1151736027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenFountain4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e73e7c71b60df4a439fa08f3dae98ec9
+      internalID: -1753461793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenFountain5
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d7a4aa1f374b954cab0312a4cf5d8d5
+      internalID: -1501684337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2546,11 +2903,14 @@ TextureImporter:
       Floor7: -1355068827
       Torch2: -1914447546
       Torch8: -1176347722
+      Wall18: 1447024739
       Torch5: -756154746
       Projectile0: -1877583903
+      GreenFountain2: 1736605876
       Skull0: 1376218414
       Torch6: 1457629993
       Enemy16: 287019221
+      Boss2: -2098693717
       Drape0: -1411715279
       Enemy9: -871647378
       Floor6: -238429894
@@ -2559,6 +2919,7 @@ TextureImporter:
       HealingFountain1: 1693845849
       Wall11: 1655066131
       Wall8: -719324588
+      GreenFountain0: -2067278828
       Weapon5: -1580554725
       Crate0: -1640713982
       Wall2: 1287590596
@@ -2567,10 +2928,13 @@ TextureImporter:
       Enemy17: -776925094
       BossChest1: 1036613855
       Stairs2: -692439151
+      Wall14: -2140191618
       Floor11: 1694690773
       Enemy13: -1314545450
       Torch0: 320765253
       FloorDirt8: -748804212
+      Wall12: -1103569325
+      Boss0: 860147719
       Floor12: -1040402325
       Torch3: -1778778163
       Floor4: 907366134
@@ -2595,6 +2959,7 @@ TextureImporter:
       Enemy10: 1196112315
       BannerBlue0: 433160374
       Enemy18: 978296123
+      Wall17: -529356360
       Weapon6: -2041890342
       Pillar2: 80123919
       Enemy8: 696177139
@@ -2611,14 +2976,20 @@ TextureImporter:
       Weapon3: -756343718
       ItemSmallBluePotion0: 1286067072
       FloorDirt13: 1078087995
+      Wall15: -1664136902
+      Wall13: 1404637531
       Enemy7: 1613628135
+      NPC1: 191903131
+      NPC2: 1170616017
       ItemBigRedPotion0: 662102968
       Crate1: -1990533484
       Enemy6: 212952045
+      GreenFountain1: 2092981028
       Wall7: 1708523269
       Floor10: 465991235
       Torch4: 2032510733
       FloorDirt11: -802868653
+      GreenFountain3: 1151736027
       Weapon2: 1954315605
       Wall6: -472109003
       NPC0: 2021789525
@@ -2634,21 +3005,23 @@ TextureImporter:
       FloorDirt15: -642703150
       Drape1: -1303280295
       Stairs1: 1707556754
+      GreenFountain5: -1501684337
       FloorDirt0: 1501085317
       Player0: -897414788
       Pillar3: 832235590
       Chest1: 1285000816
       BossChest0: 1789336166
+      Wall16: 1211245684
       Crate3: -98374279
       FloorDirt7: -450665743
       Wall4: 2044591618
-      Boss1: 860147719
       ItemBomb0: -1178279824
       Weapon4: -727319741
       FloorDirt5: -1258727338
       FloorDirt4: 1326896604
       Enemy12: -1670793106
       FloorDirt1: 1501085317
+      Boss1: 139706718
       Pillar0: -1550629041
       Drape2: 279832286
       BossChest2: -1357035079
@@ -2656,6 +3029,7 @@ TextureImporter:
       Wall0: -415500557
       Wall3: 294605104
       Enemy14: 1982157218
+      GreenFountain4: -1753461793
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
