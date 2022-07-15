@@ -1453,7 +1453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitpoint: 5
   maxHitpoint: 5
-  pushRecoverySpeed: 0.2
+  pushRecoverySpeed: 0.21
   playerYSpeed: 0.75
   playerXSpeed: 1
   canMove: 1
