@@ -1047,7 +1047,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   boxCollider: {fileID: 0}
   sceneNames:
-  - Dungeon 1
+  - Dungeon 2
   toDungeonWindow: {fileID: 961174480}
 --- !u!61 &390643133
 BoxCollider2D:
@@ -1453,7 +1453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitpoint: 5
   maxHitpoint: 5
-  pushRecoverySpeed: 0.2
+  pushRecoverySpeed: 0.21
   playerYSpeed: 0.75
   playerXSpeed: 1
   canMove: 1
