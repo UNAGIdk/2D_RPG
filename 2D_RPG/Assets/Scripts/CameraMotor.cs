@@ -51,14 +51,14 @@ public class CameraMotor : MonoBehaviour
 
         //структура ниже позволяет изменять коэффициенты motorX и Y, которые делают движение камеры плавнее
         
-        /*if (lookAt.GetComponent<Player>().x != 0 && motorXMultiplier < 0.01f)
+        /*if (lookAt.GetComponent<Player>().x != 0 && motorXMultiplier < 0.08f)
             motorXMultiplier += 0.0001f;
-        else if (motorXMultiplier > 0.0002f)
+        else if (motorXMultiplier > 0.02f)
             motorXMultiplier -= 0.0001f;
 
-        if (lookAt.GetComponent<Player>().y != 0 && motorYMultiplier < 0.01f)
+        if (lookAt.GetComponent<Player>().y != 0 && motorYMultiplier < 0.08f)
             motorYMultiplier += 0.0001f;
-        else if(motorYMultiplier > 0.0002f)
+        else if(motorYMultiplier > 0.02f)
             motorYMultiplier -= 0.0001f;*/
         
         //строчку ниже можно раскомментить чтобы использовать коэффициенты motorX и motorY при вычислении вектора движения камеры
