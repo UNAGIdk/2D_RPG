@@ -1,48 +1,66 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-//ПОФИКСИТЬ ТАК И НЕ УДАЛОСЬ, ПОКА ЧТО ОСТАВЛЯЮ БЕЗ ВСПЛЫВАЮЩЕГО ОКНА
 
 
 public class Portal : Collidable
 {
-    public string[] sceneNames; //массив с названиями сцен, на которые мы хотим переключаться
-    public Animator toDungeonWindow; //поле аниматора меню перехода на локацию
+    public string sceneName; //название сцен, на которую мы хотим переключаться
+    
+    //public Sprite teleportButtonSprite;
+    public GameObject teleportButtonPrefab;
+    //public GameObject teleportTextPrefab;
+    public Transform portalTransform;
+
+    private GameObject teleportButton;
+    //private GameObject teleportText;
+    private bool teleportHintShowing = false;
 
     protected override void OnCollide(Collider2D coll)
     {
-        /*if(coll.name == "Player")
+        if (coll.name == "Player")
         {
-            if(triggerCanNowBeSet)
+            if (teleportHintShowing == false)
             {
-                toDungeonWindow.SetTrigger("Show");
-                GameManager.instance.ProhibitPlayerMoving();
+                teleportButton = Instantiate(teleportButtonPrefab, portalTransform);
+                //teleportText = Instantiate(teleportTextPrefab, portalTransform);
+
+                //teleportButton.GetComponent<Image>().sprite = teleportButtonSprite;
+                //teleportText.GetComponent<Text>().text = "to go into " + sceneName;
+
+                teleportHintShowing = true;
             }
-        }*/
-        if (coll.name == "Player") //заменяющая структура
-            ToRandomDungeon();
+
+            if (Input.GetKeyDown(KeyCode.F) == true)
+            {
+                ClearPortalText();
+                ToDungeon();
+            }
+        }    
     }
 
-    private void ToRandomDungeon()
+    protected override void Update()
     {
-        //телепортировать игрока в рандомный dungeon
+        base.Update();
+        if(teleportHintShowing == true)
+        {
+            ClearPortalText();
+        }
+    }
+
+    private void ToDungeon()
+    {
+        //телепортировать игрока в dungeon
         GameManager.instance.SaveState();
-        string sceneName = sceneNames[Random.Range(0, sceneNames.Length)]; //присвоить переменной sceneName значение, равное рандомному элементу из массива sceneNames
+        //string sceneName = sceneNames[Random.Range(0, sceneNames.Length)]; //строчка для рандома сцены, для нее нужен массив сцен
         SceneManager.LoadScene(sceneName);
     }
 
-    public void OnYesButtonClick()
+    private void ClearPortalText()
     {
-        ToRandomDungeon();
-        GameManager.instance.AllowPlayerMoving();
-        toDungeonWindow.SetTrigger("Hide");
-    }
-
-    public void OnNoButtonClick()
-    {
-        //сместить игрока немного вниз если он нажал no
-        GameManager.instance.AllowPlayerMoving();
-        GameManager.instance.player.transform.localPosition = new Vector3(GameManager.instance.player.transform.localPosition.x, GameManager.instance.player.transform.localPosition.y - 0.24f, 0);
-        toDungeonWindow.SetTrigger("Hide");
+        Destroy(teleportButton);
+        //Destroy(teleportText);
+        teleportHintShowing = false;
     }
 }
