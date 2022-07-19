@@ -969,6 +969,7 @@ MonoBehaviour:
   sceneName: Dungeon 2
   teleportButtonPrefab: {fileID: 514460357647144300, guid: 235722992b6b0d0428c0d8825667a4d1, type: 3}
   portalTransform: {fileID: 390643135}
+  teleportHintShowing: 0
 --- !u!61 &390643133
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22403,11 +22404,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 892848962579992945, guid: ec16669a18309804db2e37de9ee1d6d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.404
+      value: -0.072
       objectReference: {fileID: 0}
     - target: {fileID: 892848962579992945, guid: ec16669a18309804db2e37de9ee1d6d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.033
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 892848962579992945, guid: ec16669a18309804db2e37de9ee1d6d3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22644,7 +22645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3250933463688035069, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.571
+      value: 0.444
       objectReference: {fileID: 0}
     - target: {fileID: 3250933463688035069, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: m_LocalPosition.z

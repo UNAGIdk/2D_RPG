@@ -8,7 +8,7 @@ public class Portal : Collidable
 {
     public string sceneName; //название сцен, на которую мы хотим переключаться
     
-    //public Sprite teleportButtonSprite;
+    public Sprite teleportButtonSprite;
     public GameObject teleportButtonPrefab;
     //public GameObject teleportTextPrefab;
     public Transform portalTransform;
@@ -24,9 +24,10 @@ public class Portal : Collidable
             if (teleportHintShowing == false)
             {
                 teleportButton = Instantiate(teleportButtonPrefab, portalTransform);
+                teleportButton.transform.localPosition = new Vector3(0, 4.53f, 0);
                 //teleportText = Instantiate(teleportTextPrefab, portalTransform);
 
-                //teleportButton.GetComponent<Image>().sprite = teleportButtonSprite;
+                teleportButton.GetComponent<SpriteRenderer>().sprite = teleportButtonSprite;
                 //teleportText.GetComponent<Text>().text = "to go into " + sceneName;
 
                 teleportHintShowing = true;
@@ -37,13 +38,8 @@ public class Portal : Collidable
                 ClearPortalText();
                 ToDungeon();
             }
-        }    
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-        if(teleportHintShowing == true)
+        }
+        else
         {
             ClearPortalText();
         }
