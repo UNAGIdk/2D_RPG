@@ -630,7 +630,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -966,7 +966,8 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   boxCollider: {fileID: 390643133}
-  sceneName: Dungeon 2
+  sceneName: Dungeon 1
+  teleportButtonSprite: {fileID: -8678936, guid: 06f3eb338994ff845b1615c31f1246b3, type: 3}
   teleportButtonPrefab: {fileID: 514460357647144300, guid: 235722992b6b0d0428c0d8825667a4d1, type: 3}
   portalTransform: {fileID: 390643135}
   teleportHintShowing: 0
@@ -983,7 +984,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012105525, y: 1.0245223}
+  m_Offset: {x: -0.012105525, y: 0.8576556}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -994,7 +995,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0242109, y: 4.1101627}
+  m_Size: {x: 1.0242109, y: 4.4438963}
   m_EdgeRadius: 0
 --- !u!212 &390643134
 SpriteRenderer:
@@ -3450,6 +3451,7 @@ GameObject:
   - component: {fileID: 839838015}
   - component: {fileID: 839838014}
   - component: {fileID: 839838013}
+  - component: {fileID: 839838016}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3506,6 +3508,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &839838016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839838012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d47ca93813b69d4e9a2bfae79dba6a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &870017877
 GameObject:
   m_ObjectHideFlags: 0
@@ -20712,7 +20726,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -22362,6 +22376,8 @@ MonoBehaviour:
   hud: {fileID: 2021944135}
   menu: {fileID: 186998962}
   deathMenuAnim: {fileID: 510701372}
+  eventSystem: {fileID: 839838012}
+  mainCamera: {fileID: 1334293066}
   money: 0
   experience: 0
 --- !u!4 &2027946342

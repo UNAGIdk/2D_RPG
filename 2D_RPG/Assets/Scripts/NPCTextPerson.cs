@@ -16,7 +16,6 @@ public class NPCTextPerson : Collidable
     {
         base.Start();
         hasSpokenMessages = false;
-        
     }
 
     protected override void Update()
