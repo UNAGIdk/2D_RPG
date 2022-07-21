@@ -29,7 +29,6 @@ public class Portal : Collidable
         {
             if (teleportHintShowing == false)
             {
-                Debug.Log("`1123");
                 teleportButton = Instantiate(teleportButtonPrefab, portalTransform);
                 teleportButton.transform.localPosition = new Vector3(0, 4.53f, 0);
                 //teleportText = Instantiate(teleportTextPrefab, portalTransform);

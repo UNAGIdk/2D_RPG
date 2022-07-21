@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    
+
 
     //ресурсы
     public List<Sprite> playerSprites; //список спрайтов для игрока
@@ -199,6 +201,16 @@ public class GameManager : MonoBehaviour
     public void AllowPlayerMoving()
     {
         player.canMove = true;
+    }
+
+    public void ProhibitPlayerSwing()
+    {
+        weapon.swingPermission = false;
+    }
+
+    public void AllowPlayerSwing()
+    {
+        weapon.swingPermission = true;
     }
 }
 
