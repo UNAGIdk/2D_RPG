@@ -14,8 +14,10 @@ public class Weapon : Collidable
 
     //удар
     private Animator anim;
+    public AudioSource swingSound;
     private float cooldown = 0.5f;
     private float lastSwing; //когда последний раз наносили удар
+    public bool swingPermission = true;
 
     private void Awake()
     {
@@ -39,8 +41,11 @@ public class Weapon : Collidable
         {
             if (Time.time - lastSwing > cooldown)
             {
-                lastSwing = Time.time;
-                Swing();
+                if(swingPermission == true)
+                {
+                    lastSwing = Time.time;
+                    Swing();
+                }
             }
         }
     }

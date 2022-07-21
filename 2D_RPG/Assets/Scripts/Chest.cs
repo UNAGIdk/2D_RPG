@@ -6,6 +6,7 @@ public class Chest : Collectable
 {
     public Sprite emptyChest;
     public int moneyAmount = 0;
+    public AudioSource collectSound;
 
 
     protected override void OnCollect()
@@ -19,7 +20,8 @@ public class Chest : Collectable
             GetComponent<SpriteRenderer>().sprite = emptyChest;
             GameManager.instance.money += moneyAmount;
             //при поднятии сундука вызываем всплывающий текст со следующими параметрами
-            GameManager.instance.ShowText("+" + moneyAmount + " GOLD", 25, Color.yellow, transform.position, Vector3.up * 30, 2.0f); 
+            GameManager.instance.ShowText("+" + moneyAmount + " GOLD", 25, Color.yellow, transform.position, Vector3.up * 30, 2.0f);
+            collectSound.Play();
         }
     }
 }
