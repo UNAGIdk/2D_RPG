@@ -7,11 +7,16 @@ public class MainMenuManager : MonoBehaviour
 {
     public void OnToEntranceClick()
     {
-        SceneManager.LoadScene("Entrance");
+        SceneManager.LoadScene("Entrance", LoadSceneMode.Single);
     }
 
     public void OnExitClick()
     {
         Application.Quit();
+    }
+
+    public void OnOptionsClick()
+    {
+        SceneManager.LoadScene("Options", LoadSceneMode.Single);
     }
 }
