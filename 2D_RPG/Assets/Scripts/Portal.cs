@@ -27,6 +27,7 @@ public class Portal : Collidable
     {
         if (coll.name == "Player")
         {
+            Debug.Log("collided portal");
             if (teleportHintShowing == false)
             {
                 teleportButton = Instantiate(teleportButtonPrefab, portalTransform);
