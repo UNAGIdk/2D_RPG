@@ -14,10 +14,12 @@ public class Weapon : Collidable
 
     //удар
     private Animator anim;
-    public AudioSource swingSound;
     private float cooldown = 0.5f;
     private float lastSwing; //когда последний раз наносили удар
     public bool swingPermission = true;
+
+    public AudioSource weaponAudioSource;
+    public AudioClip weaponSwingClip;
 
     private void Awake()
     {
@@ -72,6 +74,8 @@ public class Weapon : Collidable
     private void Swing() //удар
     {
         anim.SetTrigger("Swing"); //в аниматоре включить триггер под названием "Swing"
+        weaponAudioSource.pitch = Random.Range(0.8f, 1.2f);
+        weaponAudioSource.PlayOneShot(weaponSwingClip);
     }
 
 

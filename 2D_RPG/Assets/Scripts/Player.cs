@@ -12,6 +12,11 @@ public class Player : Mover
     public bool canMove = true;
     public Animator weaponAnimator;
 
+    public AudioSource playerAudioSource;
+    public AudioClip playerFootsepsSound;
+    public float footstepsSoundCooldown = 0.4f;
+    private float lastStepTime;
+
     public float x;
     public float y;
 
@@ -38,11 +43,19 @@ public class Player : Mover
         y = Input.GetAxisRaw("Vertical");
 
         if(canMove == true)
+        {
             UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);
+        }
 
         if(x != 0 || y != 0)
         {
             weaponAnimator.SetTrigger("Walk");
+            if(Time.time - lastStepTime > footstepsSoundCooldown)
+            {
+                lastStepTime = Time.time;
+                playerAudioSource.pitch = Random.Range(0.8f, 1.2f);
+                playerAudioSource.PlayOneShot(playerFootsepsSound);
+            }
         }
 
         if (x == 0 && y == 0)

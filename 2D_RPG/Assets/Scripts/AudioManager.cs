@@ -21,4 +21,9 @@ public class AudioManager : MonoBehaviour
     {
         audioMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
     }
+
+    public void SetUserInterfaceVolume(float volume)
+    {
+        audioMixer.SetFloat("userInterfaceVolume", Mathf.Log10(volume) * 20);
+    }
 }
