@@ -9,6 +9,9 @@ public class HealingFounain : Collidable
     private float healCooldown = 1.0f;
     private float lastHeal;
 
+    public AudioSource healingFountainAudioSource;
+    public AudioClip healingAudioClip;
+
     protected override void OnCollide(Collider2D coll)
     {
         if (coll.name != "Player")
@@ -18,6 +21,11 @@ public class HealingFounain : Collidable
         {
             lastHeal = Time.time;
             GameManager.instance.player.Heal(healingAmount);
+            if(GameManager.instance.player.hitpoint != GameManager.instance.player.maxHitpoint)
+            {
+                healingFountainAudioSource.pitch = Random.Range(0.8f, 1.2f);
+                healingFountainAudioSource.PlayOneShot(healingAudioClip);
+            }
         }    
     }
 }
