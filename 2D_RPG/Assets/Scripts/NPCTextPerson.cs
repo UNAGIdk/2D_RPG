@@ -16,7 +16,6 @@ public class NPCTextPerson : Collidable
     {
         base.Start();
         hasSpokenMessages = false;
-        
     }
 
     protected override void Update()
@@ -25,6 +24,7 @@ public class NPCTextPerson : Collidable
         if(GameManager.instance.dialogueManager.dialogueRunning == true)
         {
             GameManager.instance.ProhibitPlayerMoving();
+            GameManager.instance.ProhibitPlayerSwing();
             if(Input.GetKeyDown(KeyCode.Mouse0) == true || Input.GetKeyDown(KeyCode.Space) == true)
             {
                 if (pagesCounter < messages.Length - 1) //если убрать -1 то постоянно выхожу за пределы массива
@@ -38,6 +38,7 @@ public class NPCTextPerson : Collidable
                     pagesCounter = 0;
                     hasSpokenMessages = true;
                     GameManager.instance.AllowPlayerMoving();
+                    GameManager.instance.AllowPlayerSwing();
                 }
             }
         }

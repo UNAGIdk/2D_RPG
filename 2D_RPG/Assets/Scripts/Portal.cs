@@ -15,12 +15,19 @@ public class Portal : Collidable
 
     private GameObject teleportButton;
     //private GameObject teleportText;
-    private bool teleportHintShowing = false;
+    public bool teleportHintShowing;
+
+    protected override void Start()
+    {
+        base.Start();
+        teleportHintShowing = false;
+    }
 
     protected override void OnCollide(Collider2D coll)
     {
         if (coll.name == "Player")
         {
+            Debug.Log("collided portal");
             if (teleportHintShowing == false)
             {
                 teleportButton = Instantiate(teleportButtonPrefab, portalTransform);
@@ -50,7 +57,7 @@ public class Portal : Collidable
         //телепортировать игрока в dungeon
         GameManager.instance.SaveState();
         //string sceneName = sceneNames[Random.Range(0, sceneNames.Length)]; //строчка для рандома сцены, для нее нужен массив сцен
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
     private void ClearPortalText()

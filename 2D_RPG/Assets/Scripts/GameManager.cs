@@ -12,11 +12,14 @@ public class GameManager : MonoBehaviour
         if (GameManager.instance != null)
         {
             //удалить компоненты, так как при переходе между сценами создаются их копии
+            Destroy(eventSystem);
+            Destroy(mainCamera.gameObject);
             Destroy(gameObject);
             Destroy(player.gameObject);
             Destroy(floatingTextManager.gameObject);
             Destroy(hud);
             Destroy(menu);
+            Destroy(dialogueManager.gameObject);
             return;
         }
 
@@ -24,6 +27,8 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += LoadState; //запускает LoadState каждый раз при загрузке сцены, sceneLoaded это event
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
+    
 
 
     //ресурсы
@@ -41,6 +46,8 @@ public class GameManager : MonoBehaviour
     public GameObject hud; //это и следующее поле нужно для того чтобы при переходе между сценами не создавалось новых меню и hud-a
     public GameObject menu;
     public Animator deathMenuAnim; // поле аниматора меню смерти
+    public GameObject eventSystem;
+    public Camera mainCamera;
     
 
     //логика
@@ -194,6 +201,16 @@ public class GameManager : MonoBehaviour
     public void AllowPlayerMoving()
     {
         player.canMove = true;
+    }
+
+    public void ProhibitPlayerSwing()
+    {
+        weapon.swingPermission = false;
+    }
+
+    public void AllowPlayerSwing()
+    {
+        weapon.swingPermission = true;
     }
 }
 
