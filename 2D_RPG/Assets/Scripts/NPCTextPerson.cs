@@ -5,10 +5,6 @@ using UnityEngine;
 public class NPCTextPerson : Collidable
 {
     public string[] messages;
-    public string[] finalMessages;
-    public float cooldown = 4.0f;
-    public Color textColor;
-    public Sprite dialogueSprite;
     private int pagesCounter = 0;
     private bool hasSpokenMessages;
     
@@ -30,7 +26,7 @@ public class NPCTextPerson : Collidable
                 if (pagesCounter < messages.Length - 1) //если убрать -1 то постоянно выхожу за пределы массива
                 {
                     pagesCounter++;
-                    GameManager.instance.ShowDialoguePage(messages[pagesCounter], dialogueSprite);
+                    GameManager.instance.ShowDialoguePage(messages[pagesCounter], gameObject.GetComponent<SpriteRenderer>().sprite);
                 }
                 else
                 {
@@ -48,7 +44,7 @@ public class NPCTextPerson : Collidable
     {
         Debug.Log("Collided");
         if(hasSpokenMessages == false)
-            GameManager.instance.ShowDialoguePage(messages[pagesCounter], dialogueSprite); //показать первую страницу при касании
+            GameManager.instance.ShowDialoguePage(messages[pagesCounter], gameObject.GetComponent<SpriteRenderer>().sprite); //показать первую страницу при касании
     }
 }
 

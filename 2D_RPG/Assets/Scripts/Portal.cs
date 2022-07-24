@@ -34,7 +34,7 @@ public class Portal : Collidable
                 teleportButton.transform.localPosition = new Vector3(0, 4.53f, 0);
                 //teleportText = Instantiate(teleportTextPrefab, portalTransform);
 
-                teleportButton.GetComponent<SpriteRenderer>().sprite = teleportButtonSprite;
+                //teleportButton.GetComponent<SpriteRenderer>().sprite = teleportButtonSprite;
                 //teleportText.GetComponent<Text>().text = "to go into " + sceneName;
 
                 teleportHintShowing = true;

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 514460357647144302}
   - component: {fileID: 514460357647144303}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PortalButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 1169035927
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -8678936, guid: 06f3eb338994ff845b1615c31f1246b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
