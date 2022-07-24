@@ -116,7 +116,11 @@ MonoBehaviour:
   boxCollider: {fileID: 0}
   emptyChest: {fileID: 1285000816, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
   moneyAmount: 0
-  collectSound: {fileID: 6724061065175662345}
+  chestAudioSource: {fileID: 6724061065175662345}
+  chestSounds:
+  - {fileID: 8300000, guid: cf1eda31d63ba9147b45542d167911b1, type: 3}
+  - {fileID: 8300000, guid: b7dd003dbdf747d4393261cfbfabcc85, type: 3}
+  - {fileID: 8300000, guid: 9f72c83937dd53540b97b0ca7553ba6c, type: 3}
 --- !u!61 &2814350644145259653
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153,7 +157,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3699848049662756888, guid: 13cc8bb4b2852374d9043e453be26673, type: 2}
-  m_audioClip: {fileID: 8300000, guid: b7dd003dbdf747d4393261cfbfabcc85, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

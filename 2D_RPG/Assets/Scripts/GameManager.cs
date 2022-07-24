@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
             Destroy(hud);
             Destroy(menu);
             Destroy(dialogueManager.gameObject);
+            Destroy(audioManager.gameObject);
+            Destroy(backgroundMusicObject);
             return;
         }
 
@@ -48,6 +50,8 @@ public class GameManager : MonoBehaviour
     public Animator deathMenuAnim; // поле аниматора меню смерти
     public GameObject eventSystem;
     public Camera mainCamera;
+    public AudioManager audioManager;
+    public GameObject backgroundMusicObject;
     
 
     //логика
