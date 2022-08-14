@@ -966,10 +966,10 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   boxCollider: {fileID: 390643133}
-  sceneName: Dungeon 2
+  sceneName: Dungeon 3
+  teleportButtonSprite: {fileID: 0}
   teleportButtonPrefab: {fileID: 514460357647144300, guid: 235722992b6b0d0428c0d8825667a4d1, type: 3}
   portalTransform: {fileID: 390643135}
-  teleportHintShowing: 0
 --- !u!61 &390643133
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1056,7 +1056,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390643131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0038, y: 1.5461, z: 0}
+  m_LocalPosition: {x: -0.001, y: 1.442, z: 0}
   m_LocalScale: {x: 0.27995527, y: 0.07409663, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19993,7 +19993,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 20.9, y: 80.3}
+  m_AnchoredPosition: {x: 20.900024, y: 80.29999}
   m_SizeDelta: {x: 39, y: 300}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1429651263
@@ -22154,7 +22154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -39.549957, y: 86.1}
+  m_AnchoredPosition: {x: -39.55005, y: 86.1}
   m_SizeDelta: {x: 294.8, y: 198.8}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1906035489
