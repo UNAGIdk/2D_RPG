@@ -9,6 +9,9 @@ public class BossChest : Chest
     public Boss boss;
     private bool chestOpened = false;
 
+    public AudioSource bossChestAudioSource;
+    public AudioClip[] bossChestSounds;
+
     protected override void Update()
     {
         base.Update();
@@ -30,6 +33,7 @@ public class BossChest : Chest
             GameManager.instance.money += moneyAmount;
             //при поднятии сундука вызываем всплывающий текст со следующими параметрами
             GameManager.instance.ShowText("+" + moneyAmount + " GOLD", 25, Color.yellow, transform.position, Vector3.up * 30, 2.0f);
+            bossChestAudioSource.PlayOneShot(bossChestSounds[Random.Range(0, bossChestSounds.Length)]);
         }
     }
 }
