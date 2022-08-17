@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CharacterMenu : MonoBehaviour
 {
+    public GameManager gameManager;
+
     //текстовые поля
     public Text levelText, hitpointText, goldText, upgradeCostText, xpText;
 
@@ -96,6 +98,10 @@ public class CharacterMenu : MonoBehaviour
         GameManager.instance.experience = 0;
         GameManager.instance.player.SetLevel(0);
         GameManager.instance.weapon.SetWeaponLevel(0);
+        GameManager.instance.audioManager.SetMasterVolume(1);
+        GameManager.instance.audioManager.SetEffectsVolume(1);
+        GameManager.instance.audioManager.SetMusicVolume(1);
+        GameManager.instance.audioManager.SetUserInterfaceVolume(1);
         GameObject.Find("Player").GetComponent<Player>().hitpoint = 5;
         GameObject.Find("Player").GetComponent<Player>().maxHitpoint = 5;
         UpdateMenu();
