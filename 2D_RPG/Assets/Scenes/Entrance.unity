@@ -24381,6 +24381,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 13cc8bb4b2852374d9043e453be26673, type: 2}
+  masterVolumeSlider: {fileID: 1964863258}
+  effectsVolumeSlider: {fileID: 1078155771}
+  musicVolumeSlider: {fileID: 2095490562}
+  userInterfaceVolumeSlider: {fileID: 124346441}
 --- !u!1 &1863020677
 GameObject:
   m_ObjectHideFlags: 0
