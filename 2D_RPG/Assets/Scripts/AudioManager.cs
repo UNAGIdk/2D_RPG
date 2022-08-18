@@ -17,25 +17,29 @@ public class AudioManager : MonoBehaviour
         if (PlayerPrefs.HasKey("MasterVolume"))
         {
             audioMixer.SetFloat("masterVolume", Mathf.Log10(PlayerPrefs.GetFloat("MasterVolume")) * 20);
-            masterVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MasterVolume");
+            if (masterVolumeSlider != null)
+                masterVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MasterVolume");
         }
 
         if (PlayerPrefs.HasKey("EffectsVolume"))
         {
             audioMixer.SetFloat("effectsVolume", Mathf.Log10(PlayerPrefs.GetFloat("EffectsVolume")) * 20);
-            effectsVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("EffectsVolume");
+            if (effectsVolumeSlider != null)
+                effectsVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("EffectsVolume");
         }
 
         if (PlayerPrefs.HasKey("MusicVolume"))
         {
             audioMixer.SetFloat("musicVolume", Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume")) * 20);
-            musicVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
+            if (musicVolumeSlider != null)
+                musicVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
         }
 
         if (PlayerPrefs.HasKey("UserInterfaceVolume"))
         {
             audioMixer.SetFloat("userInterfaceVolume", Mathf.Log10(PlayerPrefs.GetFloat("UserInterfaceVolume")) * 20);
-            userInterfaceVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("UserInterfaceVolume");
+            if (userInterfaceVolumeSlider != null)
+                userInterfaceVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("UserInterfaceVolume");
         }
 
 
