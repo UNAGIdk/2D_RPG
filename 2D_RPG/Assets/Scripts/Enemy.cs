@@ -13,7 +13,9 @@ public class Enemy : Mover
     private bool chasing; // идет ли погоня
     private bool collidingWithPlayer; // касаемся ли игрока
     public float EnemyXSpeed;
-    public float EnemyYSpeed;
+    private float EnemyYSpeed;
+    public float EnemyYSpeedMultiplayer = 0.79f;
+
     private Transform playerTransform; //
     private Vector3 startingPosition; // стартовая позиция моба
     private int hitpontCompare;
@@ -37,6 +39,8 @@ public class Enemy : Mover
         hitpontCompare = hitpoint;
 
         defaultMaterial = this.GetComponent<SpriteRenderer>().material;
+
+        EnemyYSpeed = EnemyXSpeed * 0.79f;
     }
 
 
