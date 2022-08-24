@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
+using Photon.Pun;
 
 public class RoomListItem : MonoBehaviour
 {
@@ -11,5 +12,10 @@ public class RoomListItem : MonoBehaviour
     {
         roomNameText.text = info.Name;
         playerAmountText.text = info.PlayerCount + "/" + info.MaxPlayers;
+    }
+
+    public void JoinToListRoom()
+    {
+        PhotonNetwork.JoinRoom(roomNameText.text);
     }
 }
