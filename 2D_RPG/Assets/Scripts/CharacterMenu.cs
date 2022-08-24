@@ -15,6 +15,40 @@ public class CharacterMenu : MonoBehaviour
     public Image characterSelectionSprite;
     public Image weaponSprite;
     public RectTransform xpBar; //нам не нужен спрайт для xpBar, у нее мы будем менять только размер (scale)
+    
+    
+    //ниже пытался сделать открывание меню на escape
+    public Animator menuAnimator;
+    public bool menuIsNowHidden = true;
+
+    /*private void Update()
+    {
+        if(menuIsNowHidden == true)
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                UpdateMenu();
+                menuAnimator.SetTrigger("show");
+                menuAnimator.ResetTrigger("hide");
+                menuIsNowHidden = false;
+            }
+
+        if (menuIsNowHidden == false)
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                menuAnimator.SetTrigger("hide");
+                menuAnimator.ResetTrigger("show");
+                menuIsNowHidden = true;
+            }
+    }*/
+
+    public void OnMenuButtonClick()
+    {
+        if (menuIsNowHidden == true)
+            menuIsNowHidden = false;
+
+        if (menuIsNowHidden == false)
+            menuIsNowHidden = true;
+    }
 
     //выбор персонажа
     public void OnArrowClick(bool right) //bool переменная для определения того, на какую стрелку мы кликнули (правая -> true, левая -> false)

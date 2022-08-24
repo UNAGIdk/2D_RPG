@@ -13,6 +13,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public RoomListItem itemPrefab;
     public Transform content;
 
+    List<RoomInfo> allRoomsInfo = new List<RoomInfo>();
+
 
     void Start()
     {
@@ -25,7 +27,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("Connected to " + PhotonNetwork.CloudRegion);
         Debug.Log("Current ping is " + PhotonNetwork.GetPing());
 
-        PhotonNetwork.JoinLobby();
+        if(!PhotonNetwork.InLobby)
+            PhotonNetwork.JoinLobby();
         Debug.Log("Joined lobby with name " + PhotonNetwork.CurrentLobby);
     }
 
@@ -67,9 +70,40 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("OnRoomListUpdate");
         foreach (RoomInfo info in roomList)
         {
+            for (int i = 0; i < allRoomsInfo.Count; i++)
+            {
+                if (allRoomsInfo[i].masterClientId == info.masterClientId)
+                    return;
+            }
+
             RoomListItem listitem = Instantiate(itemPrefab, content);
             if (listitem != null)
+            {
                 listitem.SetListInfo(info);
+                allRoomsInfo.Add(info);
+            }
+            
         }
+    }
+
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("Entrance");
+        Debug.Log("Joined room with name " + PhotonNetwork.CurrentRoom.Name);
+    }
+
+    public override void OnLeftRoom()
+    {
+        PhotonNetwork.LoadLevel("MainMenu");
+    }
+
+    public void JoinButton()
+    {
+        PhotonNetwork.JoinRoom(roomName.text);
+    }
+
+    public void LeaveButton()
+    {
+        PhotonNetwork.LeaveRoom();
     }
 }
