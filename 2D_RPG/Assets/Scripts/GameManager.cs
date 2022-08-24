@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
         instance = this; //че-то типа проверки что это нужный нам gamemanager 
         SceneManager.sceneLoaded += LoadState; //запускает LoadState каждый раз при загрузке сцены, sceneLoaded это event
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        photonManager = FindObjectOfType<PhotonManager>(); //фотон менеджер передаем тут потому что его не существует в этой сцене, а передается из прошлой.
     }
 
     
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
     public AudioManager audioManager;
     public GameObject backgroundMusicObject;
+    public PhotonManager photonManager;
     
 
     //логика
