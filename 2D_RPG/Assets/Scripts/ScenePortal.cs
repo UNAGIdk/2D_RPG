@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 
 
-public class Portal : Collidable
+public class ScenePortal : Collidable
 {
     public string sceneName; //название сцен, на которую мы хотим переключаться
     
