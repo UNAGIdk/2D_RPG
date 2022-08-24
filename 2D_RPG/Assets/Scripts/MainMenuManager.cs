@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public void OnToEntranceClick()
+    public void OnSingleplayerClick()
     {
         SceneManager.LoadScene("Entrance", LoadSceneMode.Single);
     }
