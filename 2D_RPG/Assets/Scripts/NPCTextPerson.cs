@@ -1,17 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPCTextPerson : Collidable
 {
     public string[] messages;
-    private int pagesCounter = 0;
     private bool hasSpokenMessages;
+    private int pagesCounter = 0;
+
+    public string[] askNameMessage;
+    private bool hasAskedName;
+    private string playerNameResponse;
+
+    public Animator NPCMessageInputAnimator;
+    public InputField NPCMessageInputField;
+    
     
     protected override void Start()
     {
         base.Start();
-        hasSpokenMessages = false;
+
+       hasSpokenMessages = false;
+        if (PlayerPrefs.GetString("PlayerNameResponse") != null)
+            hasAskedName = false;
+        else
+        {
+            hasAskedName = true;
+            messages[0] = "Welcome, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
+        }
+        Debug.Log(PlayerPrefs.GetString("PlayerNameResponse"));
     }
 
     protected override void Update()
@@ -23,19 +41,20 @@ public class NPCTextPerson : Collidable
             GameManager.instance.ProhibitPlayerSwing();
             if(Input.GetKeyDown(KeyCode.Mouse0) == true || Input.GetKeyDown(KeyCode.Space) == true)
             {
-                if (pagesCounter < messages.Length - 1) //если убрать -1 то постоянно выхожу за пределы массива
-                {
-                    pagesCounter++;
-                    GameManager.instance.ShowDialoguePage(messages[pagesCounter], gameObject.GetComponent<SpriteRenderer>().sprite);
-                }
-                else
-                {
-                    GameManager.instance.dialogueManager.ClearDialogue();
-                    pagesCounter = 0;
-                    hasSpokenMessages = true;
-                    GameManager.instance.AllowPlayerMoving();
-                    GameManager.instance.AllowPlayerSwing();
-                }
+                if(hasAskedName == true)
+                    if (pagesCounter < messages.Length - 1) //если убрать -1 то постоянно выхожу за пределы массива
+                    {
+                        pagesCounter++;
+                        GameManager.instance.ShowDialoguePage(messages[pagesCounter], gameObject.GetComponent<SpriteRenderer>().sprite);
+                    }
+                    else
+                    {
+                        GameManager.instance.dialogueManager.ClearDialogue();
+                        pagesCounter = 0;
+                        hasSpokenMessages = true;
+                        GameManager.instance.AllowPlayerMoving();
+                        GameManager.instance.AllowPlayerSwing();
+                    }
             }
         }
     }
@@ -43,27 +62,25 @@ public class NPCTextPerson : Collidable
     protected override void OnCollide(Collider2D coll)
     {
         Debug.Log("Collided");
-        if(hasSpokenMessages == false)
+        Debug.Log("hasAskedName is " + hasAskedName);
+        if(hasAskedName == false)
+        {
+            GameManager.instance.ShowDialoguePage(askNameMessage[0], gameObject.GetComponent<SpriteRenderer>().sprite);
+            NPCMessageInputAnimator.SetTrigger("show");
+            NPCMessageInputAnimator.ResetTrigger("hide");
+        }
+        else if (hasSpokenMessages == false)
             GameManager.instance.ShowDialoguePage(messages[pagesCounter], gameObject.GetComponent<SpriteRenderer>().sprite); //показать первую страницу при касании
     }
+    public void ApproveNameButton()
+    {
+        playerNameResponse = NPCMessageInputField.text;
+        PlayerPrefs.SetString("PlayerNameResponse", playerNameResponse);
+        Debug.Log("Player name set to " + PlayerPrefs.GetString("PlayerNameResponse"));
+        hasAskedName = true;
+        NPCMessageInputAnimator.SetTrigger("hide");
+        NPCMessageInputAnimator.ResetTrigger("show");
+        messages[0] = "Welcome, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
+    }
+
 }
-
-
-/*if(!hasSpokenIntroMessage) //сказал ли уже первое сообщение?
-        {
-            if (Time.time - lastSpoken > cooldown)
-            {
-                lastSpoken = Time.time;
-                GameManager.instance.ShowText(messages[0], 20, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, cooldown); //вектор добавлен для того чтобы сдвинуть текст выше
-            }
-            hasSpokenIntroMessage = true;
-        }
-        else
-        {
-            if (Time.time - lastSpoken > cooldown)
-            {
-                lastSpoken = Time.time;
-                GameManager.instance.ShowText(messages[Random.Range(1, messages.Length)], 20, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, cooldown); //вектор добавлен для того чтобы сдвинуть текст выше
-            }
-        }*/
-//Color.white
