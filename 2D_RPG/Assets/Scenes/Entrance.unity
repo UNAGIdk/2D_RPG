@@ -25187,6 +25187,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 965996245571512817, guid: dff1b5202fa26a848b659ac19b34e08d, type: 3}
+      propertyPath: sceneName
+      value: Dungeon 5
+      objectReference: {fileID: 0}
     - target: {fileID: 965996245571512818, guid: dff1b5202fa26a848b659ac19b34e08d, type: 3}
       propertyPath: m_RootOrder
       value: 19
