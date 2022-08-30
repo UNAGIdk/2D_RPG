@@ -13,9 +13,16 @@ public class Enemy : Mover
     private bool chasing; // идет ли погоня
     private bool collidingWithPlayer; // касаемся ли игрока
     public float EnemyXSpeed;
-    public float EnemyYSpeed;
+    private float EnemyYSpeed;
+    public float EnemyYSpeedMultiplayer = 0.79f;
+
     private Transform playerTransform; //
     private Vector3 startingPosition; // стартовая позиция моба
+    private int hitpontCompare;
+
+    private Material defaultMaterial;
+    public Material getDamageMaterial;
+    public float resetMaterialTime = 0.1f;
 
     //хитбокс
     public ContactFilter2D filter; // фильтр для коллайдера, нгужен будет для понимания коллайдимся ли мы с игроком
@@ -29,6 +36,11 @@ public class Enemy : Mover
         playerTransform = GameManager.instance.player.transform;
         startingPosition = transform.position;
         hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>(); //получить коллайдер первого дочернего объекта от того на ком лежит скрипт
+        hitpontCompare = hitpoint;
+
+        defaultMaterial = this.GetComponent<SpriteRenderer>().material;
+
+        EnemyYSpeed = EnemyXSpeed * 0.79f;
     }
 
 
@@ -74,6 +86,23 @@ public class Enemy : Mover
             //очищаю массив
             hits[i] = null;
         }
+
+        if(hitpontCompare != hitpoint)
+        {
+            GetDamage();
+        }
+        hitpontCompare = hitpoint;
+    }
+
+    public void GetDamage()
+    {
+        this.GetComponent<SpriteRenderer>().material = getDamageMaterial;
+        Invoke("ResetMaterial", resetMaterialTime);
+    }
+
+    public void ResetMaterial()
+    {
+        this.GetComponent<SpriteRenderer>().material = defaultMaterial;
     }
 
 

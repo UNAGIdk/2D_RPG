@@ -5,13 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public void OnToEntranceClick()
+    public void OnSingleplayerClick()
     {
-        SceneManager.LoadScene("Entrance");
+        SceneManager.LoadScene("Entrance", LoadSceneMode.Single);
     }
 
     public void OnExitClick()
     {
         Application.Quit();
+    }
+
+    public void OnOptionsClick()
+    {
+        SceneManager.LoadScene("Options", LoadSceneMode.Single);
     }
 }
