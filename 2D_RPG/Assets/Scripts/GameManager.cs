@@ -1,39 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
-    private void Awake()
-    {
-        if (GameManager.instance != null)
-        {
-            //удалить компоненты, так как при переходе между сценами создаются их копии
-            Destroy(eventSystem);
-            Destroy(mainCamera.gameObject);
-            Destroy(gameObject);
-            Destroy(player.gameObject);
-            Destroy(floatingTextManager.gameObject);
-            Destroy(hud);
-            Destroy(menu);
-            Destroy(dialogueManager.gameObject);
-            Destroy(audioManager.gameObject);
-            Destroy(backgroundMusicObject);
-            return;
-        }
-
-        instance = this; //че-то типа проверки что это нужный нам gamemanager 
-        SceneManager.sceneLoaded += LoadState; //запускает LoadState каждый раз при загрузке сцены, sceneLoaded это event
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
-        photonManager = FindObjectOfType<PhotonManager>(); //фотон менеджер передаем тут потому что его не существует в этой сцене, а передается из прошлой.
-    }
-
-    
-
 
     //ресурсы
     public List<Sprite> playerSprites; //список спрайтов для игрока
@@ -54,12 +28,97 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
     public AudioManager audioManager;
     public GameObject backgroundMusicObject;
-    public PhotonManager photonManager;
-    
+
 
     //логика
     public int money;
     public int experience;
+
+
+    public Animator chatWindowAnimator;
+    private bool chatWindowShowing = false;
+
+    public string sceneName;
+    public string ruSceneName;
+
+
+    //photon
+    public Text textLastMessage;
+    public InputField textMessageField;
+    private PhotonView photonView;
+    private PhotonManager photonManager;
+
+    private void Awake()
+    {
+        if (GameManager.instance != null)
+        {
+            //удалить компоненты, так как при переходе между сценами создаются их копии
+            //Destroy(eventSystem);
+            Destroy(mainCamera.gameObject);
+            Destroy(gameObject);
+            Destroy(player.gameObject);
+            Destroy(floatingTextManager.gameObject);
+            Destroy(hud);
+            Destroy(menu);
+            Destroy(dialogueManager.gameObject);
+            Destroy(audioManager.gameObject);
+            Destroy(backgroundMusicObject);
+            return;
+        }
+
+        instance = this; //че-то типа проверки что это нужный нам gamemanager 
+        SceneManager.sceneLoaded += LoadState; //запускает LoadState каждый раз при загрузке сцены, sceneLoaded это event
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        photonView = FindObjectOfType<PhotonView>(); //GetComponent<PhotonView>();
+        Debug.Log("Found phView on" + photonView.name);
+        photonManager = FindObjectOfType<PhotonManager>();
+        Debug.Log("Found phManager on" + photonManager.name);
+ 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T) == true) //МЭЙБИ GetKey будет лучше
+        {
+            if (chatWindowShowing == true)
+            {
+                chatWindowAnimator.SetTrigger("hide");
+                chatWindowAnimator.ResetTrigger("show");
+                chatWindowShowing = false;
+            }
+            else
+            {
+                chatWindowAnimator.SetTrigger("show");
+                chatWindowAnimator.ResetTrigger("hide");
+                chatWindowShowing = true;
+            }
+        }
+
+        switch (sceneName) //SceneManager.GetActiveScene().name
+        {
+            case "Entrance":
+                ruSceneName = "Вход";
+                break;
+            case "Dungeon 1":
+                ruSceneName = "Темная башня";
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void SendButton()
+    {
+        photonView.RPC("Send_Data", RpcTarget.AllBuffered, PhotonNetwork.NickName, textMessageField.text); //отправить в чат ник + сообщение
+    }
+
+    [PunRPC] //перед RPC методом обязательно
+    private void Send_Data(string nickname, string message)
+    {
+        textLastMessage.text = nickname + ": " + message;
+    }
+
 
     public void ShowText(string message, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) //пишем это тут для того чтоб можно было
     {                                                                                                                 //откуда угодно заставить появиться floatingText
@@ -144,7 +203,7 @@ public class GameManager : MonoBehaviour
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         player.transform.position = GameObject.Find("SpawnPoint").transform.position; //телепортировать игрока к SpawnPoint
-        instance.ShowText(scene.name, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //вывести текст с названием сцены
+        instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //вывести текст с названием сцены
     }
 
     public void Respawn()

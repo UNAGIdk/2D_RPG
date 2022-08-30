@@ -94,7 +94,7 @@ public class CharacterMenu : MonoBehaviour
         //weapon
         weaponSprite.sprite = GameManager.instance.weaponSprites[GameManager.instance.weapon.weaponLevel];
         if (GameManager.instance.weapon.weaponLevel == GameManager.instance.weaponPrices.Count)
-            upgradeCostText.text = "MAX"; //если уровень уже макс
+            upgradeCostText.text = "МАКС"; //если уровень уже макс
         else
             upgradeCostText.text = GameManager.instance.weaponPrices[GameManager.instance.weapon.weaponLevel].ToString(); //если еще не макс тогда вывести стоймость апгрейда
 
@@ -108,7 +108,7 @@ public class CharacterMenu : MonoBehaviour
         int currLevel = GameManager.instance.GetCurrentLevel();
         if (currLevel == GameManager.instance.xpTable.Count) //если мы уже максимального лвл-а
         {
-            xpText.text = GameManager.instance.experience.ToString() + " total experience points";
+            xpText.text = GameManager.instance.experience.ToString() + " очков опыта";
             xpBar.localScale = Vector3.one;
         }
         else
