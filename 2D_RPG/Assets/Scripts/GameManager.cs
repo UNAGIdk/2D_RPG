@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
     public Animator chatWindowAnimator;
     private bool chatWindowShowing = false;
 
+    public string sceneName;
+    public string ruSceneName;
+
 
     //photon
     public Text textLastMessage;
@@ -71,6 +74,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Found phView on" + photonView.name);
         photonManager = FindObjectOfType<PhotonManager>();
         Debug.Log("Found phManager on" + photonManager.name);
+ 
     }
 
     private void Update()
@@ -89,6 +93,18 @@ public class GameManager : MonoBehaviour
                 chatWindowAnimator.ResetTrigger("hide");
                 chatWindowShowing = true;
             }
+        }
+
+        switch (sceneName) //SceneManager.GetActiveScene().name
+        {
+            case "Entrance":
+                ruSceneName = "Вход";
+                break;
+            case "Dungeon 1":
+                ruSceneName = "Темная башня";
+                break;
+            default:
+                break;
         }
     }
 
@@ -187,7 +203,7 @@ public class GameManager : MonoBehaviour
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         player.transform.position = GameObject.Find("SpawnPoint").transform.position; //телепортировать игрока к SpawnPoint
-        instance.ShowText(scene.name, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //вывести текст с названием сцены
+        instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //вывести текст с названием сцены
     }
 
     public void Respawn()

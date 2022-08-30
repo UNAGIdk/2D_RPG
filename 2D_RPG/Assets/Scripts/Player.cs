@@ -92,7 +92,7 @@ public class Player : Mover
         if (hitpoint > maxHitpoint)
             hitpoint = maxHitpoint;
         // в любом случае вывести текст о том что похилили
-        GameManager.instance.ShowText("+" + healingAmount.ToString() + " HP", 25, Color.green, transform.position, Vector3.up * 30, 1.0f);
+        GameManager.instance.ShowText("+" + healingAmount.ToString() + " ЖЗН", 25, Color.green, transform.position, Vector3.up * 30, 1.0f);
         GameManager.instance.OnHitpointChange();
     }
 
