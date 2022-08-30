@@ -38,6 +38,8 @@ public class ScenePortal : Collidable
                 //teleportText.GetComponent<Text>().text = "to go into " + sceneName;
 
                 teleportHintShowing = true;
+
+                GameManager.instance.sceneName = sceneName;
             }
 
             if (Input.GetKeyDown(KeyCode.F) == true)
