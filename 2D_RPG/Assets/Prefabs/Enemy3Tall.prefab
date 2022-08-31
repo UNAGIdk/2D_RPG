@@ -132,7 +132,12 @@ MonoBehaviour:
   triggerLength: 0.3
   chaseLength: 1
   EnemyXSpeed: 0.46
-  EnemyYSpeed: 0.37
+  EnemyYSpeedMultiplayer: 0.79
+  getDamageMaterial: {fileID: 2100000, guid: 9c7972bc2a2798d4792d9f81f4622e8f, type: 2}
+  destroyMaterial: {fileID: 2100000, guid: e3878e3ccdc27c94a95aab496bf60d35, type: 2}
+  resetMaterialTime: 0.1
+  enemyExplosionPrefabGO: {fileID: 6316677836653063181, guid: 9743d9cb5e69c5d40bdf086a788937f9, type: 3}
+  enemyExplosionPrefabPSR: {fileID: 6316677836653063183, guid: 9743d9cb5e69c5d40bdf086a788937f9, type: 3}
   filter:
     useTriggers: 0
     useLayerMask: 0

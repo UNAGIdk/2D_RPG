@@ -219,9 +219,11 @@ MonoBehaviour:
   hitpoint: 3
   maxHitpoint: 3
   pushRecoverySpeed: 0.2
-  crateAudioSource: {fileID: -5691263410017384216}
   crateDamageAudioClip: {fileID: 0}
   crateDestroyAudioClip: {fileID: 8300000, guid: 687eea2e947635e4094697b88431f27e, type: 3}
+  enemyExplosionPrefabGO: {fileID: 6316677836653063181, guid: 9743d9cb5e69c5d40bdf086a788937f9, type: 3}
+  enemyExplosionPrefabPSR: {fileID: 6316677836653063183, guid: 9743d9cb5e69c5d40bdf086a788937f9, type: 3}
+  destroyMaterial: {fileID: 2100000, guid: 709351a4ae33f9f45a4acf3d82c61e39, type: 2}
 --- !u!61 &5464115376694383521
 BoxCollider2D:
   m_ObjectHideFlags: 0
