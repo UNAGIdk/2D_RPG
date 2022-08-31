@@ -80,7 +80,7 @@ public class NPCTextPerson : Collidable
         hasAskedName = true;
         NPCMessageInputAnimator.SetTrigger("hide");
         NPCMessageInputAnimator.ResetTrigger("show");
-        messages[0] = "Welcome, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
+        messages[0] = "Я бы тебя так не назвал, но ладно, привет, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
     }
 
 }
