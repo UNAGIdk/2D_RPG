@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
     public GameObject backgroundMusicObject;
 
+    public bool playingMultiplayer;
+
 
     //логика
     public int money;
@@ -71,15 +73,20 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         photonView = FindObjectOfType<PhotonView>(); //GetComponent<PhotonView>();
-        Debug.Log("Found phView on" + photonView.name);
+        Debug.Log("Found phView on game object " + photonView.name);
         photonManager = FindObjectOfType<PhotonManager>();
-        Debug.Log("Found phManager on" + photonManager.name);
+        Debug.Log("Found phManager on game object " + photonManager.name);
+
+        if (PhotonNetwork.CurrentRoom != null)
+            playingMultiplayer = false;
+        else
+            playingMultiplayer = true;
  
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T) == true) //МЭЙБИ GetKey будет лучше
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) == true) //МЭЙБИ GetKey будет лучше
         {
             if (chatWindowShowing == true)
             {
@@ -103,12 +110,24 @@ public class GameManager : MonoBehaviour
             case "Dungeon 1":
                 ruSceneName = "Темная башня";
                 break;
+            case "Dungeon 2":
+                ruSceneName = "Данжен 2";
+                break;
+            case "Dungeon 3":
+                ruSceneName = "Данжен 3";
+                break;
+            case "Dungeon 4":
+                ruSceneName = "Данжен 4";
+                break;
+            case "Dungeon 5":
+                ruSceneName = "Данжен 5";
+                break;
             default:
                 break;
         }
     }
 
-    public void SendButton()
+    /*public void SendButton()
     {
         photonView.RPC("Send_Data", RpcTarget.AllBuffered, PhotonNetwork.NickName, textMessageField.text); //отправить в чат ник + сообщение
     }
@@ -117,7 +136,7 @@ public class GameManager : MonoBehaviour
     private void Send_Data(string nickname, string message)
     {
         textLastMessage.text = nickname + ": " + message;
-    }
+    }*/
 
 
     public void ShowText(string message, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) //пишем это тут для того чтоб можно было
