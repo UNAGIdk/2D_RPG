@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class NPCTextPerson : Collidable
 {
@@ -22,14 +23,16 @@ public class NPCTextPerson : Collidable
         base.Start();
 
        hasSpokenMessages = false;
-        if (PlayerPrefs.GetString("PlayerNameResponse") != null)
+        if (PlayerPrefs.GetString("PlayerNameResponse") == "" || PlayerPrefs.HasKey("PlayerNameResponse") == false)
             hasAskedName = false;
         else
         {
             hasAskedName = true;
-            messages[0] = "Welcome, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
+            messages[0] = "Ќу привет, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
+
+            if(GameManager.instance.playingMultiplayer == true)
+                PhotonNetwork.NickName = PlayerPrefs.GetString("PlayerNameResponse");
         }
-        Debug.Log(PlayerPrefs.GetString("PlayerNameResponse"));
     }
 
     protected override void Update()
@@ -81,6 +84,8 @@ public class NPCTextPerson : Collidable
         NPCMessageInputAnimator.SetTrigger("hide");
         NPCMessageInputAnimator.ResetTrigger("show");
         messages[0] = "я бы теб€ так не назвал, но ладно, привет, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
+        if (GameManager.instance.playingMultiplayer == true)
+            PhotonNetwork.NickName = PlayerPrefs.GetString("PlayerNameResponse");
     }
 
 }

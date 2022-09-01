@@ -12,6 +12,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     //public RoomListItem itemPrefab;
     public RoomListItem itemPrefab;
     public Transform content;
+    public GameObject textMessageField;
+    public Text textMessageText;
 
     List<RoomInfo> allRoomsInfo = new List<RoomInfo>();
 
@@ -20,6 +22,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.ConnectToRegion(region);
+        textMessageField = FindObjectOfType<ChatText>().gameObject;
+        textMessageText = textMessageField.GetComponent<Text>();
     }
 
     public override void OnConnectedToMaster()
@@ -30,6 +34,18 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if(!PhotonNetwork.InLobby)
             PhotonNetwork.JoinLobby();
         Debug.Log("Joined lobby with name " + PhotonNetwork.CurrentLobby);
+    }
+
+    public void SendButton()
+    {
+        photonView.RPC("Send_Data", RpcTarget.AllBuffered, PhotonNetwork.NickName, textMessageText.text); //отправить в чат ник + сообщение
+    }
+
+    [PunRPC] //перед RPC методом обязательно
+    private void Send_Data(string nickname, string message)
+    {
+        //textMessageField.text = nickname + ": " + message;
+        Debug.Log("RPC Method says: " + nickname + ": " + message);
     }
 
     public override void OnDisconnected(DisconnectCause cause)
