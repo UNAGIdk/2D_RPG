@@ -3,6 +3,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -12,18 +13,33 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     //public RoomListItem itemPrefab;
     public RoomListItem itemPrefab;
     public Transform content;
-    public GameObject textMessageField;
-    public Text textMessageText;
+
+    private Text chatLastMessageText;
+    private bool chatLastMessageTextReferenceSet;
+
+    public Animator askNamePanelAnimator;
+    public Text nicknameResponseText;
+
+    public bool playingMultiplayer;
 
     List<RoomInfo> allRoomsInfo = new List<RoomInfo>();
 
 
-    void Start()
+    private void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.ConnectToRegion(region);
-        textMessageField = FindObjectOfType<ChatText>().gameObject;
-        textMessageText = textMessageField.GetComponent<Text>();
+    }
+
+    private void Update()
+    {
+        if(SceneManager.GetActiveScene().name != "MainMenu" && chatLastMessageTextReferenceSet == false)
+        {
+            //condition in PhotonManager works now
+            chatLastMessageText = FindObjectOfType<ChatText>().GetComponent<Text>();
+            Debug.Log("PhotonManager has found chatLastMessageText on " + chatLastMessageText.gameObject.name);
+            chatLastMessageTextReferenceSet = true;
+        }
     }
 
     public override void OnConnectedToMaster()
@@ -36,16 +52,15 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("Joined lobby with name " + PhotonNetwork.CurrentLobby);
     }
 
-    public void SendButton()
+    public void SendButton(string message)
     {
-        photonView.RPC("Send_Data", RpcTarget.AllBuffered, PhotonNetwork.NickName, textMessageText.text); //отправить в чат ник + сообщение
+        photonView.RPC("Send_Data", RpcTarget.All, PhotonNetwork.NickName, message); //отправить в чат ник + сообщение
     }
 
     [PunRPC] //перед RPC методом обязательно
     private void Send_Data(string nickname, string message)
     {
-        //textMessageField.text = nickname + ": " + message;
-        Debug.Log("RPC Method says: " + nickname + ": " + message);
+        chatLastMessageText.text = nickname + ": " + message;
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -65,10 +80,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             roomOptions.IsVisible = true;
             PhotonNetwork.CreateRoom(roomName.text, roomOptions, TypedLobby.Default);
         }
-        //JoinOrCreateRoom - зайти в комнату, и если комнаты с таким названием еще нет, тогда создать
         PhotonNetwork.LoadLevel("Entrance");
-        //PhotonNetwork.JoinLobby();
-        //Debug.Log("Joined lobby with name " + PhotonNetwork.CurrentLobby);
     }
 
     public override void OnCreatedRoom()
@@ -102,10 +114,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public override void OnJoinedRoom()
+    public override void OnJoinedRoom() //вызывается только при СОЗДАНИИ комнаты
     {
         PhotonNetwork.LoadLevel("Entrance");
         Debug.Log("Joined room with name " + PhotonNetwork.CurrentRoom.Name);
+
+        //chatLastMessageText = FindObjectOfType<ChatText>().GetComponent<Text>();
+        //Debug.Log("PhotonManager has found chatLastMessageText on " + chatLastMessageText.gameObject.name);
     }
 
     public override void OnLeftRoom()
@@ -121,5 +136,23 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void LeaveButton()
     {
         PhotonNetwork.LeaveRoom();
+    }
+
+    public void ConfirmNicknameButtonClick()
+    {
+        PhotonNetwork.NickName = nicknameResponseText.text;
+        askNamePanelAnimator.ResetTrigger("show");
+        askNamePanelAnimator.SetTrigger("hide");
+        Debug.Log("Photon NickName is now " + PhotonNetwork.NickName);
+    }
+
+    public void PlayingMultiplayerToFalse()
+    {
+        playingMultiplayer = false;
+    }
+
+    public void PlayingMultiplayerToTrue()
+    {
+        playingMultiplayer = true;
     }
 }

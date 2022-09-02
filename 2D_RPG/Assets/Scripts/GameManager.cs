@@ -29,8 +29,6 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
     public GameObject backgroundMusicObject;
 
-    public bool playingMultiplayer;
-
 
     //логика
     public int money;
@@ -47,8 +45,8 @@ public class GameManager : MonoBehaviour
     //photon
     public Text textLastMessage;
     public InputField textMessageField;
-    private PhotonView photonView;
-    private PhotonManager photonManager;
+    public PhotonView photonView;
+    public PhotonManager photonManager;
 
     private void Awake()
     {
@@ -73,15 +71,9 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         photonView = FindObjectOfType<PhotonView>(); //GetComponent<PhotonView>();
-        Debug.Log("Found phView on game object " + photonView.name);
+        Debug.Log("GameManager has found photonView on game object " + photonView.name);
         photonManager = FindObjectOfType<PhotonManager>();
-        Debug.Log("Found phManager on game object " + photonManager.name);
-
-        if (PhotonNetwork.CurrentRoom != null)
-            playingMultiplayer = false;
-        else
-            playingMultiplayer = true;
- 
+        Debug.Log("GameManager has found photonManager on game object " + photonManager.name);
     }
 
     private void Update()
@@ -126,17 +118,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
-    /*public void SendButton()
-    {
-        photonView.RPC("Send_Data", RpcTarget.AllBuffered, PhotonNetwork.NickName, textMessageField.text); //отправить в чат ник + сообщение
-    }
-
-    [PunRPC] //перед RPC методом обязательно
-    private void Send_Data(string nickname, string message)
-    {
-        textLastMessage.text = nickname + ": " + message;
-    }*/
 
 
     public void ShowText(string message, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) //пишем это тут для того чтоб можно было
