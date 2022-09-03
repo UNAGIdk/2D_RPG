@@ -20,7 +20,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public Animator askNamePanelAnimator;
     public Text nicknameResponseText;
 
-    public bool playingMultiplayer;
+    public Button createRoomButton;
+    public Button joinRoomButton;
+
+    [HideInInspector]public bool playingMultiplayer;
 
     List<RoomInfo> allRoomsInfo = new List<RoomInfo>();
 
@@ -29,6 +32,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.ConnectToRegion(region);
+        createRoomButton.GetComponent<Button>().interactable = false;
+        joinRoomButton.GetComponent<Button>().interactable = false;
     }
 
     private void Update()
@@ -144,6 +149,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         askNamePanelAnimator.ResetTrigger("show");
         askNamePanelAnimator.SetTrigger("hide");
         Debug.Log("Photon NickName is now " + PhotonNetwork.NickName);
+        createRoomButton.GetComponent<Button>().interactable = true;
+        joinRoomButton.GetComponent<Button>().interactable = true;
     }
 
     public void PlayingMultiplayerToFalse()

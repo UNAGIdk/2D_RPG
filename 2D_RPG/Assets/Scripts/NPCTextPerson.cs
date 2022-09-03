@@ -7,11 +7,11 @@ using Photon.Pun;
 public class NPCTextPerson : Collidable
 {
     public string[] messages;
-    public bool hasSpokenMessages;
+    [HideInInspector] public bool hasSpokenMessages;
     private int pagesCounter = 0;
 
     public string[] askNameMessage;
-    public bool hasAskedName;
+    [HideInInspector] public bool hasAskedName;
     private string playerNameResponse;
 
     public Animator NPCMessageInputAnimator;
