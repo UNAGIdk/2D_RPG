@@ -38,15 +38,15 @@ public class GameManager : MonoBehaviour
     public Animator chatWindowAnimator;
     private bool chatWindowShowing = false;
 
-    public string sceneName;
-    public string ruSceneName;
+    [HideInInspector] public string sceneName;
+    [HideInInspector] public string ruSceneName;
 
 
     //photon
     public Text textLastMessage;
     public InputField textMessageField;
-    public PhotonView photonView;
-    public PhotonManager photonManager;
+    [HideInInspector] public PhotonView photonView;
+    [HideInInspector] public PhotonManager photonManager;
 
     private void Awake()
     {
