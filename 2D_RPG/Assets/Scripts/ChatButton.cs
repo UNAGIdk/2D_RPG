@@ -14,14 +14,18 @@ public class ChatButton : MonoBehaviour
     {
         if(chatOpened == false)
         {
-            chatAnimator.SetTrigger("hide");
-            chatAnimator.ResetTrigger("show");
+            chatAnimator.ResetTrigger("hide");
+            chatAnimator.SetTrigger("show");
+            GameManager.instance.ProhibitPlayerMoving();
+            GameManager.instance.ProhibitPlayerSwing();
             chatOpened = true;
         }
         else
         {
-            chatAnimator.SetTrigger("show");
-            chatAnimator.ResetTrigger("hide");
+            chatAnimator.ResetTrigger("show");
+            chatAnimator.SetTrigger("hide");
+            GameManager.instance.AllowPlayerMoving();
+            GameManager.instance.AllowPlayerSwing();
             chatOpened = false;
         }
     }

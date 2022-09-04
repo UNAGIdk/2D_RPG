@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
     public AudioManager audioManager;
     public GameObject backgroundMusicObject;
+    public GameObject multiplayerInformationCoverage;
 
 
     //логика
@@ -74,6 +75,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("GameManager has found photonView on game object " + photonView.name);
         photonManager = FindObjectOfType<PhotonManager>();
         Debug.Log("GameManager has found photonManager on game object " + photonManager.name);
+
+        if (photonManager.playingMultiplayer == false)
+            multiplayerInformationCoverage.gameObject.SetActive(true);
+        else
+            multiplayerInformationCoverage.gameObject.SetActive(false);
+
+        if(SceneManager.GetActiveScene().name == "Entrance" && photonManager.playingMultiplayer == false)
+            instance.ShowText("Вход", 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f);
     }
 
     private void Update()
@@ -115,8 +124,11 @@ public class GameManager : MonoBehaviour
                 ruSceneName = "Данжен 5";
                 break;
             default:
+                ruSceneName = "Вход";
                 break;
         }
+
+        Debug.Log(player.canMove);
     }
 
 

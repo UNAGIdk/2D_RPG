@@ -15,7 +15,7 @@ public class ScenePortal : Collidable
 
     private GameObject teleportButton;
     //private GameObject teleportText;
-    public bool teleportHintShowing;
+    [HideInInspector] public bool teleportHintShowing;
 
     protected override void Start()
     {
