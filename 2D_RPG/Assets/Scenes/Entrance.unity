@@ -27364,6 +27364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chatMessageText: {fileID: 16867550}
+  chatInputText: {fileID: 16867550}
 --- !u!1 &1856936107
 GameObject:
   m_ObjectHideFlags: 0

@@ -93,14 +93,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.IsConnected)
             return;
 
-        if(roomNameText.text != "")
+        if (roomNameText.text != "")
         {
             RoomOptions roomOptions = new RoomOptions();
             roomOptions.MaxPlayers = 2;
             roomOptions.IsVisible = true;
             PhotonNetwork.CreateRoom(roomName.text, roomOptions, TypedLobby.Default);
+            PhotonNetwork.LoadLevel("Entrance");
         }
-        PhotonNetwork.LoadLevel("Entrance");
     }
 
     public override void OnCreatedRoom()
