@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class CharacterMenu : MonoBehaviour
 {
@@ -15,31 +16,17 @@ public class CharacterMenu : MonoBehaviour
     public Image characterSelectionSprite;
     public Image weaponSprite;
     public RectTransform xpBar; //нам не нужен спрайт для xpBar, у нее мы будем менять только размер (scale)
+    public NPCTextPerson NPC;
+
+    public Text roomNameText;
+    public Text playerNameText;
+    public Text serverNameText;
+    public Text pingText;
     
     
     //ниже пытался сделать открывание меню на escape
     public Animator menuAnimator;
-    public bool menuIsNowHidden = true;
-
-    /*private void Update()
-    {
-        if(menuIsNowHidden == true)
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                UpdateMenu();
-                menuAnimator.SetTrigger("show");
-                menuAnimator.ResetTrigger("hide");
-                menuIsNowHidden = false;
-            }
-
-        if (menuIsNowHidden == false)
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                menuAnimator.SetTrigger("hide");
-                menuAnimator.ResetTrigger("show");
-                menuIsNowHidden = true;
-            }
-    }*/
+    [HideInInspector] public bool menuIsNowHidden = true;
 
     public void OnMenuButtonClick()
     {

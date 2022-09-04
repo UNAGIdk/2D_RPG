@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
     public AudioManager audioManager;
     public GameObject backgroundMusicObject;
+    public GameObject multiplayerInformationCoverage;
 
 
     //логика
@@ -38,15 +39,15 @@ public class GameManager : MonoBehaviour
     public Animator chatWindowAnimator;
     private bool chatWindowShowing = false;
 
-    public string sceneName;
-    public string ruSceneName;
+    [HideInInspector] public string sceneName;
+    [HideInInspector] public string ruSceneName;
 
 
     //photon
     public Text textLastMessage;
     public InputField textMessageField;
-    private PhotonView photonView;
-    private PhotonManager photonManager;
+    [HideInInspector] public PhotonView photonView;
+    [HideInInspector] public PhotonManager photonManager;
 
     private void Awake()
     {
@@ -71,15 +72,22 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         photonView = FindObjectOfType<PhotonView>(); //GetComponent<PhotonView>();
-        Debug.Log("Found phView on" + photonView.name);
+        Debug.Log("GameManager has found photonView on game object " + photonView.name);
         photonManager = FindObjectOfType<PhotonManager>();
-        Debug.Log("Found phManager on" + photonManager.name);
- 
+        Debug.Log("GameManager has found photonManager on game object " + photonManager.name);
+
+        if (photonManager.playingMultiplayer == false)
+            multiplayerInformationCoverage.gameObject.SetActive(true);
+        else
+            multiplayerInformationCoverage.gameObject.SetActive(false);
+
+        if(SceneManager.GetActiveScene().name == "Entrance" && photonManager.playingMultiplayer == false)
+            instance.ShowText("Вход", 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T) == true) //МЭЙБИ GetKey будет лучше
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) == true) //МЭЙБИ GetKey будет лучше
         {
             if (chatWindowShowing == true)
             {
@@ -103,20 +111,24 @@ public class GameManager : MonoBehaviour
             case "Dungeon 1":
                 ruSceneName = "Темная башня";
                 break;
+            case "Dungeon 2":
+                ruSceneName = "Данжен 2";
+                break;
+            case "Dungeon 3":
+                ruSceneName = "Данжен 3";
+                break;
+            case "Dungeon 4":
+                ruSceneName = "Данжен 4";
+                break;
+            case "Dungeon 5":
+                ruSceneName = "Данжен 5";
+                break;
             default:
+                ruSceneName = "Вход";
                 break;
         }
-    }
 
-    public void SendButton()
-    {
-        photonView.RPC("Send_Data", RpcTarget.AllBuffered, PhotonNetwork.NickName, textMessageField.text); //отправить в чат ник + сообщение
-    }
-
-    [PunRPC] //перед RPC методом обязательно
-    private void Send_Data(string nickname, string message)
-    {
-        textLastMessage.text = nickname + ": " + message;
+        Debug.Log(player.canMove);
     }
 
 
