@@ -14,8 +14,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public RoomListItem itemPrefab;
     public Transform content;
 
-    private Text chatLastMessageText;
     private bool chatLastMessageTextReferenceSet;
+    private Text chatLastMessageText;
+    private Text chatLastMessageText1;
+    private Text chatLastMessageText2;
+    private Text chatLastMessageText3;
+    private Text chatLastMessageText4;
+
+    //List<Text> chatLastMessageTexts = new List<Text>();
 
     public Animator askNamePanelAnimator;
     public Text nicknameResponseText;
@@ -42,9 +48,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         {
             //condition in PhotonManager works now
             chatLastMessageText = FindObjectOfType<ChatText>().GetComponent<Text>();
+            chatLastMessageText1 = FindObjectOfType<ChatText1>().GetComponent<Text>();
+            chatLastMessageText2 = FindObjectOfType<ChatText2>().GetComponent<Text>();
+            chatLastMessageText3 = FindObjectOfType<ChatText3>().GetComponent<Text>();
+            chatLastMessageText4 = FindObjectOfType<ChatText4>().GetComponent<Text>();
             Debug.Log("PhotonManager has found chatLastMessageText on " + chatLastMessageText.gameObject.name);
             chatLastMessageTextReferenceSet = true;
         }
+
     }
 
     public override void OnConnectedToMaster()
@@ -65,6 +76,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     [PunRPC] //перед RPC методом обязательно
     private void Send_Data(string nickname, string message)
     {
+        chatLastMessageText4.text = chatLastMessageText3.text;
+        chatLastMessageText3.text = chatLastMessageText2.text;
+        chatLastMessageText2.text = chatLastMessageText1.text;
+        chatLastMessageText1.text = chatLastMessageText.text;
         chatLastMessageText.text = nickname + ": " + message;
     }
 
@@ -100,7 +115,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        Debug.Log("OnRoomListUpdate");
+        Debug.Log("OnRoomListUpdate has been called");
         foreach (RoomInfo info in roomList)
         {
             for (int i = 0; i < allRoomsInfo.Count; i++)

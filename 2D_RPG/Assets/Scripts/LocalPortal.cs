@@ -12,7 +12,7 @@ public class LocalPortal : Collidable
     public Transform portalTransform;
 
     private GameObject teleportButton;
-    public bool teleportHintShowing;
+    [HideInInspector] public bool teleportHintShowing;
 
     protected override void Start()
     {
