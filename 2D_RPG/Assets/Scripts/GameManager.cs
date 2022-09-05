@@ -127,8 +127,6 @@ public class GameManager : MonoBehaviour
                 ruSceneName = "¬ход";
                 break;
         }
-
-        Debug.Log(player.canMove);
     }
 
 
