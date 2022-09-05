@@ -19003,7 +19003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chatMessageText: {fileID: 16867550}
-  chatInputField: {fileID: 0}
+  chatInputField: {fileID: 196116211}
 --- !u!1 &1856936107
 GameObject:
   m_ObjectHideFlags: 0

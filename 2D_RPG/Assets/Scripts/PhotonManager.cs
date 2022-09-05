@@ -151,7 +151,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel("Entrance");
         Debug.Log("Joined room with name " + PhotonNetwork.CurrentRoom.Name);
-        OnPlayerConnectedToRoom();
+        //OnPlayerConnectedToRoom();
         //chatLastMessageText = FindObjectOfType<ChatText>().GetComponent<Text>();
         //Debug.Log("PhotonManager has found chatLastMessageText on " + chatLastMessageText.gameObject.name);
     }
@@ -164,6 +164,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void JoinButton()
     {
         PhotonNetwork.JoinRoom(roomName.text);
+        OnPlayerConnectedToRoom();
     }
 
     public void LeaveButton()
@@ -198,8 +199,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void Player_Connect_Rpc(string nickname)
+    private void Player_Connect_Rpc(string playerNickname)
     {
-        GameManager.instance.ShowText(nickname + " зашел в комнату", 24, Color.white, GameObject.Find("Main Camera").transform.position + new Vector3(-0.54f, 1.0f, 0), Vector3.up * 5, 2.0f);
+        GameManager.instance.ShowText(playerNickname + " зашел в комнату", 24, Color.white, GameObject.Find("Main Camera").transform.position + new Vector3(-0.54f, 1.0f, 0), Vector3.up * 5, 2.0f);
     }
 }
