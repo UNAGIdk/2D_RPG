@@ -6,6 +6,8 @@ using Photon.Pun;
 
 public class NPCTextPerson : Collidable
 {
+    public BoxCollider2D NPCDialogueTrigger;
+
     public string[] messages;
     [HideInInspector] public bool hasSpokenMessages;
     private int pagesCounter = 0;
@@ -21,7 +23,6 @@ public class NPCTextPerson : Collidable
     protected override void Start()
     {
         base.Start();
-        Debug.Log("Start was called in NPCTextPerson");
         hasSpokenMessages = false;
         if(GameManager.instance.photonManager.playingMultiplayer == false)
         {
@@ -31,11 +32,11 @@ public class NPCTextPerson : Collidable
             {
                 hasAskedName = true;
                 messages[0] = "Ну привет, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
+                messages[messages.Length - 1] = "На этом мои советы заканчиваются. Удачи на первом уровне, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
             }
         }
         else 
             messages[0] = "Ну привет, " + PhotonNetwork.NickName + "!";
-
     }
 
     protected override void Update()
@@ -65,10 +66,8 @@ public class NPCTextPerson : Collidable
             }
     }
 
-    protected override void OnCollide(Collider2D coll)
+    public void OnCollisionWithTrigger()
     {
-        Debug.Log("Collided");
-        Debug.Log("hasAskedName is " + hasAskedName);
         if(GameManager.instance.photonManager.playingMultiplayer == false)
         {
             if (hasAskedName == false)
@@ -83,6 +82,7 @@ public class NPCTextPerson : Collidable
         else if (hasSpokenMessages == false)
             GameManager.instance.ShowDialoguePage(messages[pagesCounter], gameObject.GetComponent<SpriteRenderer>().sprite); //показать первую страницу при касании
     }
+
     public void ApproveNameButton()
     {
         playerNameResponse = NPCMessageInputField.text;

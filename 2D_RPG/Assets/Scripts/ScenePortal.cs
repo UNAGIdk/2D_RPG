@@ -34,6 +34,7 @@ public class ScenePortal : Collidable
         }
 
         teleportHintShowing = false;
+        Debug.Log("teleportHintShowing is now " + teleportHintShowing);
     }
 
     protected override void OnCollide(Collider2D coll)
@@ -41,12 +42,9 @@ public class ScenePortal : Collidable
         if (coll.name == "Player")
         {
             Debug.Log("Player collided scene portal");
-            if (teleportHintShowing == false)
-            {
-                teleportHintShowing = true;
+            teleportHintShowing = true;
 
-                GameManager.instance.sceneName = sceneName;
-            }
+            GameManager.instance.sceneName = sceneName;
 
             if (Input.GetKeyDown(KeyCode.F) == true)
             {
