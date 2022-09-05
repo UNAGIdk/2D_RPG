@@ -157,7 +157,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
-        OnPlayerConnectedToRoom();
+        OnPlayerConnectedToRoom(newPlayer.NickName);
     }
 
     public override void OnLeftRoom()
@@ -196,9 +196,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         playingMultiplayer = true;
     }
 
-    public void OnPlayerConnectedToRoom()
+    public void OnPlayerConnectedToRoom(string newPlayerNickname)
     {
-        photonView.RPC("Player_Connect_Rpc", RpcTarget.All, PhotonNetwork.NickName);
+        photonView.RPC("Player_Connect_Rpc", RpcTarget.All, newPlayerNickname);
     }
 
     [PunRPC]
