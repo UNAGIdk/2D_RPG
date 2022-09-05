@@ -32,7 +32,7 @@ public class BossChest : Chest
             GetComponent<SpriteRenderer>().sprite = emptyChest;
             GameManager.instance.money += moneyAmount;
             //при поднятии сундука вызываем всплывающий текст со следующими параметрами
-            GameManager.instance.ShowText("+" + moneyAmount + " GOLD", 25, Color.yellow, transform.position, Vector3.up * 30, 2.0f);
+            GameManager.instance.ShowText("+" + moneyAmount + " ЗЛТ", 25, Color.yellow, transform.position, Vector3.up * 30, 2.0f);
             bossChestAudioSource.PlayOneShot(bossChestSounds[Random.Range(0, bossChestSounds.Length)]);
         }
     }

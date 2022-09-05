@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     private GameObject characterSpriteWindow;
 
 
-    public bool dialogueRunning = false;
+    [HideInInspector] public bool dialogueRunning = false;
 
 
     public void ShowPage(string textPage, Sprite characterSprite)

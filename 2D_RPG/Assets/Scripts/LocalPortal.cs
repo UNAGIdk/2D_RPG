@@ -5,59 +5,55 @@ using UnityEngine;
 public class LocalPortal : Collidable
 {
     public Transform portalToTeleport;
-    //private GameManager gameManager;
+    private Animator portalHintAnimator;
 
-    public Sprite teleportButtonSprite;
-    public GameObject teleportButtonPrefab;
-    public Transform portalTransform;
-
-    private GameObject teleportButton;
-    public bool teleportHintShowing;
+    [HideInInspector] public bool teleportHintShowing;
 
     protected override void Start()
     {
         base.Start();
+        portalHintAnimator = FindObjectOfType<PortalHint>().GetComponent<Animator>();
+        Debug.Log("LocalPortal has found portal hint animator on " + portalHintAnimator.gameObject.name);
         teleportHintShowing = false;
-        //gameManager = FindObjectOfType<GameManager>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (teleportHintShowing == true)
+        {
+            portalHintAnimator.ResetTrigger("hide");
+            portalHintAnimator.SetTrigger("show");
+        }
+        else
+        {
+            portalHintAnimator.ResetTrigger("show");
+            portalHintAnimator.SetTrigger("hide");
+        }
+
+        teleportHintShowing = false;
     }
 
     protected override void OnCollide(Collider2D coll)
     {
         if (coll.name == "Player")
         {
-            Debug.Log("Collided local portal");
+            Debug.Log("Player collided local portal");
             if (teleportHintShowing == false)
             {
-                teleportButton = Instantiate(teleportButtonPrefab, portalTransform);
-                teleportButton.transform.localPosition = new Vector3(0, 4.53f, 0);
-                //teleportText = Instantiate(teleportTextPrefab, portalTransform);
-
-                //teleportButton.GetComponent<SpriteRenderer>().sprite = teleportButtonSprite;
-                //teleportText.GetComponent<Text>().text = "to go into " + sceneName;
-
                 teleportHintShowing = true;
             }
 
             if (Input.GetKeyDown(KeyCode.F) == true)
             {
-                ClearPortalText();
+                teleportHintShowing = false;
                 Teleport();
             }
-        }
-        else
-        {
-            ClearPortalText();
         }
     }
 
     private void Teleport()
     {
         GameManager.instance.player.transform.localPosition = portalToTeleport.localPosition;
-    }
-
-    private void ClearPortalText()
-    {
-        Destroy(teleportButton);
-        teleportHintShowing = false;
     }
 }

@@ -8,6 +8,13 @@ public class Crate : Fighter
     public AudioClip crateDamageAudioClip;
     public AudioClip crateDestroyAudioClip;
 
+    //ParticleSystem 
+    public Object enemyExplosionPrefabGO;
+    public ParticleSystemRenderer enemyExplosionPrefabPSR;
+    public Material destroyMaterial;
+
+
+
     private void Start()
     {
         crateAudioSource = FindObjectOfType<AudioManager>().GetComponentInChildren<AudioSource>();
@@ -15,6 +22,9 @@ public class Crate : Fighter
 
     protected override void Death()
     {
+        enemyExplosionPrefabPSR.material = destroyMaterial;
+        GameObject enemyExplosion = (GameObject)Instantiate(enemyExplosionPrefabGO);
+        enemyExplosion.transform.position = new Vector3(transform.position.x, transform.position.y, -0.1f);
         crateAudioSource.PlayOneShot(crateDestroyAudioClip);
         Destroy(gameObject);
     }

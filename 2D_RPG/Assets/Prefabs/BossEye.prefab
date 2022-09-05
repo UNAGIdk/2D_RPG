@@ -338,7 +338,12 @@ MonoBehaviour:
   triggerLength: 1
   chaseLength: 5
   EnemyXSpeed: 0.37
-  EnemyYSpeed: 0.28
+  EnemyYSpeedMultiplayer: 0.79
+  getDamageMaterial: {fileID: 2100000, guid: 9c7972bc2a2798d4792d9f81f4622e8f, type: 2}
+  destroyMaterial: {fileID: 2100000, guid: 9b1109be8eb444d4397ba46e483b788f, type: 2}
+  resetMaterialTime: 0.1
+  enemyExplosionPrefabGO: {fileID: 6316677836653063181, guid: 9743d9cb5e69c5d40bdf086a788937f9, type: 3}
+  enemyExplosionPrefabPSR: {fileID: 6316677836653063183, guid: 9743d9cb5e69c5d40bdf086a788937f9, type: 3}
   filter:
     useTriggers: 0
     useLayerMask: 0
@@ -362,6 +367,7 @@ MonoBehaviour:
   - {fileID: 2373503939075575110}
   - {fileID: 2373503937622592009}
   distance: 0.3
+  bossChest: {fileID: 0}
 --- !u!61 &2373503938610424598
 BoxCollider2D:
   m_ObjectHideFlags: 0
