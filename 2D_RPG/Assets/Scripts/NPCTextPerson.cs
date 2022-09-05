@@ -92,8 +92,9 @@ public class NPCTextPerson : Collidable
         NPCMessageInputAnimator.SetTrigger("hide");
         NPCMessageInputAnimator.ResetTrigger("show");
         messages[0] = "я бы теб€ так не назвал, но ладно, привет, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
+        messages[messages.Length - 1] = "Ќа этом мои советы заканчиваютс€. ”дачи на первом уровне, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
         //if (GameManager.instance.playingMultiplayer == true)
-            //PhotonNetwork.NickName = PlayerPrefs.GetString("PlayerNameResponse");
+        //PhotonNetwork.NickName = PlayerPrefs.GetString("PlayerNameResponse");
     }
 
 }
