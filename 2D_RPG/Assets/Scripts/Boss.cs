@@ -24,6 +24,7 @@ public class Boss : Enemy
     protected override void Death()
     {
         base.Death();
-        bossChest.bossDead = true;
+        if(bossChest != null)
+            bossChest.bossDead = true;
     }
 }

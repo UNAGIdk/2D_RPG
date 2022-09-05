@@ -21,6 +21,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     private Text chatLastMessageText3;
     private Text chatLastMessageText4;
 
+    [HideInInspector] public string phRoomName;
+    [HideInInspector] public string phPlayerName;
+    [HideInInspector] public string phSecondPlayerName;
+    [HideInInspector] public string phServerName;
+    [HideInInspector] public string phPing;
+
+
+
     //List<Text> chatLastMessageTexts = new List<Text>();
 
     public Animator askNamePanelAnimator;
@@ -56,14 +64,17 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             chatLastMessageTextReferenceSet = true;
         }
 
+        phPing = PhotonNetwork.GetPing().ToString();
+
     }
 
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to " + PhotonNetwork.CloudRegion);
         Debug.Log("Current ping is " + PhotonNetwork.GetPing());
+        phServerName = PhotonNetwork.CloudRegion;
 
-        if(!PhotonNetwork.InLobby)
+        if (!PhotonNetwork.InLobby)
             PhotonNetwork.JoinLobby();
         Debug.Log("Joined lobby with name " + PhotonNetwork.CurrentLobby);
     }
@@ -93,14 +104,16 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.IsConnected)
             return;
 
-        if(roomNameText.text != "")
+        if (roomNameText.text != "")
         {
             RoomOptions roomOptions = new RoomOptions();
             roomOptions.MaxPlayers = 2;
             roomOptions.IsVisible = true;
             PhotonNetwork.CreateRoom(roomName.text, roomOptions, TypedLobby.Default);
+            phRoomName = roomName.text;
+            PhotonNetwork.LoadLevel("Entrance");
+            OnPlayerConnectedToRoom();
         }
-        PhotonNetwork.LoadLevel("Entrance");
     }
 
     public override void OnCreatedRoom()
@@ -138,7 +151,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel("Entrance");
         Debug.Log("Joined room with name " + PhotonNetwork.CurrentRoom.Name);
-
+        OnPlayerConnectedToRoom();
         //chatLastMessageText = FindObjectOfType<ChatText>().GetComponent<Text>();
         //Debug.Log("PhotonManager has found chatLastMessageText on " + chatLastMessageText.gameObject.name);
     }
@@ -161,6 +174,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void ConfirmNicknameButtonClick()
     {
         PhotonNetwork.NickName = nicknameResponseText.text;
+        phPlayerName = nicknameResponseText.text;
         askNamePanelAnimator.ResetTrigger("show");
         askNamePanelAnimator.SetTrigger("hide");
         Debug.Log("Photon NickName is now " + PhotonNetwork.NickName);
@@ -176,5 +190,16 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void PlayingMultiplayerToTrue()
     {
         playingMultiplayer = true;
+    }
+
+    public void OnPlayerConnectedToRoom()
+    {
+        photonView.RPC("Player_Connect_Rpc", RpcTarget.All, PhotonNetwork.NickName);
+    }
+
+    [PunRPC]
+    public void Player_Connect_Rpc(string nickname)
+    {
+        GameManager.instance.ShowText(nickname + " зашел в комнату", 24, Color.white, GameObject.Find("Main Camera").transform.position + new Vector3(-0.54f, 1.0f, 0), Vector3.up * 5, 2.0f);
     }
 }
