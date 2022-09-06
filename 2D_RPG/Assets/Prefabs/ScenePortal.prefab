@@ -140,10 +140,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   boxCollider: {fileID: 965996245571512816}
-  sceneName: Dungeon 2
-  teleportButtonSprite: {fileID: -8678936, guid: 06f3eb338994ff845b1615c31f1246b3, type: 3}
-  teleportButtonPrefab: {fileID: 514460357647144300, guid: 235722992b6b0d0428c0d8825667a4d1, type: 3}
-  portalTransform: {fileID: 965996245571512818}
+  sceneName: Dungeon 1
   teleportHintShowing: 0
 --- !u!1 &965996246955363427
 GameObject:
