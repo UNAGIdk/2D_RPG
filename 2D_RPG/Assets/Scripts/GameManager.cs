@@ -109,19 +109,19 @@ public class GameManager : MonoBehaviour
                 ruSceneName = "Вход";
                 break;
             case "Dungeon 1":
-                ruSceneName = "Темная башня";
+                ruSceneName = "Уровень 1";
                 break;
             case "Dungeon 2":
-                ruSceneName = "Данжен 2";
+                ruSceneName = "Уровень 2";
                 break;
             case "Dungeon 3":
-                ruSceneName = "Данжен 3";
+                ruSceneName = "Уровень 3";
                 break;
             case "Dungeon 4":
-                ruSceneName = "Данжен 4";
+                ruSceneName = "Уровень 4";
                 break;
             case "Dungeon 5":
-                ruSceneName = "Данжен 5";
+                ruSceneName = "Уровень 5";
                 break;
             default:
                 ruSceneName = "Вход";
