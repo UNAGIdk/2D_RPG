@@ -63,9 +63,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             Debug.Log("PhotonManager has found chatLastMessageText on " + chatLastMessageText.gameObject.name);
             chatLastMessageTextReferenceSet = true;
         }
-
         phPing = PhotonNetwork.GetPing().ToString();
-
     }
 
     public override void OnConnectedToMaster()
@@ -111,7 +109,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             roomOptions.IsVisible = true;
             PhotonNetwork.CreateRoom(roomName.text, roomOptions, TypedLobby.Default);
             phRoomName = roomName.text;
-            PhotonNetwork.LoadLevel("Entrance");
         }
     }
 
@@ -148,7 +145,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom() //вызывается только при СОЗДАНИИ комнаты
     {
-        PhotonNetwork.LoadLevel("Entrance");
+        SceneTransition.instance.SceneSwitch();
         Debug.Log("Joined room with name " + PhotonNetwork.CurrentRoom.Name);
         //chatLastMessageText = FindObjectOfType<ChatText>().GetComponent<Text>();
         //Debug.Log("PhotonManager has found chatLastMessageText on " + chatLastMessageText.gameObject.name);
@@ -205,5 +202,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     private void Player_Connect_Rpc(string playerNickname)
     {
         GameManager.instance.ShowText(playerNickname + " зашел в комнату", 24, Color.white, GameObject.Find("Main Camera").transform.position + new Vector3(-0.54f, 0.94f, 0), Vector3.up * 4, 5.0f);
+    }
+
+    public void PhotonLoadScene()
+    {
+        PhotonNetwork.LoadLevel("Entrance");
     }
 }
