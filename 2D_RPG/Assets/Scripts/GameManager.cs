@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
     public GameObject backgroundMusicObject;
     public GameObject multiplayerInformationCoverage;
+    [HideInInspector]public SceneTransition sceneTranition;
 
 
     //логика
@@ -75,6 +76,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("GameManager has found photonView on game object " + photonView.name);
         photonManager = FindObjectOfType<PhotonManager>();
         Debug.Log("GameManager has found photonManager on game object " + photonManager.name);
+        sceneTranition = FindObjectOfType<SceneTransition>();
+        Debug.Log("GameManager has found sceneTranition on game object " + sceneTranition.name);
 
         if (photonManager.playingMultiplayer == false)
             multiplayerInformationCoverage.gameObject.SetActive(true);
@@ -214,6 +217,7 @@ public class GameManager : MonoBehaviour
     {
         player.transform.position = GameObject.Find("SpawnPoint").transform.position; //телепортировать игрока к SpawnPoint
         instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //вывести текст с названием сцены
+        sceneTranition.SceneTransitionOnSceneLoaded();
     }
 
     public void Respawn()

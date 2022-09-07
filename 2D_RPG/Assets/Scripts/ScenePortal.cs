@@ -32,9 +32,7 @@ public class ScenePortal : Collidable
             portalHintAnimator.ResetTrigger("show");
             portalHintAnimator.SetTrigger("hide");
         }
-
         teleportHintShowing = false;
-        Debug.Log("teleportHintShowing is now " + teleportHintShowing);
     }
 
     protected override void OnCollide(Collider2D coll)
@@ -58,6 +56,7 @@ public class ScenePortal : Collidable
     {
         //телепортировать игрока в dungeon
         GameManager.instance.SaveState();
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        //SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        SceneTransition.instance.SceneSwitch();
     }
 }
