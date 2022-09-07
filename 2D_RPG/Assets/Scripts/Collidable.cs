@@ -7,13 +7,12 @@ using UnityEngine;
 public class Collidable : MonoBehaviour
 {
     public ContactFilter2D filter; //фильтр, который будет определять с чем именно мы ходим be collidable with
-    public BoxCollider2D boxCollider;
+    private BoxCollider2D boxCollider;
     protected Collider2D[] hits = new Collider2D[10]; //массив объектов с которыми мы collided в текущем frame
 
     protected virtual void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
-
     }
     protected virtual void Update()
     {
