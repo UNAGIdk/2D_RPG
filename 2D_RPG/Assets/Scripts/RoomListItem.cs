@@ -7,6 +7,12 @@ public class RoomListItem : MonoBehaviour
 {
     public Text roomNameText;
     public Text playerAmountText;
+    private PhotonManager photonManager;
+
+    private void Start()
+    {
+        photonManager = FindObjectOfType<PhotonManager>(); //.GetComponent<PhotonManager>()
+    }
 
     public void SetListInfo(RoomInfo info)
     {
@@ -17,5 +23,6 @@ public class RoomListItem : MonoBehaviour
     public void JoinToListRoom()
     {
         PhotonNetwork.JoinRoom(roomNameText.text);
+        photonManager.SetPlayerAsSecond();
     }
 }

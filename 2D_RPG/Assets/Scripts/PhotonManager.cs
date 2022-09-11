@@ -37,7 +37,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public Button createRoomButton;
     public Button joinRoomButton;
 
-    [HideInInspector]public bool playingMultiplayer;
+    [HideInInspector] public bool playingMultiplayer;
+    [HideInInspector] public bool isFirstPlayer;
 
     List<RoomInfo> allRoomsInfo = new List<RoomInfo>();
 
@@ -109,6 +110,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             roomOptions.IsVisible = true;
             PhotonNetwork.CreateRoom(roomName.text, roomOptions, TypedLobby.Default);
             phRoomName = roomName.text;
+            SetPlayerAsFirst();
         }
     }
 
@@ -147,8 +149,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         SceneTransition.instance.SceneSwitch();
         Debug.Log("Joined room with name " + PhotonNetwork.CurrentRoom.Name);
-        //chatLastMessageText = FindObjectOfType<ChatText>().GetComponent<Text>();
-        //Debug.Log("PhotonManager has found chatLastMessageText on " + chatLastMessageText.gameObject.name);
     }
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
@@ -165,6 +165,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void JoinButton()
     {
         PhotonNetwork.JoinRoom(roomName.text);
+        SetPlayerAsSecond();
     }
 
     public void LeaveButton()
@@ -207,5 +208,15 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void PhotonLoadScene()
     {
         PhotonNetwork.LoadLevel("Entrance");
+    }
+
+    public void SetPlayerAsFirst()
+    {
+        isFirstPlayer = true;
+    }
+
+    public void SetPlayerAsSecond()
+    {
+        isFirstPlayer = false;
     }
 }

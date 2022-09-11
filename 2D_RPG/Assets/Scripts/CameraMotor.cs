@@ -12,7 +12,13 @@ public class CameraMotor : MonoBehaviour
 
     private void Start() //найти объект с именем player, взять с него параметр transform и присвоить этот параметр в поле lookAt
     {
-        lookAt = GameObject.Find("Player").transform;
+        if(GameManager.instance.photonManager.playingMultiplayer == true)
+            if(GameManager.instance.photonManager.isFirstPlayer == true)
+                lookAt = GameObject.Find("Player1").transform;
+            else
+                lookAt = GameObject.Find("Player2").transform;
+        else
+            lookAt = GameObject.Find("Player1").transform;
         transform.position = lookAt.position + new Vector3(0, 0, -10);
     }
 
