@@ -29,7 +29,11 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
     public GameObject backgroundMusicObject;
     public GameObject multiplayerInformationCoverage;
+    [HideInInspector]public SceneTransition sceneTranition;
 
+    private Animator entranceLevel1GateAnimator;
+    private Animator entranceLevel2GateAnimator;
+    private Animator entranceLevel3GateAnimator;
 
     //логика
     public int money;
@@ -75,6 +79,42 @@ public class GameManager : MonoBehaviour
         Debug.Log("GameManager has found photonView on game object " + photonView.name);
         photonManager = FindObjectOfType<PhotonManager>();
         Debug.Log("GameManager has found photonManager on game object " + photonManager.name);
+        sceneTranition = FindObjectOfType<SceneTransition>();
+        Debug.Log("GameManager has found sceneTranition on game object " + sceneTranition.name);
+
+        entranceLevel1GateAnimator = GameObject.Find("Level1Gate").GetComponent<Animator>();
+        Debug.Log("entranceLevel1GateAnimator has found sceneTranition on game object " + entranceLevel1GateAnimator.name);
+        entranceLevel2GateAnimator = GameObject.Find("Level2Gate").GetComponent<Animator>();
+        entranceLevel3GateAnimator = GameObject.Find("Level3Gate").GetComponent<Animator>();
+
+        if(PlayerPrefs.HasKey("LevelsPassed"))
+            switch(PlayerPrefs.GetString("LevelsPassed"))
+            {
+                case "0":
+                    entranceLevel1GateAnimator.SetTrigger("open");
+                    break;
+                case "1":
+                    entranceLevel2GateAnimator.SetTrigger("open");
+                    break;
+                case "2":
+                    entranceLevel3GateAnimator.SetTrigger("open");
+                    break;
+                case "3":
+
+                    break;
+                case "4":
+
+                    break;
+                case "5":
+
+                    break;
+
+                default:
+                    entranceLevel1GateAnimator.SetTrigger("open");
+                    break;
+            }
+        else
+            entranceLevel1GateAnimator.SetTrigger("open");
 
         if (photonManager.playingMultiplayer == false)
             multiplayerInformationCoverage.gameObject.SetActive(true);
@@ -214,6 +254,7 @@ public class GameManager : MonoBehaviour
     {
         player.transform.position = GameObject.Find("SpawnPoint").transform.position; //телепортировать игрока к SpawnPoint
         instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //вывести текст с названием сцены
+        sceneTranition.SceneTransitionOnSceneLoaded();
     }
 
     public void Respawn()
@@ -256,8 +297,6 @@ public class GameManager : MonoBehaviour
         string[] data = PlayerPrefs.GetString("SaveState").Split('|'); // взять из PlayerPrefs по ключу SaveState строку, которая хранится в соответствии этому ключу
         // выше уже '|' пишется в одинарных кавычках, в отличие от когда мы сверху вписывали этот символ в строку, потому что это символ а не строка и он нормально распознается
         // в итоге из s загрузиться что-то типа 0|10|50|2 и оно разделится методом Split на несколько строк, в каждой по одному параметру
-
-        //ниже должен быть код для смены скина
 
         //взять количество денег и опыта
         money = int.Parse(data[1]);
