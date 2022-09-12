@@ -12,8 +12,6 @@ public class CharacterMenu : MonoBehaviour
     public Text levelText, hitpointText, goldText, upgradeCostText, xpText;
 
     //поля для логики
-    private int currentCharacterSelection = 0;
-    public Image characterSelectionSprite;
     public Image weaponSprite;
     public RectTransform xpBar; //нам не нужен спрайт для xpBar, у нее мы будем менять только размер (scale)
     public NPCTextPerson NPC;
@@ -35,35 +33,6 @@ public class CharacterMenu : MonoBehaviour
 
         if (menuIsNowHidden == false)
             menuIsNowHidden = true;
-    }
-
-    //выбор персонажа
-    public void OnArrowClick(bool right) //bool переменная для определения того, на какую стрелку мы кликнули (правая -> true, левая -> false)
-    {
-        if(right)
-        {
-            currentCharacterSelection++;
-            //если дошли до конца списка
-            if (currentCharacterSelection == GameManager.instance.playerSprites.Count)
-                currentCharacterSelection = 0;
-
-        OnSelectionChanged();
-        }
-        else
-        {
-            currentCharacterSelection--;
-            //если дошли до конца списка
-            if (currentCharacterSelection < GameManager.instance.playerSprites.Count)
-                currentCharacterSelection = GameManager.instance.playerSprites.Count - 1; //перейти в конец если ушли слишком влево
-
-            OnSelectionChanged();
-        }
-    }
-
-    private void OnSelectionChanged()
-    {
-        characterSelectionSprite.sprite = GameManager.instance.playerSprites[currentCharacterSelection];
-        GameManager.instance.player.SwapSprite(currentCharacterSelection);
     }
 
 

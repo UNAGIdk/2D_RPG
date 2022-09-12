@@ -10,9 +10,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public string region;
     public InputField roomName;
     public Text roomNameText;
-    //public RoomListItem itemPrefab;
     public RoomListItem itemPrefab;
     public Transform content;
+    private GameObject player2;
+    public GameObject player2Prefab;
 
     private bool chatLastMessageTextReferenceSet;
     private Text chatLastMessageText;
@@ -154,7 +155,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
-        OnPlayerConnectedToRoom(newPlayer.NickName);
+        try
+        {
+            OnPlayerConnectedToRoom(newPlayer.NickName);
+        }
+        catch (System.Exception)
+        {
+        }       
     }
 
     public override void OnLeftRoom()
@@ -218,5 +225,22 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void SetPlayerAsSecond()
     {
         isFirstPlayer = false;
+    }
+
+    public void CreatePlayer2()
+    {
+        Debug.Log("CreatePlayer2 in PhotonManager was called");
+        player2 = PhotonNetwork.Instantiate(player2Prefab.name, GameObject.Find("Player2SpawnPoint").transform.position, Quaternion.identity);
+        if (GameObject.Find("Player2(Clone)").GetComponent<PhotonView>().IsMine && isFirstPlayer == true)
+            Destroy(GameObject.Find("Player2(Clone)"));
+
+        if (GameObject.Find("Player2(Clone)").GetComponent<PhotonView>().IsMine && isFirstPlayer == true)
+            Destroy(GameObject.Find("Player2(Clone)"));
+
+        if (isFirstPlayer == true)
+            GameObject.Find("Player2(Clone)").GetComponent<AudioListener>().enabled = false;
+
+        if (isFirstPlayer == false)
+            GameObject.Find("Player1").GetComponent<AudioListener>().enabled = false;
     }
 }

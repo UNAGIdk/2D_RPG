@@ -16,7 +16,7 @@ public class CameraMotor : MonoBehaviour
             if(GameManager.instance.photonManager.isFirstPlayer == true)
                 lookAt = GameObject.Find("Player1").transform;
             else
-                lookAt = GameObject.Find("Player2").transform;
+                lookAt = GameObject.Find("Player2(Clone)").transform;
         else
             lookAt = GameObject.Find("Player1").transform;
         transform.position = lookAt.position + new Vector3(0, 0, -10);

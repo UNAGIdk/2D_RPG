@@ -7,7 +7,6 @@ public class Player : Mover
     public float playerYSpeed = 0.75f;
     public float playerXSpeed = 1f;
 
-    private SpriteRenderer spriteRenderer;
     public bool canMove = true;
     public Animator weaponAnimator;
 
@@ -19,41 +18,6 @@ public class Player : Mover
 
     public float x;
     public float y;
-
-    protected override void Start()
-    {
-        base.Start();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        if(GameManager.instance.photonManager.playingMultiplayer == true)
-        {
-            if(GameManager.instance.photonManager.isFirstPlayer == true && gameObject.name == "Player1")
-            {
-                GameObject.Find("Player1").GetComponent<PhotonTransformView>().enabled = false;
-            }
-            else if(GameManager.instance.photonManager.isFirstPlayer == false && gameObject.name == "Player2")
-            {
-                GameObject.Find("Player2").GetComponent<PhotonTransformView>().enabled = false;
-            }
-        }
-        else
-            GetComponent<PhotonTransformView>().enabled = false;
-
-        if (GameManager.instance.photonManager.playingMultiplayer == true)
-        {
-            if (GameManager.instance.photonManager.isFirstPlayer == true && gameObject.name == "Player2")
-            {
-                GetComponent<AudioListener>().enabled = false;
-            }
-            else if (GameManager.instance.photonManager.isFirstPlayer == false && gameObject.name == "Player1")
-            {
-                GetComponent<AudioListener>().enabled = false;
-            }
-        }
-        else if (GameManager.instance.photonManager.playingMultiplayer == false && gameObject.name == "Player2")
-        {
-            GetComponent<AudioListener>().enabled = false;
-        }
-    }
 
     protected override void RecieveDamage(Damage damage)
     {
@@ -67,90 +31,91 @@ public class Player : Mover
 
     private void FixedUpdate()
     {
-        if (GameManager.instance.photonManager.playingMultiplayer == true && gameObject.name == "Player1" && GameManager.instance.photonManager.isFirstPlayer == true)
+        try
+        {
+            if (GameManager.instance.photonManager.playingMultiplayer == true && gameObject.name == "Player1" && GameManager.instance.photonManager.isFirstPlayer == true)
             //логика для Player1 на экране у создающего комнату игрока
-        {
-            //переменные для получения данных с клавиатуры
-            x = Input.GetAxisRaw("Horizontal");
-            y = Input.GetAxisRaw("Vertical");
-
-            if (canMove == true)
             {
-                UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);
-            }
+                //переменные для получения данных с клавиатуры
+                x = Input.GetAxisRaw("Horizontal");
+                y = Input.GetAxisRaw("Vertical");
 
-            if (x != 0 || y != 0)
-            {
-                weaponAnimator.SetTrigger("Walk");
-                if (Time.time - lastStepTime > footstepsSoundCooldown)
+                if (canMove == true)
                 {
-                    lastStepTime = Time.time;
-                    playerAudioSource.pitch = Random.Range(0.8f, 1.2f);
-                    playerAudioSource.PlayOneShot(playerFootsepsSound);
+                    UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);
                 }
-            }
 
-            if (x == 0 && y == 0)
-                weaponAnimator.SetTrigger("Stay");
-        }
-        else if(GameManager.instance.photonManager.playingMultiplayer == true && gameObject.name == "Player2" && GameManager.instance.photonManager.isFirstPlayer == false)
-        //логика для Player2 на экране у заходящего комнату игрока
-        {
-            //переменные для получения данных с клавиатуры
-            x = Input.GetAxisRaw("Horizontal");
-            y = Input.GetAxisRaw("Vertical");
-
-            if (canMove == true)
-            {
-                UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);
-            }
-
-            if (x != 0 || y != 0)
-            {
-                weaponAnimator.SetTrigger("Walk");
-                if (Time.time - lastStepTime > footstepsSoundCooldown)
+                if (x != 0 || y != 0)
                 {
-                    lastStepTime = Time.time;
-                    playerAudioSource.pitch = Random.Range(0.8f, 1.2f);
-                    playerAudioSource.PlayOneShot(playerFootsepsSound);
+                    weaponAnimator.SetTrigger("Walk");
+                    if (Time.time - lastStepTime > footstepsSoundCooldown)
+                    {
+                        lastStepTime = Time.time;
+                        playerAudioSource.pitch = Random.Range(0.8f, 1.2f);
+                        playerAudioSource.PlayOneShot(playerFootsepsSound);
+                    }
                 }
+
+                if (x == 0 && y == 0)
+                    weaponAnimator.SetTrigger("Stay");
             }
-
-            if (x == 0 && y == 0)
-                weaponAnimator.SetTrigger("Stay");
-        }
-
-        if(GameManager.instance.photonManager.playingMultiplayer == false && gameObject.name == "Player1")
-        {
-            //логика для синглплеера
-            //переменные для получения данных с клавиатуры
-            x = Input.GetAxisRaw("Horizontal");
-            y = Input.GetAxisRaw("Vertical");
-
-            if (canMove == true)
+            else if (GameManager.instance.photonManager.playingMultiplayer == true && gameObject.name == "Player2(Clone)" && GameManager.instance.photonManager.isFirstPlayer == false)
+            //логика для Player2 на экране у заходящего комнату игрока
             {
-                UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);
-            }
+                //переменные для получения данных с клавиатуры
+                x = Input.GetAxisRaw("Horizontal");
+                y = Input.GetAxisRaw("Vertical");
 
-            if (x != 0 || y != 0)
-            {
-                weaponAnimator.SetTrigger("Walk");
-                if (Time.time - lastStepTime > footstepsSoundCooldown)
+                if (canMove == true)
                 {
-                    lastStepTime = Time.time;
-                    playerAudioSource.pitch = Random.Range(0.8f, 1.2f);
-                    playerAudioSource.PlayOneShot(playerFootsepsSound);
+                    UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);
                 }
+
+                if (x != 0 || y != 0)
+                {
+                    weaponAnimator.SetTrigger("Walk");
+                    if (Time.time - lastStepTime > footstepsSoundCooldown)
+                    {
+                        lastStepTime = Time.time;
+                        playerAudioSource.pitch = Random.Range(0.8f, 1.2f);
+                        playerAudioSource.PlayOneShot(playerFootsepsSound);
+                    }
+                }
+
+                if (x == 0 && y == 0)
+                    weaponAnimator.SetTrigger("Stay");
             }
 
-            if (x == 0 && y == 0)
-                weaponAnimator.SetTrigger("Stay");
-        }
-    }
+            if (GameManager.instance.photonManager.playingMultiplayer == false && gameObject.name == "Player1")
+            {
+                //логика для синглплеера
+                //переменные для получения данных с клавиатуры
+                x = Input.GetAxisRaw("Horizontal");
+                y = Input.GetAxisRaw("Vertical");
 
-    public void SwapSprite(int skinId)
-    {
-        spriteRenderer.sprite = GameManager.instance.playerSprites[skinId];
+                if (canMove == true)
+                {
+                    UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);
+                }
+
+                if (x != 0 || y != 0)
+                {
+                    weaponAnimator.SetTrigger("Walk");
+                    if (Time.time - lastStepTime > footstepsSoundCooldown)
+                    {
+                        lastStepTime = Time.time;
+                        playerAudioSource.pitch = Random.Range(0.8f, 1.2f);
+                        playerAudioSource.PlayOneShot(playerFootsepsSound);
+                    }
+                }
+
+                if (x == 0 && y == 0)
+                    weaponAnimator.SetTrigger("Stay");
+            }
+        }
+        catch (System.Exception)
+        {
+        }
     }
 
     public void OnLevelUp()
@@ -201,12 +166,18 @@ public class Player : Mover
         if(GameManager.instance.photonManager.playingMultiplayer == true)
         {
             GameObject.Find("Player1").transform.position = GameObject.Find("Player1SpawnPoint").transform.position;
-            GameObject.Find("Player2").transform.position = GameObject.Find("Player2SpawnPoint").transform.position;
+            GameObject.Find("Player2(Clone)").transform.position = GameObject.Find("Player2SpawnPoint").transform.position;
         }
         else
         {
             GameObject.Find("Player1").transform.position = GameObject.Find("Player1SpawnPoint").transform.position;
-            GameObject.Find("Player2").transform.position += new Vector3(1000f, 0f, 0f);
+            GameObject.Find("Player2(Clone)").transform.position += new Vector3(1000f, 0f, 0f);
         }
+    }
+
+    public void ClearExcessPlayers()
+    {
+        if (gameObject.name == "Player2(Clone)" && GameManager.instance.photonManager.isFirstPlayer == true && GameObject.Find("Player2(Clone)").GetComponent<PhotonView>().IsMine == true)
+            Destroy(gameObject);
     }
 }

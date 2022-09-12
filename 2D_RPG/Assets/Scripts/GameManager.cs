@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                player = GameObject.Find("Player2").GetComponent<Player>();
+                player = GameObject.Find("Player2(Clone)").GetComponent<Player>();
                 weapon = GameObject.Find("Weapon2").GetComponent<Weapon>();
             }
         }
@@ -274,7 +274,11 @@ public class GameManager : MonoBehaviour
     //при загрузке сцены нужно игрока телепортировать к SpawnPoint
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        player.TeleportToSpawnPoint();
+        if (SceneManager.GetActiveScene().name == "Entrance")
+        {
+            photonManager.CreatePlayer2();
+        }
+        //player.TeleportToSpawnPoint();
         instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //вывести текст с названием сцены
         sceneTranition.SceneTransitionOnSceneLoaded();
     }
