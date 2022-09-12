@@ -85,7 +85,6 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  boxCollider: {fileID: 0}
   damagePoint: 1
   pushForce: 1
 --- !u!1 &2592885709132822284
@@ -162,7 +161,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1372273701
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1670793106, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -213,8 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a295a91875ff67647be20b17fe5745e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoint: 14
-  maxHitpoint: 14
+  hitpoint: 10
+  maxHitpoint: 10
   pushRecoverySpeed: 0.2
   xpValue: 5
   triggerLength: 0.3
