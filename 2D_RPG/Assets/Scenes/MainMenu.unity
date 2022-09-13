@@ -5440,7 +5440,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1369642526}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99990505
+  m_Size: 0.99981475
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5862,7 +5862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329aec4912dc6494f8f5f14956a78f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  region: jp
+  region: ru
   roomName: {fileID: 730584339}
   roomNameText: {fileID: 1613899385}
   itemPrefab: {fileID: 1136879229725034829, guid: 4e9fffe36cf378a418ec3d96dbd1954d, type: 3}

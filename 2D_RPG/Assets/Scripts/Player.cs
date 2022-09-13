@@ -9,6 +9,7 @@ public class Player : Mover
 
     public bool canMove = true;
     public Animator weaponAnimator;
+    [HideInInspector] public bool isLookedAt;
 
 
     public AudioSource playerAudioSource;
@@ -179,5 +180,13 @@ public class Player : Mover
     {
         if (gameObject.name == "Player2(Clone)" && GameManager.instance.photonManager.isFirstPlayer == true && GameObject.Find("Player2(Clone)").GetComponent<PhotonView>().IsMine == true)
             Destroy(gameObject);
+    }
+
+    public void DestroyIfNotLookedAt()
+    {
+        if (isLookedAt == false)
+        {
+            Destroy(gameObject);
+        }
     }
 }
