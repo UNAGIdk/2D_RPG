@@ -83,18 +83,31 @@ public class CharacterMenu : MonoBehaviour
 
     public void OnResetClick() //кнопка обнуления прогресса и установки всех значений игрока на стартовые
     {
-        PlayerPrefs.DeleteAll();
-        GameManager.instance.money = 0;
-        GameManager.instance.experience = 0;
-        GameManager.instance.player.SetLevel(0);
-        GameManager.instance.weapon.SetWeaponLevel(0);
-        GameManager.instance.audioManager.SetMasterVolume(1);
-        GameManager.instance.audioManager.SetEffectsVolume(1);
-        GameManager.instance.audioManager.SetMusicVolume(1);
-        GameManager.instance.audioManager.SetUserInterfaceVolume(1);
-        GameObject.Find("Player").GetComponent<Player>().hitpoint = 5;
-        GameObject.Find("Player").GetComponent<Player>().maxHitpoint = 5;
-        UpdateMenu();
-        Debug.Log("Cleared Player Prefs");
+        try
+        {
+            PlayerPrefs.DeleteAll();
+            GameManager.instance.money = 0;
+            GameManager.instance.experience = 0;
+            GameManager.instance.player.SetLevel(0);
+            GameManager.instance.weapon.SetWeaponLevel(0);
+            GameManager.instance.audioManager.SetMasterVolume(1);
+            GameManager.instance.audioManager.SetEffectsVolume(1);
+            GameManager.instance.audioManager.SetMusicVolume(1);
+            GameManager.instance.audioManager.SetUserInterfaceVolume(1);
+            GameObject.Find("Player").GetComponent<Player>().hitpoint = 5;
+            GameObject.Find("Player").GetComponent<Player>().maxHitpoint = 5;
+            foreach (var NPCObject in FindObjectsOfType<NPCTextPerson>())
+            {
+                if(GameManager.instance.photonManager.playingMultiplayer == false)
+                    NPCObject.hasAskedName = false;
+                
+                NPCObject.hasSpokenMessages = false;
+            }
+            UpdateMenu();
+            Debug.Log("Cleared Player Prefs");
+        }
+        catch (System.Exception)
+        {
+        }
     }
 }

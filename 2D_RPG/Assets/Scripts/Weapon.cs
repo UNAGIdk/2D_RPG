@@ -14,7 +14,7 @@ public class Weapon : Collidable
     //удар
     private float cooldown = 0.5f;
     private float lastSwing; //когда последний раз наносили удар
-    public bool swingPermission = true;
+    [HideInInspector] public bool swingPermission = true;
 
     public AudioSource weaponAudioSource;
     public AudioClip weaponSwingClip;
@@ -36,7 +36,7 @@ public class Weapon : Collidable
     {
         base.Update(); //в колайдабл в update проверяется коллизия
 
-        if (Input.GetKeyDown(KeyCode.Space) && GetComponentInParent<PhotonView>().IsMine) //true когда нажимается пробел
+        if (Input.GetKeyDown(KeyCode.Space) && GetComponentInParent<PhotonView>().IsMine)
         {
             if (Time.time - lastSwing > cooldown)
             {
@@ -72,6 +72,7 @@ public class Weapon : Collidable
     private void Swing() //удар
     {
         GetComponent<Animator>().SetTrigger("Swing");
+        //GameManager.instance.photonManager.SynchronizeSwing(GetComponentInParent<Player>().gameObject.name);
         weaponAudioSource.pitch = Random.Range(0.8f, 1.2f);
         weaponAudioSource.PlayOneShot(weaponSwingClip);
     }

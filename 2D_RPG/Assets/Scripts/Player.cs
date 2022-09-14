@@ -7,7 +7,7 @@ public class Player : Mover
     public float playerYSpeed = 0.75f;
     public float playerXSpeed = 1f;
 
-    public bool canMove = true;
+    [HideInInspector] public bool canMove = true;
     public Animator weaponAnimator;
     [HideInInspector] public bool isLookedAt;
 
@@ -17,8 +17,8 @@ public class Player : Mover
     public float footstepsSoundCooldown = 0.4f;
     private float lastStepTime;
 
-    public float x;
-    public float y;
+    [HideInInspector] public float x;
+    [HideInInspector] public float y;
 
     protected override void RecieveDamage(Damage damage)
     {
