@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Weapon : Collidable
 {
@@ -13,7 +12,6 @@ public class Weapon : Collidable
     private SpriteRenderer spriteRenderer;
 
     //удар
-    private Animator anim;
     private float cooldown = 0.5f;
     private float lastSwing; //когда последний раз наносили удар
     public bool swingPermission = true;
@@ -32,14 +30,13 @@ public class Weapon : Collidable
     {
         base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
     }
 
     protected override void Update()
     {
         base.Update(); //в колайдабл в update проверяется коллизия
 
-        if (Input.GetKeyDown(KeyCode.Space)) //true когда нажимается пробел
+        if (Input.GetKeyDown(KeyCode.Space) && GetComponentInParent<PhotonView>().IsMine) //true когда нажимается пробел
         {
             if (Time.time - lastSwing > cooldown)
             {
@@ -74,7 +71,7 @@ public class Weapon : Collidable
 
     private void Swing() //удар
     {
-        anim.SetTrigger("Swing"); //в аниматоре включить триггер под названием "Swing"
+        GetComponent<Animator>().SetTrigger("Swing");
         weaponAudioSource.pitch = Random.Range(0.8f, 1.2f);
         weaponAudioSource.PlayOneShot(weaponSwingClip);
     }
