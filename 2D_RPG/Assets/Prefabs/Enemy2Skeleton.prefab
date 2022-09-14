@@ -127,10 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a295a91875ff67647be20b17fe5745e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoint: 5
-  maxHitpoint: 5
+  hitpoint: 2
+  maxHitpoint: 2
   pushRecoverySpeed: 0.2
-  xpValue: 2
+  xpValue: 1
   triggerLength: 0.3
   chaseLength: 1
   EnemyXSpeed: 0.55
