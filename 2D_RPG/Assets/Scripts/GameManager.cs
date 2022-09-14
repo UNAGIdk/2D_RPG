@@ -56,13 +56,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-
         photonView = FindObjectOfType<PhotonView>(); //GetComponent<PhotonView>();
         Debug.Log("GameManager has found photonView on game object " + photonView.name);
         photonManager = FindObjectOfType<PhotonManager>();
         Debug.Log("GameManager has found photonManager on game object " + photonManager.name);
         sceneTranition = FindObjectOfType<SceneTransition>();
         Debug.Log("GameManager has found sceneTranition on game object " + sceneTranition.name);
+
+        if (SceneManager.GetActiveScene().name == "Entrance" && photonManager.isFirstPlayer == false)
+        {
+            photonManager.CreatePlayer2();
+        }
 
         if (photonManager.playingMultiplayer == false)
         {
@@ -274,10 +278,7 @@ public class GameManager : MonoBehaviour
     //при загрузке сцены нужно игрока телепортировать к SpawnPoint
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (SceneManager.GetActiveScene().name == "Entrance")
-        {
-            photonManager.CreatePlayer2();
-        }
+        
         //player.TeleportToSpawnPoint();
         instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //вывести текст с названием сцены
         sceneTranition.SceneTransitionOnSceneLoaded();

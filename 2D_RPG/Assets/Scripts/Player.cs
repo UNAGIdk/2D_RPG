@@ -175,18 +175,4 @@ public class Player : Mover
             GameObject.Find("Player2(Clone)").transform.position += new Vector3(1000f, 0f, 0f);
         }
     }
-
-    public void ClearExcessPlayers()
-    {
-        if (gameObject.name == "Player2(Clone)" && GameManager.instance.photonManager.isFirstPlayer == true && GameObject.Find("Player2(Clone)").GetComponent<PhotonView>().IsMine == true)
-            Destroy(gameObject);
-    }
-
-    public void DestroyIfNotLookedAt()
-    {
-        if (isLookedAt == false)
-        {
-            Destroy(gameObject);
-        }
-    }
 }

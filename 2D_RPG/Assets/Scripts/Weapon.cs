@@ -56,7 +56,7 @@ public class Weapon : Collidable
     {
         if(coll.tag == "Fighter")
         {
-            if (coll.name == "Player")
+            if (coll.name == "Player1" || coll.name == "Player2(Clone)") //ТИМДЕМЕДЖА НЕТ, НАСТРАИВАТЬ ОТДЕЛЬНО
                 return;
 
             //создать новый объект damage и отправить его геймОбъекту с тэгом Fighter которого мы ударили
@@ -68,6 +68,7 @@ public class Weapon : Collidable
             };
 
             coll.SendMessage("RecieveDamage", damage);
+            Debug.Log("Weapon on" + gameObject.name + "collided with " + coll.gameObject.name);
         }
     }
 

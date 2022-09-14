@@ -231,11 +231,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("CreatePlayer2 in PhotonManager was called");
         player2 = PhotonNetwork.Instantiate(player2Prefab.name, GameObject.Find("Player2SpawnPoint").transform.position, Quaternion.identity);
-        if (GameObject.Find("Player2(Clone)").GetComponent<PhotonView>().IsMine && isFirstPlayer == true)
-            Destroy(GameObject.Find("Player2(Clone)"));
-
-        if (GameObject.Find("Player2(Clone)").GetComponent<PhotonView>().IsMine && isFirstPlayer == true)
-            Destroy(GameObject.Find("Player2(Clone)"));
 
         if (isFirstPlayer == true)
             GameObject.Find("Player2(Clone)").GetComponent<AudioListener>().enabled = false;

@@ -1208,7 +1208,6 @@ MonoBehaviour:
   goldText: {fileID: 1177338750}
   upgradeCostText: {fileID: 1785918732}
   xpText: {fileID: 1069580544}
-  characterSelectionSprite: {fileID: 0}
   weaponSprite: {fileID: 52772178}
   xpBar: {fileID: 937330773}
   NPC: {fileID: 1206988143}
@@ -2927,6 +2926,7 @@ MonoBehaviour:
   playerXSpeed: 1
   canMove: 1
   weaponAnimator: {fileID: 1366005463}
+  isLookedAt: 0
   playerAudioSource: {fileID: 494586519}
   playerFootsepsSound: {fileID: 8300000, guid: 8c0b4a22811e89c498ddda693a55c6d2, type: 3}
   footstepsSoundCooldown: 0.4
@@ -7809,7 +7809,7 @@ Transform:
   - {fileID: 806389386}
   - {fileID: 1160088241}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &787720523
 GameObject:
@@ -16596,7 +16596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28605,7 +28605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_LocalPosition.x

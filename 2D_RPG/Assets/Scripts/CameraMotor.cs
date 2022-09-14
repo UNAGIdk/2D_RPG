@@ -10,8 +10,6 @@ public class CameraMotor : MonoBehaviour
     public float motorXMultiplier = 0.003f;
     public float motorYMultiplier = 0.003f;
 
-    private bool playerObjectsCheckedForExcess;
-
     private void Start() //найти объект с именем player, взять с него параметр transform и присвоить этот параметр в поле lookAt
     {
         if(GameManager.instance.photonManager.playingMultiplayer == true)
