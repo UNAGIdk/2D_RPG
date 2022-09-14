@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Player : Mover
 {
@@ -8,23 +7,18 @@ public class Player : Mover
     public float playerYSpeed = 0.75f;
     public float playerXSpeed = 1f;
 
-    private SpriteRenderer spriteRenderer;
-    public bool canMove = true;
+    [HideInInspector] public bool canMove = true;
     public Animator weaponAnimator;
+    [HideInInspector] public bool isLookedAt;
+
 
     public AudioSource playerAudioSource;
     public AudioClip playerFootsepsSound;
     public float footstepsSoundCooldown = 0.4f;
     private float lastStepTime;
 
-    public float x;
-    public float y;
-
-    protected override void Start()
-    {
-        base.Start();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+    [HideInInspector] public float x;
+    [HideInInspector] public float y;
 
     protected override void RecieveDamage(Damage damage)
     {
@@ -38,34 +32,91 @@ public class Player : Mover
 
     private void FixedUpdate()
     {
-        //переменные для получения данных с клавиатуры
-        x = Input.GetAxisRaw("Horizontal");
-        y = Input.GetAxisRaw("Vertical");
-
-        if(canMove == true)
+        try
         {
-            UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);
-        }
-
-        if(x != 0 || y != 0)
-        {
-            weaponAnimator.SetTrigger("Walk");
-            if(Time.time - lastStepTime > footstepsSoundCooldown)
+            if (GameManager.instance.photonManager.playingMultiplayer == true && gameObject.name == "Player1" && GameManager.instance.photonManager.isFirstPlayer == true)
+            //логика для Player1 на экране у создающего комнату игрока
             {
-                lastStepTime = Time.time;
-                playerAudioSource.pitch = Random.Range(0.8f, 1.2f);
-                playerAudioSource.PlayOneShot(playerFootsepsSound);
+                //переменные для получения данных с клавиатуры
+                x = Input.GetAxisRaw("Horizontal");
+                y = Input.GetAxisRaw("Vertical");
+
+                if (canMove == true)
+                {
+                    UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);
+                }
+
+                if (x != 0 || y != 0)
+                {
+                    weaponAnimator.SetTrigger("Walk");
+                    if (Time.time - lastStepTime > footstepsSoundCooldown)
+                    {
+                        lastStepTime = Time.time;
+                        playerAudioSource.pitch = Random.Range(0.8f, 1.2f);
+                        playerAudioSource.PlayOneShot(playerFootsepsSound);
+                    }
+                }
+
+                if (x == 0 && y == 0)
+                    weaponAnimator.SetTrigger("Stay");
+            }
+            else if (GameManager.instance.photonManager.playingMultiplayer == true && gameObject.name == "Player2(Clone)" && GameManager.instance.photonManager.isFirstPlayer == false)
+            //логика для Player2 на экране у заходящего комнату игрока
+            {
+                //переменные для получения данных с клавиатуры
+                x = Input.GetAxisRaw("Horizontal");
+                y = Input.GetAxisRaw("Vertical");
+
+                if (canMove == true)
+                {
+                    UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);
+                }
+
+                if (x != 0 || y != 0)
+                {
+                    weaponAnimator.SetTrigger("Walk");
+                    if (Time.time - lastStepTime > footstepsSoundCooldown)
+                    {
+                        lastStepTime = Time.time;
+                        playerAudioSource.pitch = Random.Range(0.8f, 1.2f);
+                        playerAudioSource.PlayOneShot(playerFootsepsSound);
+                    }
+                }
+
+                if (x == 0 && y == 0)
+                    weaponAnimator.SetTrigger("Stay");
+            }
+
+            if (GameManager.instance.photonManager.playingMultiplayer == false && gameObject.name == "Player1")
+            {
+                //логика для синглплеера
+                //переменные для получения данных с клавиатуры
+                x = Input.GetAxisRaw("Horizontal");
+                y = Input.GetAxisRaw("Vertical");
+
+                if (canMove == true)
+                {
+                    UpdateMotor(new Vector3(x, y, 0), playerXSpeed, playerYSpeed);
+                }
+
+                if (x != 0 || y != 0)
+                {
+                    weaponAnimator.SetTrigger("Walk");
+                    if (Time.time - lastStepTime > footstepsSoundCooldown)
+                    {
+                        lastStepTime = Time.time;
+                        playerAudioSource.pitch = Random.Range(0.8f, 1.2f);
+                        playerAudioSource.PlayOneShot(playerFootsepsSound);
+                    }
+                }
+
+                if (x == 0 && y == 0)
+                    weaponAnimator.SetTrigger("Stay");
             }
         }
-
-        if (x == 0 && y == 0)
-            weaponAnimator.SetTrigger("Stay");
-
-    }
-
-    public void SwapSprite(int skinId)
-    {
-        spriteRenderer.sprite = GameManager.instance.playerSprites[skinId];
+        catch (System.Exception)
+        {
+        }
     }
 
     public void OnLevelUp()
@@ -109,5 +160,19 @@ public class Player : Mover
         canMove = true;
         lastImmune = Time.time;
         pushDirection = Vector3.zero;
+    }
+
+    public void TeleportToSpawnPoint()
+    {
+        if(GameManager.instance.photonManager.playingMultiplayer == true)
+        {
+            GameObject.Find("Player1").transform.position = GameObject.Find("Player1SpawnPoint").transform.position;
+            GameObject.Find("Player2(Clone)").transform.position = GameObject.Find("Player2SpawnPoint").transform.position;
+        }
+        else
+        {
+            GameObject.Find("Player1").transform.position = GameObject.Find("Player1SpawnPoint").transform.position;
+            GameObject.Find("Player2(Clone)").transform.position += new Vector3(1000f, 0f, 0f);
+        }
     }
 }

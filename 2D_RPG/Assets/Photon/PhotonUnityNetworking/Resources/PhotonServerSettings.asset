@@ -41,6 +41,7 @@ MonoBehaviour:
   - RespawnSpaceship
   - Send_Data
   - Player_Connect_Rpc
+  - SynchronizeSwing_Rpc
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

@@ -12,7 +12,22 @@ public class CameraMotor : MonoBehaviour
 
     private void Start() //найти объект с именем player, взять с него параметр transform и присвоить этот параметр в поле lookAt
     {
-        lookAt = GameObject.Find("Player").transform;
+        if(GameManager.instance.photonManager.playingMultiplayer == true)
+            if(GameManager.instance.photonManager.isFirstPlayer == true)
+            {
+                lookAt = GameObject.Find("Player1").transform;
+                GameObject.Find("Player1").GetComponent<Player>().isLookedAt = true;
+            }
+            else
+            {
+                lookAt = GameObject.Find("Player2(Clone)").transform;
+                GameObject.Find("Player2(Clone)").GetComponent<Player>().isLookedAt = true;
+            }
+        else
+        {
+            lookAt = GameObject.Find("Player1").transform;
+            GameObject.Find("Player1").GetComponent<Player>().isLookedAt = true;
+        }
         transform.position = lookAt.position + new Vector3(0, 0, -10);
     }
 
@@ -48,6 +63,7 @@ public class CameraMotor : MonoBehaviour
                 delta.y = deltaY + boundY;
             }
         }
+            
 
         //структура ниже позволяет изменять коэффициенты motorX и Y, которые делают движение камеры плавнее
         

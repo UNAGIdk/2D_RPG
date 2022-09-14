@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
     public List<int> xpTable; //список спрайтов для необходимого опыта
 
     //references для заполнения в редакторе
-    public Player player;
-    public Weapon weapon;
+    [HideInInspector] public Weapon weapon;
+    [HideInInspector] public Player player;
+
     public FloatingTextManager floatingTextManager;
     public DialogueManager dialogueManager;
     public RectTransform hitpointBar;
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
     public GameObject backgroundMusicObject;
     public GameObject multiplayerInformationCoverage;
-    [HideInInspector]public SceneTransition sceneTranition;
+    [HideInInspector] public SceneTransition sceneTranition;
 
     private Animator entranceLevel1GateAnimator;
     private Animator entranceLevel2GateAnimator;
@@ -55,10 +56,40 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        photonView = FindObjectOfType<PhotonView>(); //GetComponent<PhotonView>();
+        Debug.Log("GameManager has found photonView on game object " + photonView.name);
+        photonManager = FindObjectOfType<PhotonManager>();
+        Debug.Log("GameManager has found photonManager on game object " + photonManager.name);
+        sceneTranition = FindObjectOfType<SceneTransition>();
+        Debug.Log("GameManager has found sceneTranition on game object " + sceneTranition.name);
+
+        if (SceneManager.GetActiveScene().name == "Entrance" && photonManager.isFirstPlayer == false)
+        {
+            photonManager.CreatePlayer2();
+        }
+
+        if (photonManager.playingMultiplayer == false)
+        {
+            player = GameObject.Find("Player1").GetComponent<Player>();
+            weapon = GameObject.Find("Weapon1").GetComponent<Weapon>();
+        }
+        else
+        {
+            if (photonManager.isFirstPlayer == true)
+            {
+                player = GameObject.Find("Player1").GetComponent<Player>();
+                weapon = GameObject.Find("Weapon1").GetComponent<Weapon>();
+            }
+            else
+            {
+                player = GameObject.Find("Player2(Clone)").GetComponent<Player>();
+                weapon = GameObject.Find("Weapon2").GetComponent<Weapon>();
+            }
+        }
+
         if (GameManager.instance != null)
         {
             //удалить компоненты, так как при переходе между сценами создаются их копии
-            //Destroy(eventSystem);
             Destroy(mainCamera.gameObject);
             Destroy(gameObject);
             Destroy(player.gameObject);
@@ -75,12 +106,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += LoadState; //запускает LoadState каждый раз при загрузке сцены, sceneLoaded это event
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        photonView = FindObjectOfType<PhotonView>(); //GetComponent<PhotonView>();
-        Debug.Log("GameManager has found photonView on game object " + photonView.name);
-        photonManager = FindObjectOfType<PhotonManager>();
-        Debug.Log("GameManager has found photonManager on game object " + photonManager.name);
-        sceneTranition = FindObjectOfType<SceneTransition>();
-        Debug.Log("GameManager has found sceneTranition on game object " + sceneTranition.name);
+        
 
         entranceLevel1GateAnimator = GameObject.Find("Level1Gate").GetComponent<Animator>();
         Debug.Log("entranceLevel1GateAnimator has found sceneTranition on game object " + entranceLevel1GateAnimator.name);
@@ -252,7 +278,8 @@ public class GameManager : MonoBehaviour
     //при загрузке сцены нужно игрока телепортировать к SpawnPoint
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        player.transform.position = GameObject.Find("SpawnPoint").transform.position; //телепортировать игрока к SpawnPoint
+        
+        //player.TeleportToSpawnPoint();
         instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //вывести текст с названием сцены
         sceneTranition.SceneTransitionOnSceneLoaded();
     }

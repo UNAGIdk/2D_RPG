@@ -10,9 +10,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public string region;
     public InputField roomName;
     public Text roomNameText;
-    //public RoomListItem itemPrefab;
     public RoomListItem itemPrefab;
     public Transform content;
+    private GameObject player2;
+    public GameObject player2Prefab;
 
     private bool chatLastMessageTextReferenceSet;
     private Text chatLastMessageText;
@@ -37,7 +38,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public Button createRoomButton;
     public Button joinRoomButton;
 
-    [HideInInspector]public bool playingMultiplayer;
+    [HideInInspector] public bool playingMultiplayer;
+    [HideInInspector] public bool isFirstPlayer;
 
     List<RoomInfo> allRoomsInfo = new List<RoomInfo>();
 
@@ -109,6 +111,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             roomOptions.IsVisible = true;
             PhotonNetwork.CreateRoom(roomName.text, roomOptions, TypedLobby.Default);
             phRoomName = roomName.text;
+            SetPlayerAsFirst();
         }
     }
 
@@ -147,14 +150,18 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         SceneTransition.instance.SceneSwitch();
         Debug.Log("Joined room with name " + PhotonNetwork.CurrentRoom.Name);
-        //chatLastMessageText = FindObjectOfType<ChatText>().GetComponent<Text>();
-        //Debug.Log("PhotonManager has found chatLastMessageText on " + chatLastMessageText.gameObject.name);
     }
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
-        OnPlayerConnectedToRoom(newPlayer.NickName);
+        try
+        {
+            OnPlayerConnectedToRoom(newPlayer.NickName);
+        }
+        catch (System.Exception)
+        {
+        }       
     }
 
     public override void OnLeftRoom()
@@ -165,6 +172,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public void JoinButton()
     {
         PhotonNetwork.JoinRoom(roomName.text);
+        SetPlayerAsSecond();
     }
 
     public void LeaveButton()
@@ -204,8 +212,48 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         GameManager.instance.ShowText(playerNickname + " зашел в комнату", 24, Color.white, GameObject.Find("Main Camera").transform.position + new Vector3(-0.54f, 0.94f, 0), Vector3.up * 4, 5.0f);
     }
 
+    //нижеописанный метод RPC писал до того как узнал что аниматоры можно синхронизировать через PhotonAnimatorView
+
+
+    /*public void SynchronizeSwing(string nickname) //отобразить анимацию игрока 1 у игрока 2, и наоборот. тут nickname это Player1 или Player2(Clone)
+    {
+        photonView.RPC("SynchronizeSwing_Rpc", RpcTarget.All, nickname);
+    }
+
+    [PunRPC]
+    private void SynchronizeSwing_Rpc(string nickname)
+    {
+        if (nickname == "Player1")
+            GameObject.Find("Weapon1").GetComponent<Animator>().SetTrigger("Swing");
+
+        if (nickname == "Player2(Clone)")
+            GameObject.Find("Weapon2").GetComponent<Animator>().SetTrigger("Swing");
+    }*/
+
     public void PhotonLoadScene()
     {
         PhotonNetwork.LoadLevel("Entrance");
+    }
+
+    public void SetPlayerAsFirst()
+    {
+        isFirstPlayer = true;
+    }
+
+    public void SetPlayerAsSecond()
+    {
+        isFirstPlayer = false;
+    }
+
+    public void CreatePlayer2()
+    {
+        Debug.Log("CreatePlayer2 in PhotonManager was called");
+        player2 = PhotonNetwork.Instantiate(player2Prefab.name, GameObject.Find("Player2SpawnPoint").transform.position, Quaternion.identity);
+
+        if (isFirstPlayer == true)
+            GameObject.Find("Player2(Clone)").GetComponent<AudioListener>().enabled = false;
+
+        if (isFirstPlayer == false)
+            GameObject.Find("Player1").GetComponent<AudioListener>().enabled = false;
     }
 }
