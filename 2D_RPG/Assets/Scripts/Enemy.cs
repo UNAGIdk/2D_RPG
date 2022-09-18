@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Enemy : Mover
 {
@@ -16,7 +17,8 @@ public class Enemy : Mover
     private float EnemyYSpeed;
     public float EnemyYSpeedMultiplayer = 0.79f;
 
-    private Transform playerTransform; //
+    private Transform player1Transform; //
+    private Transform player2Transform;
     private Vector3 startingPosition; // стартова€ позици€ моба
     private int hitpontCompare;
 
@@ -34,11 +36,13 @@ public class Enemy : Mover
     private BoxCollider2D hitbox;
     private Collider2D[] hits = new Collider2D[10]; // пишем это сюда потому что не можем наследовать от Collidable, а там это уже прописано
 
+    private bool player2Linked = false;
 
     protected override void Start()
     {
         base.Start();
-        playerTransform = GameManager.instance.player.transform;
+        player1Transform = GameObject.Find("Player1").transform;
+            
         startingPosition = transform.position;
         hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>(); //получить коллайдер первого дочернего объекта от того на ком лежит скрипт
         hitpontCompare = hitpoint;
@@ -52,30 +56,97 @@ public class Enemy : Mover
 
     protected virtual void FixedUpdate() //раньше было private void, но в boss € захотел переписать эту функцию, поэтому объ€вл€ю так
     {
-        //игрок на нужном рассто€нии?
-        if(Vector3.Distance(playerTransform.position, startingPosition) < chaseLength)
+        if(GameManager.instance.photonManager.playingMultiplayer == false)
         {
-            if(Vector3.Distance(playerTransform.position, startingPosition) < triggerLength)
-                chasing = true;
-
-            if (chasing) //если уже преследуем, т.е. chasing == true
+            //игрок на нужном рассто€нии?
+            if (Vector3.Distance(player1Transform.position, startingPosition) < chaseLength)
             {
-                if (!collidingWithPlayer)
+                if (player2Transform != null && Vector3.Distance(player1Transform.position, startingPosition) < triggerLength)
+                    chasing = true;
+
+                if (chasing) //если уже преследуем, т.е. chasing == true
                 {
-                    UpdateMotor((playerTransform.position - transform.position).normalized, EnemyXSpeed, EnemyYSpeed);
+                    if (!collidingWithPlayer)
+                    {
+                        UpdateMotor((player1Transform.position - transform.position).normalized, EnemyXSpeed, EnemyYSpeed);
+                    }
+                }
+                else //chasing == false
+                {
+                    UpdateMotor(startingPosition - transform.position, EnemyXSpeed, EnemyYSpeed);
                 }
             }
-            else //chasing == false
+            else //chaseLength больше чем необходимо дл€ начала преследовани€
             {
                 UpdateMotor(startingPosition - transform.position, EnemyXSpeed, EnemyYSpeed);
+                chasing = false;
             }
         }
-        else //chaseLength больше чем необходимо дл€ начала преследовани€
-        {
-            UpdateMotor(startingPosition - transform.position, EnemyXSpeed, EnemyYSpeed);
-            chasing = false;
-        }
+        // ќЌ≈÷ —»Ќ√ЋѕЋ≈≈– Ћќ√» »
+        
 
+        if(GameManager.instance.photonManager.playingMultiplayer == true)
+        {
+            if(PhotonNetwork.PlayerList.Length == 2 && GameObject.Find("Player2(Clone)") == null)
+            {
+                player2Transform = GameObject.Find("Player2(Clone)").transform;
+                player2Linked = true;
+            }
+
+            if (Vector3.Distance(player1Transform.position, startingPosition) > chaseLength)
+            { //chaseLength дл€ обоих игроков больше чем необходимо дл€ начала преследовани€
+                if (player2Linked == true && Vector3.Distance(player2Transform.position, startingPosition) > chaseLength)
+                {
+                    UpdateMotor(startingPosition - transform.position, EnemyXSpeed, EnemyYSpeed);
+                    chasing = false;
+                }
+                else
+                {
+                    UpdateMotor(startingPosition - transform.position, EnemyXSpeed, EnemyYSpeed);
+                    chasing = false;
+                }
+            }
+
+            //игрок на нужном рассто€нии?
+            if (Vector3.Distance(player1Transform.position, startingPosition) < chaseLength)
+            {
+                if (player2Linked == true && Vector3.Distance(player2Transform.position, startingPosition) < chaseLength)
+                {
+                    if (Vector3.Distance(player2Transform.position, startingPosition) < triggerLength)
+                        chasing = true;
+
+                    if (chasing) //если уже преследуем, т.е. chasing == true
+                    {
+                        if (!collidingWithPlayer)
+                        {
+                            UpdateMotor((player2Transform.position - transform.position).normalized, EnemyXSpeed, EnemyYSpeed);
+                        }
+                    }
+                    else //chasing == false
+                    {
+                        UpdateMotor(startingPosition - transform.position, EnemyXSpeed, EnemyYSpeed);
+                    }
+                }
+                else
+                {
+                    if (Vector3.Distance(player1Transform.position, startingPosition) < triggerLength)
+                        chasing = true;
+
+                    if (chasing) //если уже преследуем, т.е. chasing == true
+                    {
+                        if (!collidingWithPlayer)
+                        {
+                            UpdateMotor((player1Transform.position - transform.position).normalized, EnemyXSpeed, EnemyYSpeed);
+                        }
+                    }
+                    else //chasing == false
+                    {
+                        UpdateMotor(startingPosition - transform.position, EnemyXSpeed, EnemyYSpeed);
+                    }
+                }
+            }
+        }
+        
         //colliding ли мы с игроком (»« COLLIDABLE)
         collidingWithPlayer = false; // по дефолту не colliding
         boxCollider.OverlapCollider(filter, hits);
