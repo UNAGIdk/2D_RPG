@@ -278,8 +278,7 @@ public class GameManager : MonoBehaviour
     //при загрузке сцены нужно игрока телепортировать к SpawnPoint
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
-        //player.TeleportToSpawnPoint();
+        player.TeleportToSpawnPoint();
         instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //вывести текст с названием сцены
         sceneTranition.SceneTransitionOnSceneLoaded();
     }

@@ -230,9 +230,18 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             GameObject.Find("Weapon2").GetComponent<Animator>().SetTrigger("Swing");
     }*/
 
-    public void PhotonLoadScene()
+    public void PhotonLoadScene(string sceneName)
     {
-        PhotonNetwork.LoadLevel("Entrance");
+        if(SceneManager.GetActiveScene().name != "MainMenu")
+            photonView.RPC("PhotonLoadScene_Rpc", RpcTarget.All, sceneName);
+        else
+            PhotonNetwork.LoadLevel("Entrance");
+    }
+
+    [PunRPC]
+    private void PhotonLoadScene_Rpc(string sceneName)
+    {
+        PhotonNetwork.LoadLevel(sceneName);
     }
 
     public void SetPlayerAsFirst()
