@@ -12,8 +12,6 @@ public class CharacterMenu : MonoBehaviour
     public Text levelText, hitpointText, goldText, upgradeCostText, xpText;
 
     //поля для логики
-    private int currentCharacterSelection = 0;
-    public Image characterSelectionSprite;
     public Image weaponSprite;
     public RectTransform xpBar; //нам не нужен спрайт для xpBar, у нее мы будем менять только размер (scale)
     public NPCTextPerson NPC;
@@ -35,35 +33,6 @@ public class CharacterMenu : MonoBehaviour
 
         if (menuIsNowHidden == false)
             menuIsNowHidden = true;
-    }
-
-    //выбор персонажа
-    public void OnArrowClick(bool right) //bool переменная для определения того, на какую стрелку мы кликнули (правая -> true, левая -> false)
-    {
-        if(right)
-        {
-            currentCharacterSelection++;
-            //если дошли до конца списка
-            if (currentCharacterSelection == GameManager.instance.playerSprites.Count)
-                currentCharacterSelection = 0;
-
-        OnSelectionChanged();
-        }
-        else
-        {
-            currentCharacterSelection--;
-            //если дошли до конца списка
-            if (currentCharacterSelection < GameManager.instance.playerSprites.Count)
-                currentCharacterSelection = GameManager.instance.playerSprites.Count - 1; //перейти в конец если ушли слишком влево
-
-            OnSelectionChanged();
-        }
-    }
-
-    private void OnSelectionChanged()
-    {
-        characterSelectionSprite.sprite = GameManager.instance.playerSprites[currentCharacterSelection];
-        GameManager.instance.player.SwapSprite(currentCharacterSelection);
     }
 
 
@@ -114,18 +83,31 @@ public class CharacterMenu : MonoBehaviour
 
     public void OnResetClick() //кнопка обнуления прогресса и установки всех значений игрока на стартовые
     {
-        PlayerPrefs.DeleteAll();
-        GameManager.instance.money = 0;
-        GameManager.instance.experience = 0;
-        GameManager.instance.player.SetLevel(0);
-        GameManager.instance.weapon.SetWeaponLevel(0);
-        GameManager.instance.audioManager.SetMasterVolume(1);
-        GameManager.instance.audioManager.SetEffectsVolume(1);
-        GameManager.instance.audioManager.SetMusicVolume(1);
-        GameManager.instance.audioManager.SetUserInterfaceVolume(1);
-        GameObject.Find("Player").GetComponent<Player>().hitpoint = 5;
-        GameObject.Find("Player").GetComponent<Player>().maxHitpoint = 5;
-        UpdateMenu();
-        Debug.Log("Cleared Player Prefs");
+        try
+        {
+            PlayerPrefs.DeleteAll();
+            GameManager.instance.money = 0;
+            GameManager.instance.experience = 0;
+            GameManager.instance.player.SetLevel(0);
+            GameManager.instance.weapon.SetWeaponLevel(0);
+            GameManager.instance.audioManager.SetMasterVolume(1);
+            GameManager.instance.audioManager.SetEffectsVolume(1);
+            GameManager.instance.audioManager.SetMusicVolume(1);
+            GameManager.instance.audioManager.SetUserInterfaceVolume(1);
+            GameObject.Find("Player").GetComponent<Player>().hitpoint = 5;
+            GameObject.Find("Player").GetComponent<Player>().maxHitpoint = 5;
+            foreach (var NPCObject in FindObjectsOfType<NPCTextPerson>())
+            {
+                if(GameManager.instance.photonManager.playingMultiplayer == false)
+                    NPCObject.hasAskedName = false;
+                
+                NPCObject.hasSpokenMessages = false;
+            }
+            UpdateMenu();
+            Debug.Log("Cleared Player Prefs");
+        }
+        catch (System.Exception)
+        {
+        }
     }
 }

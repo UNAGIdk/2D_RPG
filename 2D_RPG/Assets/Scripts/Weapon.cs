@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Weapon : Collidable
 {
@@ -13,10 +12,9 @@ public class Weapon : Collidable
     private SpriteRenderer spriteRenderer;
 
     //удар
-    private Animator anim;
     private float cooldown = 0.5f;
     private float lastSwing; //когда последний раз наносили удар
-    public bool swingPermission = true;
+    [HideInInspector] public bool swingPermission = true;
 
     public AudioSource weaponAudioSource;
     public AudioClip weaponSwingClip;
@@ -32,14 +30,13 @@ public class Weapon : Collidable
     {
         base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
     }
 
     protected override void Update()
     {
         base.Update(); //в колайдабл в update провер€етс€ коллизи€
 
-        if (Input.GetKeyDown(KeyCode.Space)) //true когда нажимаетс€ пробел
+        if (Input.GetKeyDown(KeyCode.Space) && GetComponentInParent<PhotonView>().IsMine)
         {
             if (Time.time - lastSwing > cooldown)
             {
@@ -56,7 +53,7 @@ public class Weapon : Collidable
     {
         if(coll.tag == "Fighter")
         {
-            if (coll.name == "Player")
+            if (coll.name == "Player1" || coll.name == "Player2(Clone)") //“»ћƒ≈ћ≈ƒ∆ј Ќ≈“, Ќј—“–ј»¬ј“№ ќ“ƒ≈Ћ№Ќќ
                 return;
 
             //создать новый объект damage и отправить его геймќбъекту с тэгом Fighter которого мы ударили
@@ -68,12 +65,14 @@ public class Weapon : Collidable
             };
 
             coll.SendMessage("RecieveDamage", damage);
+            Debug.Log("Weapon on" + gameObject.name + "collided with " + coll.gameObject.name);
         }
     }
 
     private void Swing() //удар
     {
-        anim.SetTrigger("Swing"); //в аниматоре включить триггер под названием "Swing"
+        GetComponent<Animator>().SetTrigger("Swing");
+        //GameManager.instance.photonManager.SynchronizeSwing(GetComponentInParent<Player>().gameObject.name);
         weaponAudioSource.pitch = Random.Range(0.8f, 1.2f);
         weaponAudioSource.PlayOneShot(weaponSwingClip);
     }
