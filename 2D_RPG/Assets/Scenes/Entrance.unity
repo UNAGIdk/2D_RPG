@@ -3001,8 +3001,8 @@ MonoBehaviour:
   hitpoint: 5
   maxHitpoint: 5
   pushRecoverySpeed: 0.22
-  playerYSpeed: 0.75
-  playerXSpeed: 1
+  playerYSpeed: 1.1
+  playerXSpeed: 1.3
   canMove: 1
   weaponAnimator: {fileID: 1366005463}
   playerAudioSource: {fileID: 494586519}

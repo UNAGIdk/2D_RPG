@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1307198167
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -98374279, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -155,7 +155,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 261057387
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -617988605, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -216,8 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59048231d63d5a2498c980061aeb79a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoint: 3
-  maxHitpoint: 3
+  hitpoint: 1
+  maxHitpoint: 1
   pushRecoverySpeed: 0.2
   crateDamageAudioClip: {fileID: 0}
   crateDestroyAudioClip: {fileID: 8300000, guid: 687eea2e947635e4094697b88431f27e, type: 3}
