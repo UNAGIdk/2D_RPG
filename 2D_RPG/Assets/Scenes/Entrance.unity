@@ -6559,7 +6559,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2027946341}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Respawn
+        m_MethodName: RespawnRpcTrigger
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28148,7 +28148,7 @@ MonoBehaviour:
   audioManager: {fileID: 1856936110}
   backgroundMusicObject: {fileID: 1209332580}
   multiplayerInformationCoverage: {fileID: 570482818}
-  sceneTranition: {fileID: 0}
+  sceneTransition: {fileID: 0}
   money: 0
   experience: 0
   chatWindowAnimator: {fileID: 742978273}

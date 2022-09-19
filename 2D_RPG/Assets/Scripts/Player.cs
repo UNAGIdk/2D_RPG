@@ -9,7 +9,6 @@ public class Player : Mover
 
     [HideInInspector] public bool canMove = true;
     public Animator weaponAnimator;
-    [HideInInspector] public bool isLookedAt;
 
 
     public AudioSource playerAudioSource;

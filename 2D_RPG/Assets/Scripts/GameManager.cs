@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
     public GameObject backgroundMusicObject;
     public GameObject multiplayerInformationCoverage;
-    [HideInInspector] public SceneTransition sceneTranition;
+    [HideInInspector] public SceneTransition sceneTransition;
 
     private Animator entranceLevel1GateAnimator;
     private Animator entranceLevel2GateAnimator;
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     public Animator chatWindowAnimator;
     private bool chatWindowShowing = false;
 
-    [HideInInspector] public string sceneName;
+    [HideInInspector] public string sceneName = "Entrance";
     [HideInInspector] public string ruSceneName;
 
 
@@ -60,8 +60,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("GameManager has found photonView on game object " + photonView.name);
         photonManager = FindObjectOfType<PhotonManager>();
         Debug.Log("GameManager has found photonManager on game object " + photonManager.name);
-        sceneTranition = FindObjectOfType<SceneTransition>();
-        Debug.Log("GameManager has found sceneTranition on game object " + sceneTranition.name);
+        sceneTransition = FindObjectOfType<SceneTransition>();
+        Debug.Log("GameManager has found sceneTranition on game object " + sceneTransition.name);
 
         if (SceneManager.GetActiveScene().name == "Entrance" && photonManager.isFirstPlayer == false)
         {
@@ -87,12 +87,17 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (photonManager.playingMultiplayer == false)
+        {
+            player.GetComponent<PhotonView>().enabled = false;
+            player.GetComponent<PhotonTransformView>().enabled = false;
+        }
+
         if (GameManager.instance != null)
         {
             //удалить компоненты, так как при переходе между сценами создаются их копии
             Destroy(mainCamera.gameObject);
             Destroy(gameObject);
-            Destroy(player.gameObject);
             Destroy(floatingTextManager.gameObject);
             Destroy(hud);
             Destroy(menu);
@@ -280,22 +285,38 @@ public class GameManager : MonoBehaviour
     {
         player.TeleportToSpawnPoint();
         instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //вывести текст с названием сцены
-        sceneTranition.SceneTransitionOnSceneLoaded();
+        sceneTransition.SceneTransitionOnSceneLoaded();
+        mainCamera.GetComponent<CameraMotor>().AttachToPlayer();
+    }
+    
+    public void RespawnRpcTrigger()
+    {
+        if (photonManager.playingMultiplayer == true)
+            photonManager.OnRespawnRpcTriggered();
+        else
+            Respawn();
     }
 
     public void Respawn()
     {
         deathMenuAnim.SetTrigger("Hide");
-        SceneManager.LoadScene("Entrance");
-        player.Respawn();
-        PlayerPrefs.DeleteAll();
         instance.money = 0;
         instance.experience = 0;
         instance.player.SetLevel(0);
         instance.weapon.SetWeaponLevel(0);
         player.hitpoint = 5;
         player.maxHitpoint = 5;
+        try
+        {
+            PlayerPrefs.DeleteKey("SaveState");
+        }
+        catch (System.Exception)
+        {
+        }
         Debug.Log("Cleared Player Prefs");
+        player.Respawn();
+        SceneTransition.instance.sceneToGo = "Entrance";
+        SceneTransition.instance.SceneSwitch();
     }
 
     public void SaveState()
@@ -354,6 +375,3 @@ public class GameManager : MonoBehaviour
         weapon.swingPermission = true;
     }
 }
-
-
-//PlayerPrefs.DeleteAll(); так можно удалить все записи о Player Preferences

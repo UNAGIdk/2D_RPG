@@ -43,6 +43,7 @@ MonoBehaviour:
   - Player_Connect_Rpc
   - SynchronizeSwing_Rpc
   - PhotonLoadScene_Rpc
+  - Respawn_Rpc
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
