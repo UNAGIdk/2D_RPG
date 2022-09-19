@@ -212,36 +212,18 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         GameManager.instance.ShowText(playerNickname + " зашел в комнату", 24, Color.white, GameObject.Find("Main Camera").transform.position + new Vector3(-0.54f, 0.94f, 0), Vector3.up * 4, 5.0f);
     }
 
-    //нижеописанный метод RPC писал до того как узнал что аниматоры можно синхронизировать через PhotonAnimatorView
-
-
-    /*public void SynchronizeSwing(string nickname) //отобразить анимацию игрока 1 у игрока 2, и наоборот. тут nickname это Player1 или Player2(Clone)
+    public void PhotonLoadScene(string phSceneName)
     {
-        photonView.RPC("SynchronizeSwing_Rpc", RpcTarget.All, nickname);
+        photonView.RPC("PhotonLoadScene_Rpc", RpcTarget.All, phSceneName);
     }
 
     [PunRPC]
-    private void SynchronizeSwing_Rpc(string nickname)
-    {
-        if (nickname == "Player1")
-            GameObject.Find("Weapon1").GetComponent<Animator>().SetTrigger("Swing");
-
-        if (nickname == "Player2(Clone)")
-            GameObject.Find("Weapon2").GetComponent<Animator>().SetTrigger("Swing");
-    }*/
-
-    public void PhotonLoadScene(string sceneName)
+    private void PhotonLoadScene_Rpc(string phSceneName)
     {
         if(SceneManager.GetActiveScene().name != "MainMenu")
-            photonView.RPC("PhotonLoadScene_Rpc", RpcTarget.All, sceneName);
+            PhotonNetwork.LoadLevel(phSceneName);
         else
             PhotonNetwork.LoadLevel("Entrance");
-    }
-
-    [PunRPC]
-    private void PhotonLoadScene_Rpc(string sceneName)
-    {
-        PhotonNetwork.LoadLevel(sceneName);
     }
 
     public void SetPlayerAsFirst()
@@ -264,5 +246,16 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         if (isFirstPlayer == false)
             GameObject.Find("Player1").GetComponent<AudioListener>().enabled = false;
+    }
+
+    public void OnRespawnRpcTriggered()
+    {
+        photonView.RPC("Player_Connect_Rpc", RpcTarget.All);
+    }
+
+    [PunRPC]
+    private void Respawn_Rpc()
+    {
+        GameManager.instance.Respawn();
     }
 }

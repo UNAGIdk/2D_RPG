@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ScenePortal : Collidable
 {
-    public string sceneName; //название сцен, на которую мы хотим переключаться
+    public string portalSceneName; //название сцен, на которую мы хотим переключаться
     private Animator portalHintAnimator;
 
     [HideInInspector] public bool teleportHintShowing;
@@ -42,7 +42,7 @@ public class ScenePortal : Collidable
             Debug.Log("Player collided scene portal");
             teleportHintShowing = true;
 
-            GameManager.instance.sceneName = sceneName;
+            GameManager.instance.sceneName = portalSceneName;
 
             if (Input.GetKeyDown(KeyCode.F) == true)
             {
