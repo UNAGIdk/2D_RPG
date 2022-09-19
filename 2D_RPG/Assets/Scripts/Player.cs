@@ -167,12 +167,12 @@ public class Player : Mover
         if(GameManager.instance.photonManager.playingMultiplayer == true)
         {
             GameObject.Find("Player1").transform.position = GameObject.Find("Player1SpawnPoint").transform.position;
-            GameObject.Find("Player2(Clone)").transform.position = GameObject.Find("Player2SpawnPoint").transform.position;
+            if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
+                GameObject.Find("Player2(Clone)").transform.position = GameObject.Find("Player2SpawnPoint").transform.position;
         }
         else
         {
             GameObject.Find("Player1").transform.position = GameObject.Find("Player1SpawnPoint").transform.position;
-            GameObject.Find("Player2(Clone)").transform.position += new Vector3(1000f, 0f, 0f);
         }
     }
 }

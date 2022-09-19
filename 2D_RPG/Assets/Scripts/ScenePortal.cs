@@ -37,7 +37,7 @@ public class ScenePortal : Collidable
 
     protected override void OnCollide(Collider2D coll)
     {
-        if (coll.name == "Player")
+        if (coll.name == "Player1" || coll.name == "Player2(Clone)")
         {
             Debug.Log("Player collided scene portal");
             teleportHintShowing = true;
@@ -56,7 +56,6 @@ public class ScenePortal : Collidable
     {
         //телепортировать игрока в dungeon
         GameManager.instance.SaveState();
-        //SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         SceneTransition.instance.SceneSwitch();
     }
 }

@@ -40,6 +40,6 @@ public class SceneTransition : MonoBehaviour
         if (photonManager.playingMultiplayer == false)
             SceneManager.LoadScene(sceneToGo, LoadSceneMode.Single);
         else
-            photonManager.PhotonLoadScene();
+            photonManager.PhotonLoadScene(sceneToGo);
     }
 }
