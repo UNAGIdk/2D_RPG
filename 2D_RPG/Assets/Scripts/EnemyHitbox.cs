@@ -10,7 +10,7 @@ public class EnemyHitbox : Collidable
 
     protected override void OnCollide(Collider2D coll)
     {
-        if(coll.tag == "Fighter" && coll.name == "Player")
+        if(coll.name == "Player1" || coll.name == "Player2(Clone)")
         {
             //создать новый объект класса damage для того чтобы послать его к fighter'y которого ударит тот на ком этот скрипт (чаще всего к игроку)
             Damage damage = new Damage

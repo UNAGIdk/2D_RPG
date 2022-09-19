@@ -28132,15 +28132,14 @@ MonoBehaviour:
   - {fileID: -727319741, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
   - {fileID: -1580554725, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
   - {fileID: -2041890342, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
-
+  - {fileID: 0}
   weaponPrices: 190000004100000064000000690000007300000096000000
   xpTable: 1e00000046000000640000008200000096000000b4000000c8000000fa0000002c01000068010000
-  player: {fileID: 494586515}
   weapon: {fileID: 1366005460}
-  
+  player: {fileID: 494586515}
   floatingTextManager: {fileID: 1776806056}
   dialogueManager: {fileID: 331560951}
-  hitpointBar: {fileID: 371801652}
+  hitpointBar: {fileID: 1429651262}
   hud: {fileID: 2021944135}
   menu: {fileID: 186998962}
   deathMenuAnim: {fileID: 510701372}
@@ -28148,7 +28147,7 @@ MonoBehaviour:
   mainCamera: {fileID: 1334293066}
   audioManager: {fileID: 1856936110}
   backgroundMusicObject: {fileID: 1209332580}
-  multiplayerInformationCoverage: {fileID: 1242137984}
+  multiplayerInformationCoverage: {fileID: 570482818}
   sceneTranition: {fileID: 0}
   money: 0
   experience: 0
