@@ -66,6 +66,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             chatLastMessageTextReferenceSet = true;
         }
         phPing = PhotonNetwork.GetPing().ToString();
+        Debug.Log("playingMultiplayer is now " + playingMultiplayer);
     }
 
     public override void OnConnectedToMaster()
@@ -203,6 +204,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public void OnPlayerConnectedToRoom(string newPlayerNickname)
     {
+        Debug.Log("Player_Connect_Rpc will be called now");
         photonView.RPC("Player_Connect_Rpc", RpcTarget.All, newPlayerNickname);
     }
 
@@ -214,16 +216,21 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public void PhotonLoadScene(string phSceneName)
     {
-        photonView.RPC("PhotonLoadScene_Rpc", RpcTarget.All, phSceneName);
+        if(SceneTransition.instance.player2Joined == true)
+            photonView.RPC("PhotonLoadScene_Rpc", RpcTarget.All, phSceneName);
+        else
+            PhotonNetwork.LoadLevel(phSceneName);
     }
 
     [PunRPC]
     private void PhotonLoadScene_Rpc(string phSceneName)
     {
-        if(SceneManager.GetActiveScene().name != "MainMenu")
+        PhotonNetwork.LoadLevel(phSceneName);
+
+        /*if(SceneManager.GetActiveScene().name != "MainMenu")
             PhotonNetwork.LoadLevel(phSceneName);
         else
-            PhotonNetwork.LoadLevel("Entrance");
+            PhotonNetwork.LoadLevel("Entrance");*/
     }
 
     public void SetPlayerAsFirst()
@@ -240,17 +247,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("CreatePlayer2 in PhotonManager was called");
         player2 = PhotonNetwork.Instantiate(player2Prefab.name, GameObject.Find("Player2SpawnPoint").transform.position, Quaternion.identity);
-
-        if (isFirstPlayer == true)
-            GameObject.Find("Player2(Clone)").GetComponent<AudioListener>().enabled = false;
-
-        if (isFirstPlayer == false)
-            GameObject.Find("Player1").GetComponent<AudioListener>().enabled = false;
+        SceneTransition.instance.player2Joined = true;
     }
 
     public void OnRespawnRpcTriggered()
     {
-        photonView.RPC("Player_Connect_Rpc", RpcTarget.All);
+        photonView.RPC("Respawn_Rpc", RpcTarget.All);
     }
 
     [PunRPC]

@@ -112,7 +112,6 @@ MonoBehaviour:
   playerXSpeed: 1
   canMove: 1
   weaponAnimator: {fileID: 1310780043332796444}
-  isLookedAt: 0
   playerAudioSource: {fileID: 1310780043108781872}
   playerFootsepsSound: {fileID: 8300000, guid: 8c0b4a22811e89c498ddda693a55c6d2, type: 3}
   footstepsSoundCooldown: 0.4

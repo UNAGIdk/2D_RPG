@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMotor : MonoBehaviour
 {
-    private Transform lookAt; //Объект, за которым следить (игрок), в это поле нужно в дальнейшем засунуть игрока в инспекторе
+    private Transform lookAt; //Объект, за которым следить
     public float boundX = 0.15f;
     public float boundY = 0.05f;
     public float motorXMultiplier = 0.003f;
@@ -13,19 +13,30 @@ public class CameraMotor : MonoBehaviour
     private void Start() //найти объект с именем player, взять с него компонент transform и присвоить этот параметр в поле lookAt
     {
         AttachToPlayer();
-        transform.position = lookAt.position + new Vector3(0, 0, -10);
     }
 
     public void AttachToPlayer()
     {
-        if (GameManager.instance.photonManager.playingMultiplayer == true)
+        if(GameManager.instance.photonManager.playingMultiplayer == true)
+        {
             if (GameManager.instance.photonManager.isFirstPlayer == true)
+            {
                 lookAt = GameObject.Find("Player1").transform;
+                transform.position = lookAt.position + new Vector3(0, 0, -10);
+            }
             else
+            {
                 lookAt = GameObject.Find("Player2(Clone)").transform;
+                transform.position = lookAt.position + new Vector3(0, 0, -10);
+            }
+        }
         else
+        {
             lookAt = GameObject.Find("Player1").transform;
+            transform.position = lookAt.position + new Vector3(0, 0, -10);
+        }
     }
+            
 
     //LateUpdate потому что мы хотим вызывать этот метод уже после того как игрок переместился, чтобы не было необходимо ждать следующего кадра для перемещения камеры
     private void LateUpdate()

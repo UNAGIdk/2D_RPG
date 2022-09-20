@@ -7,6 +7,7 @@ public class SceneTransition : MonoBehaviour
     public static SceneTransition instance;
     [HideInInspector] public string sceneToGo;
     private PhotonManager photonManager;
+    [HideInInspector] public bool player2Joined = false;
     void Start()
     {
         sceneTransitionAnimator = GetComponent<Animator>(); //this.gameObject.
