@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     public GameObject hud; //это и следующее поле нужно дл€ того чтобы при переходе между сценами не создавалось новых меню и hud-a
     public GameObject menu;
     public Animator deathMenuAnim; // поле аниматора меню смерти
-    public GameObject eventSystem;
     public Camera mainCamera;
     public AudioManager audioManager;
     public GameObject backgroundMusicObject;
@@ -46,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public string sceneName = "Entrance";
     [HideInInspector] public string ruSceneName;
+
+    private bool audioListenersDisabled = false;
 
 
     //photon
@@ -96,7 +97,7 @@ public class GameManager : MonoBehaviour
         if (GameManager.instance != null)
         {
             //удалить компоненты, так как при переходе между сценами создаютс€ их копии
-            Destroy(mainCamera.gameObject);
+            Destroy(GameObject.Find("Main Camera").gameObject);
             Destroy(gameObject);
             Destroy(floatingTextManager.gameObject);
             Destroy(hud);
@@ -198,6 +199,17 @@ public class GameManager : MonoBehaviour
                 ruSceneName = "¬ход";
                 break;
         }
+
+        if(GameObject.Find("Player2(Clone)") != null && audioListenersDisabled == false)
+        {
+            if (photonManager.isFirstPlayer == true)
+                GameObject.Find("Player2(Clone)").GetComponent<AudioListener>().enabled = false;
+
+            if (photonManager.isFirstPlayer == false)
+                GameObject.Find("Player1").GetComponent<AudioListener>().enabled = false;
+
+            audioListenersDisabled = true;
+        }
     }
 
 
@@ -280,13 +292,12 @@ public class GameManager : MonoBehaviour
         OnHitpointChange();
     }
 
-    //при загрузке сцены нужно игрока телепортировать к SpawnPoint
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         player.TeleportToSpawnPoint();
-        instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //вывести текст с названием сцены
+        mainCamera.transform.position = player.transform.position;
+        instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //GameObject.Find("Main Camera").transform.position
         sceneTransition.SceneTransitionOnSceneLoaded();
-        mainCamera.GetComponent<CameraMotor>().AttachToPlayer();
     }
     
     public void RespawnRpcTrigger()

@@ -2926,7 +2926,6 @@ MonoBehaviour:
   playerXSpeed: 1
   canMove: 1
   weaponAnimator: {fileID: 1366005463}
-  isLookedAt: 0
   playerAudioSource: {fileID: 494586519}
   playerFootsepsSound: {fileID: 8300000, guid: 8c0b4a22811e89c498ddda693a55c6d2, type: 3}
   footstepsSoundCooldown: 0.4
@@ -3686,6 +3685,7 @@ MonoBehaviour:
   secondPlayerName: {fileID: 930002029}
   serverName: {fileID: 1777309831}
   ping: {fileID: 624505935}
+  multiplayerInfoCoverage: {fileID: 1242137984}
 --- !u!1 &571001743
 GameObject:
   m_ObjectHideFlags: 0
@@ -28143,11 +28143,10 @@ MonoBehaviour:
   hud: {fileID: 2021944135}
   menu: {fileID: 186998962}
   deathMenuAnim: {fileID: 510701372}
-  eventSystem: {fileID: 1126528808}
   mainCamera: {fileID: 1334293066}
   audioManager: {fileID: 1856936110}
   backgroundMusicObject: {fileID: 1209332580}
-  multiplayerInformationCoverage: {fileID: 570482818}
+  multiplayerInformationCoverage: {fileID: 1242137984}
   sceneTransition: {fileID: 0}
   money: 0
   experience: 0
@@ -28192,6 +28191,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1693940929293299376, guid: dfc3d3516f4e14847922df35b616f79f, type: 3}
+      propertyPath: m_SynchronizeRotation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2917546418454764002, guid: dfc3d3516f4e14847922df35b616f79f, type: 3}
       propertyPath: sceneViewId
       value: 100
