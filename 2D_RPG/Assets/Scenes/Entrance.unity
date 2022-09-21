@@ -28445,8 +28445,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2127886992}
   - component: {fileID: 2127886991}
-  m_Layer: 0
-  m_Name: SkyScriptTest
+  m_Layer: 7
+  m_Name: SkyDemo02Layer3Script
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28464,8 +28464,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4908cbd5d15a6fa45b9c7948f0990a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloudSprite: {fileID: 21300000, guid: 6fc934c28f4a61548a11c8c0767f4834, type: 3}
-  instantiateCooldown: 2
+  cloudSprite: {fileID: 3745223642028594583, guid: 0e77172ab630e1541befdc6716a60c8c, type: 3}
+  instantiateCooldown: 12.5
 --- !u!4 &2127886992
 Transform:
   m_ObjectHideFlags: 0

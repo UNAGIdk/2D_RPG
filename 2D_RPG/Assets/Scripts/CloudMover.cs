@@ -1,27 +1,17 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CloudMover : MonoBehaviour
 {
-    public Sprite cloudSprite;
-    public float instantiateCooldown;
-    private float lastInstantiated;
-    private Transform parentTransform;
-    private Vector3 moveDelta;
+    public float xSpeed;
+    private Vector3 moveDelta; //0.00006f = 6e-05
 
-    void Start()
+    private void Start()
     {
-        moveDelta = new Vector3(1.0f, 0f, 0f);
-        parentTransform = GetComponent<Transform>();
+        moveDelta = new Vector3(xSpeed, 0f, 0f);
     }
 
     void Update()
     {
-        if(Time.time - lastInstantiated > instantiateCooldown)
-        {
-            Instantiate(cloudSprite, parentTransform);
-            lastInstantiated = Time.time;
-        }
-        transform.Translate(moveDelta.x * Time.time, 0, 0);
+        transform.Translate(moveDelta.x, 0, 0); // * Time.deltaTime
     }
 }
