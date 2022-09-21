@@ -66,7 +66,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             chatLastMessageTextReferenceSet = true;
         }
         phPing = PhotonNetwork.GetPing().ToString();
-        Debug.Log("playingMultiplayer is now " + playingMultiplayer);
     }
 
     public override void OnConnectedToMaster()
