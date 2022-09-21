@@ -294,10 +294,38 @@ public class GameManager : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        player.TeleportToSpawnPoint();
-        mainCamera.transform.position = player.transform.position;
-        instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //GameObject.Find("Main Camera").transform.position
+        Debug.Log("OnSceneLoadedCalled");
+        if (photonManager.playingMultiplayer == true && photonManager.isFirstPlayer == true)
+        {
+            player = GameObject.Find("Player1").GetComponent<Player>();
+            weapon = GameObject.Find("Weapon1").GetComponent<Weapon>();
+        }
+        else if (photonManager.playingMultiplayer == true && photonManager.isFirstPlayer == false)
+        {
+            player = GameObject.Find("Player2(Clone)").GetComponent<Player>();
+            weapon = GameObject.Find("Weapon2").GetComponent<Weapon>();
+        }
+
+        /*int player1Count = 0;
+        List<Player> player1List = null;
+        foreach (var playerObj in FindObjectsOfType<Player>())
+        {
+            if (playerObj.name == "Player1")
+            {
+                player1Count++;
+                player1List.Add(playerObj);
+            }
+        }
+        player1List.ToArray();
+        Destroy(player1List[1].gameObject);*/
+
         sceneTransition.SceneTransitionOnSceneLoaded();
+
+        instance.ShowText(ruSceneName, 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f); //GameObject.Find("Main Camera").transform.position
+        player.TeleportToSpawnPoint();
+
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        mainCamera.transform.position = player.transform.position;
     }
     
     public void RespawnRpcTrigger()

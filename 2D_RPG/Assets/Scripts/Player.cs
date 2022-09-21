@@ -19,6 +19,7 @@ public class Player : Mover
     [HideInInspector] public float x;
     [HideInInspector] public float y;
 
+
     protected override void RecieveDamage(Damage damage)
     {
         if (canMove == false) //если умер то дмг получать уже не нужно
