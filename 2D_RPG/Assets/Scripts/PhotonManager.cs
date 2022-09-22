@@ -260,9 +260,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public void CatchMultiplayerParameters()
     {
+        if(playingMultiplayer == true)
+        {
         phRoomName = PhotonNetwork.CurrentRoom.Name;
         phServerName = PhotonNetwork.CloudRegion;
-        if (playingMultiplayer == true && isFirstPlayer == false)
+        if (isFirstPlayer == false)
             phSecondPlayerName = PhotonNetwork.CurrentRoom.Players[1].NickName;
+        }
     }
 }

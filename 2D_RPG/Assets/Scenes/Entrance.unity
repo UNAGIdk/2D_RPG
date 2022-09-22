@@ -3061,7 +3061,7 @@ GameObject:
   - component: {fileID: 510701374}
   - component: {fileID: 510701373}
   - component: {fileID: 510701372}
-  - component: {fileID: 510701371}
+  - component: {fileID: 510701375}
   m_Layer: 5
   m_Name: DeathMenu
   m_TagString: Untagged
@@ -3085,16 +3085,11 @@ RectTransform:
   m_Father: {fileID: 2021944139}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 510701369}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &510701372
 Animator:
   serializedVersion: 4
@@ -3153,6 +3148,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510701369}
   m_CullTransparentMesh: 1
+--- !u!225 &510701375
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510701369}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &564707570
 GameObject:
   m_ObjectHideFlags: 0
@@ -23867,6 +23874,10 @@ PrefabInstance:
     - target: {fileID: 965996245571512817, guid: dff1b5202fa26a848b659ac19b34e08d, type: 3}
       propertyPath: sceneName
       value: Dungeon 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 965996245571512817, guid: dff1b5202fa26a848b659ac19b34e08d, type: 3}
+      propertyPath: portalSceneName
+      value: Dungeon 5
       objectReference: {fileID: 0}
     - target: {fileID: 965996245571512818, guid: dff1b5202fa26a848b659ac19b34e08d, type: 3}
       propertyPath: m_RootOrder
