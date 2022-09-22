@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public PhotonView photonView;
     [HideInInspector] public PhotonManager photonManager;
 
+    public Sprite menuButtonPlayer2Sprite;
+
     private void Awake()
     {
         photonView = FindObjectOfType<PhotonView>(); //GetComponent<PhotonView>();
@@ -155,6 +157,8 @@ public class GameManager : MonoBehaviour
 
         if(SceneManager.GetActiveScene().name == "Entrance" && photonManager.playingMultiplayer == false)
             instance.ShowText("¬ход", 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f);
+
+        photonManager.CatchMultiplayerParameters();
     }
 
     private void Update()
@@ -304,6 +308,7 @@ public class GameManager : MonoBehaviour
         {
             player = GameObject.Find("Player2(Clone)").GetComponent<Player>();
             weapon = GameObject.Find("Weapon2").GetComponent<Weapon>();
+            GameObject.Find("MenuButton").GetComponent<Image>().sprite = menuButtonPlayer2Sprite;
         }
 
         /*int player1Count = 0;
