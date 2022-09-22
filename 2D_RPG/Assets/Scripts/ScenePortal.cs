@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ScenePortal : Collidable
 {
-    public string sceneName; //название сцен, на которую мы хотим переключаться
+    public string portalSceneName; //название сцен, на которую мы хотим переключаться
     private Animator portalHintAnimator;
 
     [HideInInspector] public bool teleportHintShowing;
@@ -37,12 +37,12 @@ public class ScenePortal : Collidable
 
     protected override void OnCollide(Collider2D coll)
     {
-        if (coll.name == "Player")
+        if (coll.name == "Player1" || coll.name == "Player2(Clone)")
         {
             Debug.Log("Player collided scene portal");
             teleportHintShowing = true;
 
-            GameManager.instance.sceneName = sceneName;
+            SceneTransition.instance.sceneToGo = portalSceneName;
 
             if (Input.GetKeyDown(KeyCode.F) == true)
             {
@@ -56,7 +56,6 @@ public class ScenePortal : Collidable
     {
         //телепортировать игрока в dungeon
         GameManager.instance.SaveState();
-        //SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         SceneTransition.instance.SceneSwitch();
     }
 }

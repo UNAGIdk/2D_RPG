@@ -72,7 +72,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Connected to " + PhotonNetwork.CloudRegion);
         Debug.Log("Current ping is " + PhotonNetwork.GetPing());
-        phServerName = PhotonNetwork.CloudRegion;
 
         if (!PhotonNetwork.InLobby)
             PhotonNetwork.JoinLobby();
@@ -110,7 +109,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             roomOptions.MaxPlayers = 2;
             roomOptions.IsVisible = true;
             PhotonNetwork.CreateRoom(roomName.text, roomOptions, TypedLobby.Default);
-            phRoomName = roomName.text;
             SetPlayerAsFirst();
         }
     }
@@ -142,7 +140,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                 listitem.SetListInfo(info);
                 allRoomsInfo.Add(info);
             }
-            
         }
     }
 
@@ -203,7 +200,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public void OnPlayerConnectedToRoom(string newPlayerNickname)
     {
+        Debug.Log("Player_Connect_Rpc will be called now");
         photonView.RPC("Player_Connect_Rpc", RpcTarget.All, newPlayerNickname);
+        phSecondPlayerName = newPlayerNickname;
     }
 
     [PunRPC]
@@ -212,27 +211,23 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         GameManager.instance.ShowText(playerNickname + " зашел в комнату", 24, Color.white, GameObject.Find("Main Camera").transform.position + new Vector3(-0.54f, 0.94f, 0), Vector3.up * 4, 5.0f);
     }
 
-    //нижеописанный метод RPC писал до того как узнал что аниматоры можно синхронизировать через PhotonAnimatorView
-
-
-    /*public void SynchronizeSwing(string nickname) //отобразить анимацию игрока 1 у игрока 2, и наоборот. тут nickname это Player1 или Player2(Clone)
+    public void PhotonLoadScene(string phSceneName)
     {
-        photonView.RPC("SynchronizeSwing_Rpc", RpcTarget.All, nickname);
+        if(SceneTransition.instance.player2Joined == true)
+            photonView.RPC("PhotonLoadScene_Rpc", RpcTarget.All, phSceneName);
+        else
+            PhotonNetwork.LoadLevel(phSceneName);
     }
 
     [PunRPC]
-    private void SynchronizeSwing_Rpc(string nickname)
+    private void PhotonLoadScene_Rpc(string phSceneName)
     {
-        if (nickname == "Player1")
-            GameObject.Find("Weapon1").GetComponent<Animator>().SetTrigger("Swing");
+        PhotonNetwork.LoadLevel(phSceneName);
 
-        if (nickname == "Player2(Clone)")
-            GameObject.Find("Weapon2").GetComponent<Animator>().SetTrigger("Swing");
-    }*/
-
-    public void PhotonLoadScene()
-    {
-        PhotonNetwork.LoadLevel("Entrance");
+        /*if(SceneManager.GetActiveScene().name != "MainMenu")
+            PhotonNetwork.LoadLevel(phSceneName);
+        else
+            PhotonNetwork.LoadLevel("Entrance");*/
     }
 
     public void SetPlayerAsFirst()
@@ -249,11 +244,28 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("CreatePlayer2 in PhotonManager was called");
         player2 = PhotonNetwork.Instantiate(player2Prefab.name, GameObject.Find("Player2SpawnPoint").transform.position, Quaternion.identity);
+        SceneTransition.instance.player2Joined = true;
+    }
 
-        if (isFirstPlayer == true)
-            GameObject.Find("Player2(Clone)").GetComponent<AudioListener>().enabled = false;
+    public void OnRespawnRpcTriggered()
+    {
+        photonView.RPC("Respawn_Rpc", RpcTarget.All);
+    }
 
+    [PunRPC]
+    private void Respawn_Rpc()
+    {
+        GameManager.instance.Respawn();
+    }
+
+    public void CatchMultiplayerParameters()
+    {
+        if(playingMultiplayer == true)
+        {
+        phRoomName = PhotonNetwork.CurrentRoom.Name;
+        phServerName = PhotonNetwork.CloudRegion;
         if (isFirstPlayer == false)
-            GameObject.Find("Player1").GetComponent<AudioListener>().enabled = false;
+            phSecondPlayerName = PhotonNetwork.CurrentRoom.Players[1].NickName;
+        }
     }
 }
