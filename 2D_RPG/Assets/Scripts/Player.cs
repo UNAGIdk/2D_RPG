@@ -12,7 +12,11 @@ public class Player : Mover
 
 
     public AudioSource playerAudioSource;
+    public AudioSource playerHitAudioSource;
+
     public AudioClip playerFootsepsSound;
+    public AudioClip playerDamageClip;
+
     public float footstepsSoundCooldown = 0.4f;
     private float lastStepTime;
 
@@ -26,6 +30,7 @@ public class Player : Mover
             return;
 
         base.RecieveDamage(damage);
+
         GameManager.instance.OnHitpointChange();
     }
 

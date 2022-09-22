@@ -13,14 +13,25 @@ public class MultiplayerInformationManager : MonoBehaviour
     private void Start()
     {
         roomName.text = GameManager.instance.photonManager.phRoomName;
-        playerName.text = GameManager.instance.photonManager.phPlayerName;
-
         serverName.text = GameManager.instance.photonManager.phServerName;
     }
 
     private void Update()
     {
         ping.text = GameManager.instance.photonManager.phPing;
-    }
+        if(GameManager.instance.photonManager.playingMultiplayer == true && GameManager.instance.photonManager.isFirstPlayer == true)
+        {
+            /*playerName.text = GameManager.instance.photonManager.phSecondPlayerName;
+            secondPlayerName.text = GameManager.instance.photonManager.phPlayerName;*/ //было для player2
 
+            secondPlayerName.text = GameManager.instance.photonManager.phSecondPlayerName;
+            playerName.text = GameManager.instance.photonManager.phPlayerName;
+        }
+
+        if (GameManager.instance.photonManager.playingMultiplayer == true && GameManager.instance.photonManager.isFirstPlayer == false)
+        {
+            secondPlayerName.text = GameManager.instance.photonManager.phSecondPlayerName;
+            playerName.text = GameManager.instance.photonManager.phPlayerName;
+        }
+    }
 }
