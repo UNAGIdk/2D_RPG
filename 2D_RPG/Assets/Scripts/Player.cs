@@ -9,7 +9,6 @@ public class Player : Mover
 
     [HideInInspector] public bool canMove = true;
     public Animator weaponAnimator;
-    [HideInInspector] public bool isLookedAt;
 
 
     public AudioSource playerAudioSource;
@@ -19,6 +18,7 @@ public class Player : Mover
 
     [HideInInspector] public float x;
     [HideInInspector] public float y;
+
 
     protected override void RecieveDamage(Damage damage)
     {
@@ -167,12 +167,12 @@ public class Player : Mover
         if(GameManager.instance.photonManager.playingMultiplayer == true)
         {
             GameObject.Find("Player1").transform.position = GameObject.Find("Player1SpawnPoint").transform.position;
-            GameObject.Find("Player2(Clone)").transform.position = GameObject.Find("Player2SpawnPoint").transform.position;
+            if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
+                GameObject.Find("Player2(Clone)").transform.position = GameObject.Find("Player2SpawnPoint").transform.position;
         }
         else
         {
             GameObject.Find("Player1").transform.position = GameObject.Find("Player1SpawnPoint").transform.position;
-            GameObject.Find("Player2(Clone)").transform.position += new Vector3(1000f, 0f, 0f);
         }
     }
 }
