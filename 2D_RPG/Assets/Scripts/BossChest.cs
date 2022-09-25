@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossChest : Chest
 {
     public Sprite openChest;
-    public bool bossDead = false;
+    [HideInInspector] public bool bossDead = false;
     public Boss boss;
     private bool chestOpened = false;
 
@@ -26,8 +26,7 @@ public class BossChest : Chest
     {
         if (!collected && bossDead) 
         {
-            if (moneyAmount == 0) // если поставить 0, то кол-во денег будет равно 5-10
-                moneyAmount = Random.Range(5, 10);
+            moneyAmount = Random.Range(randomLowerBorder, randomUpperBorder);
             collected = true;
             GetComponent<SpriteRenderer>().sprite = emptyChest;
             GameManager.instance.money += moneyAmount;
