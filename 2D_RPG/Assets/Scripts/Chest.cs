@@ -5,9 +5,10 @@ using UnityEngine;
 public class Chest : Collectable
 {
     public Sprite emptyChest;
-    public int moneyAmount = 0;
+    [HideInInspector]public int moneyAmount;
+    public int randomLowerBorder;
+    public int randomUpperBorder;
     public AudioSource chestAudioSource;
-
     public AudioClip[] chestSounds;
 
 
@@ -16,8 +17,7 @@ public class Chest : Collectable
 
         if (!collected)
         {
-            if (moneyAmount == 0) // если поставить 0, то кол-во денег будет равно 5-10
-                moneyAmount = Random.Range(5, 10);
+            moneyAmount = Random.Range(randomLowerBorder, randomUpperBorder);
             collected = true;
             GetComponent<SpriteRenderer>().sprite = emptyChest;
             GameManager.instance.money += moneyAmount;

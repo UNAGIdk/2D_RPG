@@ -90,13 +90,13 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (photonManager.playingMultiplayer == false)
+        /*if (photonManager.playingMultiplayer == false)
         {
             player.GetComponent<PhotonView>().enabled = false;
             player.GetComponent<PhotonTransformView>().enabled = false;
-        }
+        }*/
 
-        if (GameManager.instance != null)
+        if (instance != null)
         {
             //удалить компоненты, так как при переходе между сценами создаются их копии
             Destroy(GameObject.Find("Main Camera").gameObject);
@@ -331,13 +331,19 @@ public class GameManager : MonoBehaviour
 
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         mainCamera.transform.position = player.transform.position;
+
+        foreach (var playerObj in FindObjectsOfType<Player>())
+        {
+            playerObj.hitpoint = playerObj.maxHitpoint;
+        }
     }
     
     public void RespawnRpcTrigger()
     {
         if (photonManager.playingMultiplayer == true)
             photonManager.OnRespawnRpcTriggered();
-        else
+        
+        if(photonManager.playingMultiplayer == false)
             Respawn();
     }
 
@@ -350,13 +356,7 @@ public class GameManager : MonoBehaviour
         instance.weapon.SetWeaponLevel(0);
         player.hitpoint = 5;
         player.maxHitpoint = 5;
-        try
-        {
-            PlayerPrefs.DeleteKey("SaveState");
-        }
-        catch (System.Exception)
-        {
-        }
+        PlayerPrefs.DeleteKey("SaveState");
         Debug.Log("Cleared Player Prefs");
         player.Respawn();
         SceneTransition.instance.sceneToGo = "Entrance";

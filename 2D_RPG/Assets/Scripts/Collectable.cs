@@ -9,7 +9,7 @@ public class Collectable : Collidable
 
     protected override void OnCollide(Collider2D coll)
     {
-        if (coll.name == "Player")
+        if (coll.name == "Player1" || coll.name == "Player2(Clone)")
             OnCollect();
     }
 
