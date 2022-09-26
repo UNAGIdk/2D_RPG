@@ -24,7 +24,7 @@ public class NPCTextPerson : Collidable
     {
         base.Start();
         hasSpokenMessages = false;
-        if(GameManager.instance.photonManager.playingMultiplayer == false)
+        if (GameManager.instance.photonManager.playingMultiplayer == false)
         {
             if (PlayerPrefs.GetString("PlayerNameResponse") == "" || PlayerPrefs.HasKey("PlayerNameResponse") == false)
                 hasAskedName = false;
@@ -32,11 +32,14 @@ public class NPCTextPerson : Collidable
             {
                 hasAskedName = true;
                 messages[0] = "Ну привет, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
-                messages[messages.Length - 1] = "На этом мои советы заканчиваются. Удачи на первом уровне, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
+                messages[messages.Length - 1] = "На этом мои советы заканчиваются. Удачи, " + PlayerPrefs.GetString("PlayerNameResponse") + "!";
             }
         }
-        else 
+        else
+        {
             messages[0] = "Ну привет, " + PhotonNetwork.NickName + "!";
+            messages[messages.Length - 1] = "На этом мои советы заканчиваются. Удачи, " + PhotonNetwork.NickName + "!";
+        }       
     }
 
     protected override void Update()
