@@ -336,6 +336,8 @@ public class GameManager : MonoBehaviour
         {
             playerObj.hitpoint = playerObj.maxHitpoint;
         }
+
+        GameObject.Find("Main Camera").transform.position = GameObject.Find("Main Camera").transform.position + new Vector3(0, 0, -10);
     }
     
     public void RespawnRpcTrigger()
