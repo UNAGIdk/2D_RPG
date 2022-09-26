@@ -17672,8 +17672,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boundX: 0.15
   boundY: 0.05
-  motorXMultiplier: 0.012
-  motorYMultiplier: 0.012
+  motorXMultiplier: 1.7
+  motorYMultiplier: 1.7
 --- !u!114 &1334293069
 MonoBehaviour:
   m_ObjectHideFlags: 0
