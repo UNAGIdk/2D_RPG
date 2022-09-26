@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
 
     public Sprite menuButtonPlayer2Sprite;
 
+    [HideInInspector] public int respawnButtonPressedCount = 0;
+
     private void Awake()
     {
         photonView = FindObjectOfType<PhotonView>(); //GetComponent<PhotonView>();
@@ -73,24 +75,7 @@ public class GameManager : MonoBehaviour
             photonManager.CreatePlayer2();
         }
 
-        if (photonManager.playingMultiplayer == false)
-        {
-            player = GameObject.Find("Player1").GetComponent<Player>();
-            weapon = GameObject.Find("Weapon1").GetComponent<Weapon>();
-        }
-        else
-        {
-            if (photonManager.isFirstPlayer == true)
-            {
-                player = GameObject.Find("Player1").GetComponent<Player>();
-                weapon = GameObject.Find("Weapon1").GetComponent<Weapon>();
-            }
-            else
-            {
-                player = GameObject.Find("Player2(Clone)").GetComponent<Player>();
-                weapon = GameObject.Find("Weapon2").GetComponent<Weapon>();
-            }
-        }
+        
 
         /*if (photonManager.playingMultiplayer == false)
         {
@@ -108,7 +93,6 @@ public class GameManager : MonoBehaviour
             Destroy(menu);
             Destroy(dialogueManager.gameObject);
             Destroy(audioManager.gameObject);
-            Destroy(backgroundMusicObject);
             return;
         }
 
@@ -116,43 +100,10 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += LoadState; //запускает LoadState каждый раз при загрузке сцены, sceneLoaded это event
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        
-
-        entranceLevel1GateAnimator = GameObject.Find("Level1Gate").GetComponent<Animator>();
-        Debug.Log("entranceLevel1GateAnimator has found sceneTranition on game object " + entranceLevel1GateAnimator.name);
-        entranceLevel2GateAnimator = GameObject.Find("Level2Gate").GetComponent<Animator>();
-        entranceLevel3GateAnimator = GameObject.Find("Level3Gate").GetComponent<Animator>();
-        entranceLevel4GateAnimator = GameObject.Find("Level4Gate").GetComponent<Animator>();
-        entranceLevel5GateAnimator = GameObject.Find("Level5Gate").GetComponent<Animator>();
-
-        if (PlayerPrefs.HasKey("LevelsPassed"))
-            switch(PlayerPrefs.GetString("LevelsPassed"))
-            {
-                case "0":
-                    entranceLevel1GateAnimator.SetTrigger("open");
-                    break;
-                case "1":
-                    entranceLevel2GateAnimator.SetTrigger("open");
-                    break;
-                case "2":
-                    entranceLevel3GateAnimator.SetTrigger("open");
-                    break;
-                case "3":
-                    entranceLevel4GateAnimator.SetTrigger("open");
-                    break;
-                case "4":
-                    entranceLevel5GateAnimator.SetTrigger("open");
-                    break;
-                case "5":
-
-                    break;
-
-                default:
-                    entranceLevel1GateAnimator.SetTrigger("open");
-                    break;
-            }
-        else
+        /*if (PlayerPrefs.HasKey("LevelsPassed"))
+         else
             entranceLevel1GateAnimator.SetTrigger("open");
+         */
 
         if (photonManager.playingMultiplayer == false)
             multiplayerInformationCoverage.gameObject.SetActive(true);
@@ -200,8 +151,8 @@ public class GameManager : MonoBehaviour
             case "Dungeon 4":
                 ruSceneName = "Уровень 4";
                 break;
-            case "Dungeon 5":
-                ruSceneName = "Уровень 5";
+            case "Garr Scene":
+                ruSceneName = "Логово ГАРРА";
                 break;
             default:
                 ruSceneName = "Вход";
@@ -303,6 +254,44 @@ public class GameManager : MonoBehaviour
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("OnSceneLoadedCalled");
+
+        
+
+        if (photonManager.playingMultiplayer == false)
+        {
+            player = GameObject.Find("Player1").GetComponent<Player>();
+            weapon = GameObject.Find("Weapon1").GetComponent<Weapon>();
+        }
+        else
+        {
+            if (photonManager.isFirstPlayer == true)
+            {
+                player = GameObject.Find("Player1").GetComponent<Player>();
+                weapon = GameObject.Find("Weapon1").GetComponent<Weapon>();
+            }
+            else
+            {
+                player = GameObject.Find("Player2(Clone)").GetComponent<Player>();
+                weapon = GameObject.Find("Weapon2").GetComponent<Weapon>();
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name == "Entrance")
+        {
+            entranceLevel1GateAnimator = GameObject.Find("Level1Gate").GetComponent<Animator>();
+            Debug.Log("entranceLevel1GateAnimator has found sceneTranition on game object " + entranceLevel1GateAnimator.name);
+            entranceLevel2GateAnimator = GameObject.Find("Level2Gate").GetComponent<Animator>();
+            Debug.Log("entranceLevel2GateAnimator has found sceneTranition on game object " + entranceLevel2GateAnimator.name);
+            entranceLevel3GateAnimator = GameObject.Find("Level3Gate").GetComponent<Animator>();
+            entranceLevel4GateAnimator = GameObject.Find("Level4Gate").GetComponent<Animator>();
+            entranceLevel5GateAnimator = GameObject.Find("Level5Gate").GetComponent<Animator>();
+        }
+
+        if(respawnButtonPressedCount > 1)
+        {
+            //
+        }
+        
         if (photonManager.playingMultiplayer == true && photonManager.isFirstPlayer == true)
         {
             player = GameObject.Find("Player1").GetComponent<Player>();
@@ -336,21 +325,53 @@ public class GameManager : MonoBehaviour
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         mainCamera.transform.position = player.transform.position;
 
-        foreach (var playerObj in FindObjectsOfType<Player>())
-        {
-            playerObj.hitpoint = playerObj.maxHitpoint;
-        }
+        hitpointBar.localScale = new Vector3(1, (float)player.hitpoint / (float)player.maxHitpoint * 0.8f, 1);
 
         GameObject.Find("Main Camera").transform.position = GameObject.Find("Main Camera").transform.position + new Vector3(0, 0, -10);
+
+        if (SceneManager.GetActiveScene().name == "Entrance")
+        {
+            switch (PlayerPrefs.GetString("LevelsPassed"))
+            {
+                case "0":
+                    entranceLevel1GateAnimator.SetTrigger("open");
+                    break;
+                case "1":
+                    entranceLevel2GateAnimator.SetTrigger("open");
+                    break;
+                case "2":
+                    entranceLevel3GateAnimator.SetTrigger("open");
+                    break;
+                case "3":
+                    entranceLevel4GateAnimator.SetTrigger("open");
+                    break;
+                case "4":
+                    entranceLevel5GateAnimator.SetTrigger("open");
+                    break;
+                case "5":
+
+                    break;
+
+                default:
+                    entranceLevel1GateAnimator.SetTrigger("open");
+                    break;
+            }
+        }
     }
     
     public void RespawnRpcTrigger()
     {
         if (photonManager.playingMultiplayer == true)
+        {
+            respawnButtonPressedCount++;
             photonManager.OnRespawnRpcTriggered();
+        }
         
         if(photonManager.playingMultiplayer == false)
+        {
+            respawnButtonPressedCount++;
             Respawn();
+        }
     }
 
     public void Respawn()
