@@ -72,7 +72,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Connected to " + PhotonNetwork.CloudRegion);
         Debug.Log("Current ping is " + PhotonNetwork.GetPing());
-        phServerName = PhotonNetwork.CloudRegion;
 
         if (!PhotonNetwork.InLobby)
             PhotonNetwork.JoinLobby();
@@ -110,7 +109,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             roomOptions.MaxPlayers = 2;
             roomOptions.IsVisible = true;
             PhotonNetwork.CreateRoom(roomName.text, roomOptions, TypedLobby.Default);
-            phRoomName = roomName.text;
             SetPlayerAsFirst();
         }
     }
@@ -142,7 +140,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                 listitem.SetListInfo(info);
                 allRoomsInfo.Add(info);
             }
-            
         }
     }
 
@@ -205,6 +202,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Player_Connect_Rpc will be called now");
         photonView.RPC("Player_Connect_Rpc", RpcTarget.All, newPlayerNickname);
+        phSecondPlayerName = newPlayerNickname;
     }
 
     [PunRPC]
@@ -258,5 +256,16 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     private void Respawn_Rpc()
     {
         GameManager.instance.Respawn();
+    }
+
+    public void CatchMultiplayerParameters()
+    {
+        if(playingMultiplayer == true)
+        {
+        phRoomName = PhotonNetwork.CurrentRoom.Name;
+        phServerName = PhotonNetwork.CloudRegion;
+        if (isFirstPlayer == false)
+            phSecondPlayerName = PhotonNetwork.CurrentRoom.Players[1].NickName;
+        }
     }
 }

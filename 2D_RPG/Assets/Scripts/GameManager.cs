@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public PhotonView photonView;
     [HideInInspector] public PhotonManager photonManager;
 
+    public Sprite menuButtonPlayer2Sprite;
+
     private void Awake()
     {
         photonView = FindObjectOfType<PhotonView>(); //GetComponent<PhotonView>();
@@ -88,13 +90,13 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (photonManager.playingMultiplayer == false)
+        /*if (photonManager.playingMultiplayer == false)
         {
             player.GetComponent<PhotonView>().enabled = false;
             player.GetComponent<PhotonTransformView>().enabled = false;
-        }
+        }*/
 
-        if (GameManager.instance != null)
+        if (instance != null)
         {
             //удалить компоненты, так как при переходе между сценами создаютс€ их копии
             Destroy(GameObject.Find("Main Camera").gameObject);
@@ -155,6 +157,8 @@ public class GameManager : MonoBehaviour
 
         if(SceneManager.GetActiveScene().name == "Entrance" && photonManager.playingMultiplayer == false)
             instance.ShowText("¬ход", 35, Color.green, GameObject.Find("Main Camera").transform.position + new Vector3(0, 0.48f, 0), Vector3.zero, 3.0f);
+
+        photonManager.CatchMultiplayerParameters();
     }
 
     private void Update()
@@ -304,6 +308,7 @@ public class GameManager : MonoBehaviour
         {
             player = GameObject.Find("Player2(Clone)").GetComponent<Player>();
             weapon = GameObject.Find("Weapon2").GetComponent<Weapon>();
+            GameObject.Find("MenuButton").GetComponent<Image>().sprite = menuButtonPlayer2Sprite;
         }
 
         /*int player1Count = 0;
@@ -326,13 +331,21 @@ public class GameManager : MonoBehaviour
 
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         mainCamera.transform.position = player.transform.position;
+
+        foreach (var playerObj in FindObjectsOfType<Player>())
+        {
+            playerObj.hitpoint = playerObj.maxHitpoint;
+        }
+
+        GameObject.Find("Main Camera").transform.position = GameObject.Find("Main Camera").transform.position + new Vector3(0, 0, -10);
     }
     
     public void RespawnRpcTrigger()
     {
         if (photonManager.playingMultiplayer == true)
             photonManager.OnRespawnRpcTriggered();
-        else
+        
+        if(photonManager.playingMultiplayer == false)
             Respawn();
     }
 
@@ -345,13 +358,7 @@ public class GameManager : MonoBehaviour
         instance.weapon.SetWeaponLevel(0);
         player.hitpoint = 5;
         player.maxHitpoint = 5;
-        try
-        {
-            PlayerPrefs.DeleteKey("SaveState");
-        }
-        catch (System.Exception)
-        {
-        }
+        PlayerPrefs.DeleteKey("SaveState");
         Debug.Log("Cleared Player Prefs");
         player.Respawn();
         SceneTransition.instance.sceneToGo = "Entrance";

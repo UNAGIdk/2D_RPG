@@ -42,7 +42,7 @@ public class ScenePortal : Collidable
             Debug.Log("Player collided scene portal");
             teleportHintShowing = true;
 
-            GameManager.instance.sceneName = portalSceneName;
+            SceneTransition.instance.sceneToGo = portalSceneName;
 
             if (Input.GetKeyDown(KeyCode.F) == true)
             {
