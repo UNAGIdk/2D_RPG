@@ -85,7 +85,7 @@ public class CameraMotor : MonoBehaviour
             motorYMultiplier -= 0.0001f;*/
         
         //строчку ниже можно раскомментить чтобы использовать коэффициенты motorX и motorY при вычислении вектора движения камеры
-        transform.position += new Vector3(delta.x * motorXMultiplier, delta.y * motorYMultiplier, 0);
+        transform.position += new Vector3(delta.x * motorXMultiplier * Time.deltaTime, delta.y * motorYMultiplier * Time.deltaTime, 0);
         //transform.position += new Vector3(delta.x, delta.y, 0);
     }
 }
