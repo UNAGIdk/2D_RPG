@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class Player : Mover
 {
@@ -29,9 +30,26 @@ public class Player : Mover
         if (canMove == false) //если умер то дмг получать уже не нужно
             return;
 
-        base.RecieveDamage(damage);
+         if(GameManager.instance.photonManager.playingMultiplayer == false)
+        {
+            base.RecieveDamage(damage);
+            GameManager.instance.OnHitpointChange();
+        }
 
-        GameManager.instance.OnHitpointChange();
+        if(GameManager.instance.photonManager.playingMultiplayer == true)
+        {
+            if(gameObject.name == "Player1" && GameManager.instance.photonManager.isFirstPlayer == true)
+            {
+                base.RecieveDamage(damage);
+                GameManager.instance.OnHitpointChange();
+            }
+
+            if(gameObject.name == "Player2(Clone)" && GameManager.instance.photonManager.isFirstPlayer == false)
+            {
+                base.RecieveDamage(damage);
+                GameManager.instance.OnHitpointChange();
+            }
+        }
     }
 
 
