@@ -268,4 +268,15 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             phSecondPlayerName = PhotonNetwork.CurrentRoom.Players[1].NickName;
         }
     }
+
+    public void UpdateLevelsPassedRpcTrigger(int levelNumber)
+    {
+        photonView.RPC("UpdateLevelsPassed_RPC", RpcTarget.All, levelNumber);
+    }
+
+    [PunRPC]
+    private void UpdateLevelsPassed_RPC(int levelNumber)
+    {
+        PlayerPrefs.SetString("LevelsPassed", levelNumber.ToString());
+    }
 }
