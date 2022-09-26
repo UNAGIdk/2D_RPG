@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Mover : Fighter //abstract потому что мы хотим только наследовать от этого класса методы, а не создавать экземпл€ры класса Mover
