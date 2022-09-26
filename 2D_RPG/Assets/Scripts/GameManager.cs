@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     private Animator entranceLevel1GateAnimator;
     private Animator entranceLevel2GateAnimator;
     private Animator entranceLevel3GateAnimator;
+    private Animator entranceLevel4GateAnimator;
+    private Animator entranceLevel5GateAnimator;
 
     //логика
     public int money;
@@ -120,8 +122,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("entranceLevel1GateAnimator has found sceneTranition on game object " + entranceLevel1GateAnimator.name);
         entranceLevel2GateAnimator = GameObject.Find("Level2Gate").GetComponent<Animator>();
         entranceLevel3GateAnimator = GameObject.Find("Level3Gate").GetComponent<Animator>();
+        entranceLevel4GateAnimator = GameObject.Find("Level4Gate").GetComponent<Animator>();
+        entranceLevel5GateAnimator = GameObject.Find("Level5Gate").GetComponent<Animator>();
 
-        if(PlayerPrefs.HasKey("LevelsPassed"))
+        if (PlayerPrefs.HasKey("LevelsPassed"))
             switch(PlayerPrefs.GetString("LevelsPassed"))
             {
                 case "0":
@@ -134,10 +138,10 @@ public class GameManager : MonoBehaviour
                     entranceLevel3GateAnimator.SetTrigger("open");
                     break;
                 case "3":
-
+                    entranceLevel4GateAnimator.SetTrigger("open");
                     break;
                 case "4":
-
+                    entranceLevel5GateAnimator.SetTrigger("open");
                     break;
                 case "5":
 
@@ -179,7 +183,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        switch (sceneName) //SceneManager.GetActiveScene().name
+        switch (sceneName)
         {
             case "Entrance":
                 ruSceneName = "¬ход";
