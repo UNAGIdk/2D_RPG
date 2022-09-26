@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        switch (sceneName) //SceneManager.GetActiveScene().name
+        switch (sceneName)
         {
             case "Entrance":
                 ruSceneName = "¬ход";

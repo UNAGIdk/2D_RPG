@@ -10,6 +10,8 @@ public class ScenePortal : Collidable
     private Animator portalHintAnimator;
 
     [HideInInspector] public bool teleportHintShowing;
+    public bool isEndingPortal;
+    public int endingLevelNumber;
 
     protected override void Start()
     {
@@ -47,6 +49,12 @@ public class ScenePortal : Collidable
             if (Input.GetKeyDown(KeyCode.F) == true)
             {
                 teleportHintShowing = false;
+                if (GameManager.instance.photonManager.playingMultiplayer == false)
+                    PlayerPrefs.SetString("LevelsPassed", endingLevelNumber.ToString());
+
+                if(GameManager.instance.photonManager.playingMultiplayer == true)
+                    GameManager.instance.photonManager.UpdateLevelsPassedRpcTrigger(endingLevelNumber);
+
                 ToDungeon();
             }
         }

@@ -36,6 +36,7 @@ public class Enemy : Mover
     private Collider2D[] hits = new Collider2D[10]; // пишем это сюда потому что не можем наследовать от Collidable, а там это уже прописано
 
     private bool player2Linked = false;
+    public bool isGarr;
 
     protected override void Start()
     {
