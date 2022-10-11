@@ -14,18 +14,19 @@ public class HealingFounain : Collidable
 
     protected override void OnCollide(Collider2D coll)
     {
-        if (coll.name != "Player1" || coll.name != "Player2(Clone)")
-            return;
-
-        if(Time.time - lastHeal > healCooldown)
+        if (coll.name == "Player1" || coll.name == "Player2(Clone)")
         {
-            lastHeal = Time.time;
-            GameManager.instance.player.Heal(healingAmount);
-            if(GameManager.instance.player.hitpoint != GameManager.instance.player.maxHitpoint)
+            Debug.Log("condition in healingfountain works now");
+            if (Time.time - lastHeal > healCooldown)
             {
-                healingFountainAudioSource.pitch = Random.Range(0.8f, 1.2f);
-                healingFountainAudioSource.PlayOneShot(healingAudioClip);
+                lastHeal = Time.time;
+                GameManager.instance.player.Heal(healingAmount);
+                if (GameManager.instance.player.hitpoint != GameManager.instance.player.maxHitpoint)
+                {
+                    healingFountainAudioSource.pitch = Random.Range(0.8f, 1.2f);
+                    healingFountainAudioSource.PlayOneShot(healingAudioClip);
+                }
             }
-        }    
+        }
     }
 }

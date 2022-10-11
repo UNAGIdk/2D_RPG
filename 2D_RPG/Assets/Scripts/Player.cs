@@ -144,15 +144,15 @@ public class Player : Mover
 
     public void OnLevelUp()
     {
-        maxHitpoint += 2;
-        hitpoint = maxHitpoint;
+        GameManager.instance.ShowText("+”–ќ¬≈Ќ№", 32, Color.magenta, transform.position, Vector3.up * 15, 2.3f);
     }
 
     public void SetLevel(int level) //при загрузке вызвать lvlup столько раз, сколько левелов игрок набрал
     {
         for (int i = 0; i < level; i++)
         {
-            OnLevelUp();
+            maxHitpoint += 5;
+            hitpoint = maxHitpoint;
         }
     }
 

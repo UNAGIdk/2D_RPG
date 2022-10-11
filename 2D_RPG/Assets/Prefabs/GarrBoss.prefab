@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0059092045, y: 0.055567503}
+  m_Offset: {x: 0.001796484, y: 0.05163592}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5693765, y: 2.547329}
+  m_Size: {x: 2.2455087, y: 2.2408166}
   m_EdgeRadius: 0
 --- !u!114 &6501717048243072551
 MonoBehaviour:
@@ -85,7 +85,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  damagePoint: 1
+  damagePoint: 2
   pushForce: 1
 --- !u!1 &6501717049052659307
 GameObject:
@@ -190,7 +190,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.014016867, y: -0.00061672926}
+  m_Offset: {x: 0.0027120113, y: -0.0006939769}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -201,7 +201,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.534819, y: 2.5478168}
+  m_Size: {x: 2.2298427, y: 2.2187629}
   m_EdgeRadius: 0
 --- !u!114 &6501717049052659303
 MonoBehaviour:
@@ -215,8 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a295a91875ff67647be20b17fe5745e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoint: 40
-  maxHitpoint: 40
+  hitpoint: 50
+  maxHitpoint: 50
   pushRecoverySpeed: 0.2
   xpValue: 999
   triggerLength: 10

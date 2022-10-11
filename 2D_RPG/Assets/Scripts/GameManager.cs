@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour
     public void OnHitpointChange()
     {
         float ratio = (float)player.hitpoint / (float)player.maxHitpoint;
-        hitpointBar.localScale = new Vector3(1, ratio, 1);
+        hitpointBar.localScale = new Vector3(1, ratio * 0.8f, 1);
     }
 
 
