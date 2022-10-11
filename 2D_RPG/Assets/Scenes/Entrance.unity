@@ -1156,7 +1156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8099,7 +8099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10137,7 +10137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19377,7 +19377,7 @@ Transform:
   - {fileID: 1983774388}
   - {fileID: 1765602826}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1075710853
 GameObject:
@@ -20658,7 +20658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35540,8 +35540,8 @@ MonoBehaviour:
   - {fileID: -1580554725, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
   - {fileID: -2041890342, guid: b09d9e48bf3a0e144b83bd5dab3d6629, type: 3}
   - {fileID: 0}
-  weaponPrices: 190000004100000064000000690000007300000096000000
-  xpTable: 1e00000046000000640000008200000096000000b4000000c8000000fa0000002c01000068010000
+  weaponPrices: 0f0000001e0000002d0000003c0000004b0000005a000000
+  xpTable: 14000000280000003c0000005000000064000000780000008c000000a0000000b4000000c8000000
   weapon: {fileID: 0}
   player: {fileID: 0}
   floatingTextManager: {fileID: 1776806056}
@@ -36312,8 +36312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88dccbfcf5bad6545bf8dbc212012373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoint: 5
-  maxHitpoint: 5
+  hitpoint: 15
+  maxHitpoint: 15
   pushRecoverySpeed: 0.22
   playerYSpeed: 0.75
   playerXSpeed: 1
@@ -36365,7 +36365,7 @@ Transform:
   - {fileID: 3186380381017975918}
   - {fileID: 799803958}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3186380380927681358
 MonoBehaviour:
@@ -36662,7 +36662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5885504036976031647, guid: a4c1631f8c132434989a50e3ce4b2ac2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36727,7 +36727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6521306729927147544, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: messages.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6521306729927147544, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: NPCMessageInputField
@@ -36754,14 +36754,15 @@ PrefabInstance:
       propertyPath: messages.Array.data[2]
       value: "\u0412 \u043D\u0438\u0436\u043D\u0435\u043C \u043B\u0435\u0432\u043E\u043C
         \u0443\u0433\u043B\u0443 \u044D\u043A\u0440\u0430\u043D\u0430 \u0435\u0441\u0442\u044C
-        \u043A\u043D\u043E\u043F\u043A\u0430 \u043C\u0435\u043D\u044E, \u0430 \u0432\u044B\u0448\u0435
-        \u043D\u0435\u0451 - \u0438\u043D\u0434\u0438\u043A\u0430\u0442\u043E\u0440
+        \u043A\u043D\u043E\u043F\u043A\u0430 \u043C\u0435\u043D\u044E \u0438 \u0445\u0430\u0440\u0430\u043A\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043A,
+        \u0430 \u0432\u044B\u0448\u0435 \u043D\u0435\u0451 - \u0438\u043D\u0434\u0438\u043A\u0430\u0442\u043E\u0440
         \u0442\u0432\u043E\u0435\u0433\u043E \u0442\u0435\u043A\u0443\u0449\u0435\u0433\u043E
         <color=red>\u0417\u0414\u041E\u0420\u041E\u0412\u042C\u042F</color>. \u0415\u0441\u043B\u0438
         \u0442\u0432\u043E\u0451 <color=red>\u0417\u0414\u041E\u0420\u041E\u0412\u042C\u0415</color>
         \u0443\u043F\u0430\u0434\u0435\u0442 \u043A \u0443\u0440\u043E\u0432\u043D\u044E
         \u043D\u0443\u043B\u044F, \u0442\u043E \u0442\u0435\u0431\u0435 \u043F\u0440\u0438\u0434\u0435\u0442\u0441\u044F
-        \u043D\u0430\u0447\u0430\u0442\u044C \u0438\u0433\u0440\u0443 \u0437\u0430\u043D\u043E\u0432\u043E."
+        \u043D\u0430\u0447\u0430\u0442\u044C \u0438\u0433\u0440\u0443 \u0437\u0430\u043D\u043E\u0432\u043E
+        (\u043D\u0438\u043A\u0430\u043A\u0438\u0445 \u0440\u0435\u0441\u043F\u0430\u0443\u043D\u043E\u0432)."
       objectReference: {fileID: 0}
     - target: {fileID: 6521306729927147544, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: messages.Array.data[3]
@@ -36770,7 +36771,7 @@ PrefabInstance:
         \u044D\u0442\u043E \u0438\u0441\u0446\u0435\u043B\u044F\u044E\u0449\u0438\u0435
         \u0444\u043E\u043D\u0442\u0430\u043D\u044B. \u041F\u043E\u0434\u043E\u0439\u0434\u0438
         \u043A \u043D\u0438\u043C, \u0438 \u043E\u043D\u0438 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u044F\u0442
-        \u0442\u0435\u0431\u0435 \u043D\u0435\u043C\u043D\u043E\u0433\u043E <color=red>\u0417\u0414\u041E\u0420\u041E\u0412\u042C\u042F</color>."
+        \u0442\u0435\u0431\u0435 <color=red>\u0417\u0414\u041E\u0420\u041E\u0412\u042C\u0415</color>."
       objectReference: {fileID: 0}
     - target: {fileID: 6521306729927147544, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: messages.Array.data[4]
@@ -36814,7 +36815,7 @@ PrefabInstance:
     - target: {fileID: 6521306729927147544, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: messages.Array.data[7]
       value: "\u0412 \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u043C, \u043F\u044F\u0442\u043E\u043C
-        \u0443\u0440\u043E\u0432\u043D\u0435 \u043A\u043E\u0440\u0440\u0438\u0434\u043E\u0440
+        \u0443\u0440\u043E\u0432\u043D\u0435, \u043A\u043E\u0440\u0438\u0434\u043E\u0440
         \u043A \u043F\u043E\u0440\u0442\u0430\u043B\u0443 \u0432 \u043A\u043E\u0442\u043E\u0440\u044B\u0439
         \u043D\u0430\u0445\u043E\u0434\u0438\u0442\u0441\u044F \u0432 \u043A\u043E\u043D\u0446\u0435
         \u044D\u0442\u043E\u0433\u043E \u0437\u0430\u043B\u0430, \u0442\u044B \u0441\u0440\u0430\u0437\u0438\u0448\u044C\u0441\u044F
@@ -36826,6 +36827,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6521306729927147544, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: messages.Array.data[8]
+      value: "\u0418 \u0435\u0449\u0435, \u0441\u043A\u0430\u0436\u0443 \u043F\u043E
+        \u0441\u0435\u043A\u0440\u0435\u0442\u0443, \u0434\u043B\u044F \u0431\u043E\u043B\u0435\u0435
+        \u0441\u0442\u0430\u0431\u0438\u043B\u044C\u043D\u043E\u0439 \u0440\u0430\u0431\u043E\u0442\u044B
+        \u0438\u0433\u0440\u044B (\u043B\u0435\u043D\u044C \u0447\u0438\u043D\u0438\u0442\u044C)
+        \u0441\u0438\u0441\u0442\u0435\u043C\u0430 \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u0438\u0439
+        \u043E\u0442\u043A\u043B\u044E\u0447\u0435\u043D\u0430, \u0438 \u043B\u044E\u0431\u043E\u0439
+        \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u043A \u0438\u0433\u0440\u044B
+        \u0431\u0443\u0434\u0435\u0442 \u0440\u0430\u0432\u043D\u044F\u0442\u044C\u0441\u044F
+        \u043D\u043E\u0432\u043E\u043C\u0443 \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u0438\u044E."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6521306729927147544, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
+      propertyPath: messages.Array.data[9]
       value: "\u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0432 \u043A\u043E\u0434\u0435,
         \u043C\u0435\u0442\u043E\u0434 Start"
       objectReference: {fileID: 0}
@@ -36841,7 +36854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6521306729927147545, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6521306729927147545, guid: a49e99bfe91982041823c1d3da8f1592, type: 3}
       propertyPath: m_LocalScale.x
